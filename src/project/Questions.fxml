@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="AnchorPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.RankController">
+   <children>
+      <Pane layoutY="148.0" prefHeight="450.0" prefWidth="800.0" styleClass="input">
+         <children>
+            <TableView layoutX="75.0" layoutY="31.0" prefHeight="300.0" prefWidth="650.0">
+               <columns>
+                  <TableColumn fx:id="col_id" prefWidth="130.0" text="Lp." />
+                  <TableColumn fx:id="col_przedmiot" prefWidth="130.0" text="Przedmiot" />
+                  <TableColumn fx:id="col_imie" prefWidth="389.0" text="Treść pytania" />
+               </columns>
+            </TableView>
+            <TextField layoutX="265.0" layoutY="380.0" prefHeight="27.0" prefWidth="164.0" promptText="treść pytania" styleClass="data" stylesheets="@styles/login.css" />
+            <Button layoutX="628.0" layoutY="378.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Powrót" textFill="#575757">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </Button>
+            <ComboBox editable="true" layoutX="75.0" layoutY="381.0" prefWidth="150.0" promptText="wybierz przedmiot" styleClass="data" stylesheets="@styles/login.css" />
+            <Button layoutX="519.0" layoutY="380.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Ok" textFill="#575757">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </Button>
+         </children>
+         <stylesheets>
+            <URL value="@styles/login.css" />
+            <URL value="@styles/cb.css" />
+         </stylesheets>
+      </Pane>
+      <AnchorPane fx:id="FunctionAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="800.0" style="-fx-background-color: FF847F;">
+         <children>
+            <ImageView fx:id="close" accessibleRole="BUTTON" fitHeight="30.0" fitWidth="30.0" layoutX="756.0" layoutY="14.0" onMouseClicked="#closeAction" pickOnBounds="true" preserveRatio="true" styleClass="data" AnchorPane.bottomAnchor="156.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+               <image>
+                  <Image url="@images/icons8_close_window_50px.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="mini" fitHeight="30.0" fitWidth="30.0" layoutX="696.0" layoutY="14.0" onMouseClicked="#minAction" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="106.0" AnchorPane.rightAnchor="74.0" AnchorPane.topAnchor="14.0">
+               <image>
+                  <Image url="@images/icons8_minimize_window_50px.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="maxi" fitHeight="30.0" fitWidth="30.0" layoutX="726.0" layoutY="14.0" onMouseClicked="#maxAction" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="106.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="14.0">
+               <image>
+                  <Image url="@images/icons8_maximize_window_50px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="61.0" fitWidth="70.0" layoutX="42.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons8_laptop_100px.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="111.0" layoutY="46.0" text="E-learning" textFill="#575757">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="111.0" layoutY="83.0" text="Effective learning" textFill="#575757" />
+            <ImageView fitHeight="61.0" fitWidth="70.0" layoutX="370.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons8_questions_100px.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="352.0" layoutY="92.0" text="Pytania" textFill="#575757">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
