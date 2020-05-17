@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="container" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.RegisterController">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="350.0">
+         <children>
+            <TextField layoutX="101.0" layoutY="100.0" promptText="nazwa użytkownika" styleClass="data" stylesheets="@../styles/login.css" />
+            <PasswordField layoutX="101.0" layoutY="150.0" promptText="hasło" styleClass="data" stylesheets="@../styles/login.css" />
+            <ImageView fitHeight="47.0" fitWidth="30.0" layoutX="77.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_add_user_male_50px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="65.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_user_32px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="67.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_key_2_32px.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="125.0" layoutY="44.0" text="Rejestracja" textFill="#575757">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+            </Label>
+            <Button layoutX="127.0" layoutY="315.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Zarejestruj się" textFill="#575757">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </Button>
+            <TextField layoutX="101.0" layoutY="250.0" promptText="e-mail" styleClass="data" stylesheets="@../styles/login.css" />
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="67.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_email_50px.png" />
+               </image>
+            </ImageView>
+            <PasswordField layoutX="101.0" layoutY="200.0" promptText="powtórz hasło" styleClass="data" stylesheets="@../styles/login.css" />
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="68.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_key_2_32px.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="350.0" prefHeight="400.0" prefWidth="250.0" style="-fx-background-color: #FF847F;">
+         <children>
+            <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="31.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_laptop_100px.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="117.0" layoutY="105.0" text="Effective learning" textFill="#575757">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Label>
+            <Label layoutX="47.0" layoutY="189.0" text="Posiadasz konto?" textFill="#575757">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="button" layoutX="77.0" layoutY="219.0" mnemonicParsing="false" onAction="#loadThird" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15; -fx-border-color: #575757; -fx-border-radius: 15;" text="Zaloguj się" textFill="#575757">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </Button>
+            <Label layoutX="117.0" layoutY="79.0" text="E-learning" textFill="#575757">
+               <font>
+                  <Font name="Arial" size="22.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="close" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#closeAction" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+               <image>
+                  <Image url="@../images/icons8_close_window_50px.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="mini" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#minAction" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="14.0">
+               <image>
+                  <Image url="@../images/icons8_minimize_window_50px.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
