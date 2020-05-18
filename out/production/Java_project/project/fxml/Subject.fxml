@@ -53,7 +53,7 @@
       </AnchorPane>
       <Pane layoutY="150.0" prefHeight="450.0" prefWidth="800.0">
          <children>
-            <TableView focusTraversable="false" layoutX="75.0" layoutY="50.0" prefHeight="326.0" prefWidth="650.0" stylesheets="@../styles/tableview.css">
+            <TableView layoutX="75.0" layoutY="50.0" prefHeight="326.0" prefWidth="650.0" stylesheets="@../styles/tableview.css">
               <columns>
                 <TableColumn prefWidth="328.0" text="Nazwa przedmiotu" />
                 <TableColumn prefWidth="324.79998779296875" text="Rodzaj przedmiotu" />

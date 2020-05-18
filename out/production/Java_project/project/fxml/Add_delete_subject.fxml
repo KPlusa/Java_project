@@ -24,7 +24,7 @@
                   <Image url="@../images/icons8_maximize_window_50px.png" />
                </image>
             </ImageView>
-            <AnchorPane layoutX="42.0" layoutY="45.0">
+            <AnchorPane layoutX="42.0" layoutY="45.0" onMouseClicked="#go_menu_avatar">
                <children>
                   <ImageView fitHeight="61.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                      <image>
