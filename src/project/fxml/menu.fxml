@@ -51,7 +51,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="125.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="subject" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#go_to_subject" prefHeight="125.0" prefWidth="125.0" stylesheets="@../styles/style.css" text="Przedmiot" textFill="#575757" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                  <Button fx:id="subject_btn" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#go_subject" prefHeight="125.0" prefWidth="125.0" stylesheets="@../styles/style.css" text="Przedmiot" textFill="#575757" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>

@@ -38,7 +38,7 @@ public class RegisterController implements Initializable {
 
     @FXML
     private void loadThird(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/Login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../fxml/Login.fxml"));
         Scene scene = button.getScene();
         root.translateXProperty().set(scene.getWidth());
 

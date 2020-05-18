@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -39,7 +40,7 @@ public class LoginController implements Initializable {
 
     @FXML
     private void loadSecond(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/Register.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../fxml/Register.fxml"));
         Scene scene = button.getScene();
         root.translateYProperty().set(scene.getHeight());
 
@@ -53,6 +54,18 @@ public class LoginController implements Initializable {
             parentContainer.getChildren().remove(anchorRoot);
         });
         timeline.play();
+    }
+
+    @FXML
+    public void go_menu(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../fxml/menu.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+
+        //This line gets the Stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(tableViewScene);
+        window.show();
     }
 
 

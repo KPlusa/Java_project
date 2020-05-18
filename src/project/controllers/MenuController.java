@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,8 +26,7 @@ public class MenuController implements Initializable {
     @FXML
     private ImageView max;
     @FXML
-    private Button subjectbtn;
-
+    private Button subject_btn;
     @FXML
     private AnchorPane AnchorPaneMain;
     @FXML
@@ -51,23 +51,28 @@ public class MenuController implements Initializable {
             stage.setResizable(true);
         }
     }
-    @FXML
-    public void go_to_subject(MouseEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("fxml/Subject.fxml"));
-        Scene scene = new Scene(parent);
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
 
 
-    }
+
+
 
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
+    }
+
+    @FXML
+    public void go_subject(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../fxml/Subject.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+
+        //This line gets the Stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(tableViewScene);
+        window.show();
     }
 
 }
