@@ -24,22 +24,26 @@
                   <Image url="@../images/icons8_maximize_window_50px.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="61.0" fitWidth="70.0" layoutX="42.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/icons8_laptop_100px.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="111.0" layoutY="46.0" text="E-learning" textFill="#575757">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-            <Label layoutX="111.0" layoutY="83.0" text="Effective learning" textFill="#575757" />
+            <AnchorPane fx:id="menu_avatar" layoutX="42.0" layoutY="45.0">
+               <children>
+                  <ImageView fitHeight="61.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_laptop_100px.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="69.0" layoutY="1.0" text="E-learning" textFill="#575757">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="69.0" layoutY="38.0" text="Effective learning" textFill="#575757" />
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
       <Pane layoutY="148.0" prefHeight="450.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="148.0">
          <children>
-            <GridPane hgap="10.0" layoutX="150.0" layoutY="100.0" prefHeight="250.0" prefWidth="500.0" vgap="10.0">
+            <GridPane hgap="10.0" layoutX="150.0" layoutY="100.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="250.0" prefWidth="500.0" vgap="10.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="125.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="125.0" />
@@ -51,7 +55,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="125.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="subject_btn" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#go_subject" prefHeight="125.0" prefWidth="125.0" stylesheets="@../styles/style.css" text="Przedmiot" textFill="#575757" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                  <Button fx:id="subject" contentDisplay="TOP" mnemonicParsing="false" onAction="#go_subject" prefHeight="125.0" prefWidth="125.0" stylesheets="@../styles/style.css" text="Przedmiot" textFill="#575757">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -60,7 +64,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="125.0" stylesheets="@../styles/style.css" text="Materiały" textFill="#575757" GridPane.columnIndex="1">
+                  <Button fx:id="materials" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#go_materials" prefHeight="125.0" prefWidth="125.0" stylesheets="@../styles/style.css" text="Materiały" textFill="#575757" GridPane.columnIndex="1">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -69,7 +73,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="125.0" stylesheets="@../styles/style.css" text="Pytania" textFill="#575757" GridPane.columnIndex="2">
+                  <Button fx:id="questions" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#go_questions" prefHeight="125.0" prefWidth="125.0" stylesheets="@../styles/style.css" text="Pytania" textFill="#575757" GridPane.columnIndex="2">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -78,7 +82,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="125.0" stylesheets="@../styles/style.css" text="Edycja" textFill="#575757" GridPane.columnIndex="3">
+                  <Button fx:id="edit" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#go_edit" prefHeight="125.0" prefWidth="125.0" stylesheets="@../styles/style.css" text="Edycja" textFill="#575757" GridPane.columnIndex="3">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -87,7 +91,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="125.0" stylesheets="@../styles/style.css" text="Generuj Test" textFill="#575757" GridPane.rowIndex="1">
+                  <Button fx:id="generate_test" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#go_generate_test" prefHeight="125.0" prefWidth="125.0" stylesheets="@../styles/style.css" text="Generuj Test" textFill="#575757" GridPane.rowIndex="1">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -96,7 +100,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="125.0" stylesheets="@../styles/style.css" text="Ranking" textFill="#575757" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Button fx:id="rank" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#go_rank" prefHeight="125.0" prefWidth="125.0" stylesheets="@../styles/style.css" text="Ranking" textFill="#575757" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -105,7 +109,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="125.0" stylesheets="@../styles/style.css" text="Historia " textFill="#575757" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Button fx:id="history" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#go_history" prefHeight="125.0" prefWidth="125.0" stylesheets="@../styles/style.css" text="Historia " textFill="#575757" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -114,7 +118,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="125.0" prefWidth="125.0" stylesheets="@../styles/style.css" text="Wyloguj" textFill="#575757" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <Button fx:id="logoutt" contentDisplay="TOP" mnemonicParsing="false" onAction="#logout" prefHeight="125.0" prefWidth="125.0" stylesheets="@../styles/style.css" text="Wyloguj" textFill="#575757" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>

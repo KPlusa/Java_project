@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.SubjectController">
+<AnchorPane fx:id="AnchorPaneMain" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.SubjectController">
    <children>
       <AnchorPane prefHeight="150.0" prefWidth="800.0" style="-fx-background-color: FF847F;">
          <children>
@@ -14,32 +14,36 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="756.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="close" fitHeight="30.0" fitWidth="30.0" layoutX="756.0" layoutY="14.0" onMouseClicked="#closeAction" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8_close_window_50px.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="726.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="max" fitHeight="30.0" fitWidth="30.0" layoutX="726.0" layoutY="14.0" onMouseClicked="#maxAction" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8_maximize_window_50px.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="696.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="min" fitHeight="30.0" fitWidth="30.0" layoutX="696.0" layoutY="14.0" onMouseClicked="#minAction" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8_minimize_window_50px.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="61.0" fitWidth="70.0" layoutX="42.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/icons8_laptop_100px.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="111.0" layoutY="46.0" text="E-learning" textFill="#575757">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-            <Label layoutX="111.0" layoutY="83.0" text="Effective learning" textFill="#575757" />
+            <AnchorPane fx:id="menu_avatar" layoutX="42.0" layoutY="45.0" onMouseClicked="#go_menu_avatar">
+               <children>
+                  <ImageView fitHeight="61.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_laptop_100px.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="69.0" layoutY="1.0" text="E-learning" textFill="#575757">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="69.0" layoutY="38.0" text="Effective learning" textFill="#575757" />
+               </children>
+            </AnchorPane>
             <ImageView fitHeight="61.0" fitWidth="70.0" layoutX="370.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8_math_book_100px.png" />
@@ -49,7 +53,7 @@
       </AnchorPane>
       <Pane layoutY="150.0" prefHeight="450.0" prefWidth="800.0">
          <children>
-            <TableView focusTraversable="false" layoutX="75.0" layoutY="50.0" prefHeight="326.0" prefWidth="650.0">
+            <TableView focusTraversable="false" layoutX="75.0" layoutY="50.0" prefHeight="326.0" prefWidth="650.0" stylesheets="@../styles/tableview.css">
               <columns>
                 <TableColumn prefWidth="328.0" text="Nazwa przedmiotu" />
                 <TableColumn prefWidth="324.79998779296875" text="Rodzaj przedmiotu" />

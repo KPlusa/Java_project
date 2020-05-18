@@ -24,6 +24,8 @@ import javafx.util.Duration;
 
 
 public class LoginController implements Initializable {
+    private double x, y;
+    private Stage stage;
 
     @FXML
     private Button button;
@@ -35,6 +37,7 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        makeDraggable();
 
     }
 
@@ -58,13 +61,11 @@ public class LoginController implements Initializable {
 
     @FXML
     public void go_menu(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("../fxml/menu.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-
-        //This line gets the Stage information
+        Parent parent = FXMLLoader.load(getClass().getResource("../fxml/menu.fxml"));
+        Scene scene = new Scene(parent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        window.setScene(tableViewScene);
+        window.setScene(scene);
         window.show();
     }
 
@@ -79,4 +80,20 @@ public class LoginController implements Initializable {
         Stage stage = (Stage) parentContainer.getScene().getWindow();
         stage.setIconified(true);
     }
+    @FXML
+    private void makeDraggable()
+    {
+        anchorRoot.setOnMousePressed(((event) -> {
+            x=event.getSceneX();
+            y=event.getSceneY();
+        }));
+
+        anchorRoot.setOnMouseDragged(((event) -> {
+            stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setX(event.getScreenX()-x);
+            stage.setY(event.getScreenY()-y);
+        }));
+    }
+
+
 }

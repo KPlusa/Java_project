@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -22,18 +23,18 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class RegisterController implements Initializable {
-
+    private double x, y;
+    private Stage stage;
     @FXML
     private Button button;
     @FXML
     private AnchorPane container;
 
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        // TODO
+        makeDraggable();
     }
 
     @FXML
@@ -65,5 +66,19 @@ public class RegisterController implements Initializable {
     private void minAction(MouseEvent event) {
         Stage stage = (Stage) container.getScene().getWindow();
         stage.setIconified(true);
+    }
+    @FXML
+    private void makeDraggable()
+    {
+        container.setOnMousePressed(((event) -> {
+            x=event.getSceneX();
+            y=event.getSceneY();
+        }));
+
+        container.setOnMouseDragged(((event) -> {
+            stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setX(event.getScreenX()-x);
+            stage.setY(event.getScreenY()-y);
+        }));
     }
 }
