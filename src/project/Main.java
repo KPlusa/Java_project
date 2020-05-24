@@ -15,8 +15,6 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/Login.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        //Resize.addResizeListener(primaryStage);
-        //we gonna drag the frame
         root.setOnMousePressed(event -> {
             x = event.getSceneX();
             y = event.getSceneY();
