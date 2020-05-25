@@ -7,7 +7,9 @@ import java.util.*;
 import java.net.*;
 
 public class Server {
-
+    private static String url = "jdbc:oracle:thin:@localhost:1521:xe";
+    private static String user = "DB_ADMIN";
+    private static String password = "qazwsx";
     public static void main(String[] args) throws IOException {
         ServerSocket ss = new ServerSocket(5057);
         while (true) {
@@ -52,18 +54,28 @@ class ClientHandler extends Thread {
 
     @Override
     public void run() {
-        String to_return = "Niepoprawna nazwa uzytkownika lub haslo";
+
         while (true) {
+
             try {
+                int choice=dis.readInt();
+                switch (choice)
+                {
+                    case 1:
+                        String to_return = "Niepoprawna nazwa uzytkownika lub haslo";
+                        String login = dis.readUTF();
+                        String pass = dis.readUTF();
+                        System.out.println("Entered Login: " + login + "\n" + "Entered password: " + pass);
 
-                String login = dis.readUTF().toString();
-                String pass = dis.readUTF().toString();
-                System.out.println("Entered Login: " + login + "\n" + "Entered password: " + pass);
+                        if (login.equals(username) && pass.equals(password))
+                            to_return = "Poprawne dane";
 
-                if (login.equals(username) && pass.equals(password))
-                    to_return = "Poprawne dane";
+                        dos.writeUTF(to_return);
+                        break;
+                    default:
+                        break;
+                }
 
-                dos.writeUTF(to_return);
                 break;
             } catch (IOException e) {
                 e.printStackTrace();

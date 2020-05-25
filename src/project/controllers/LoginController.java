@@ -87,10 +87,11 @@ public class LoginController implements Initializable {
 
 
             while (true) {
+                dos.writeInt(1);
                 dos.writeUTF(login.getText());
                 dos.writeUTF(password.getText());
                 st = dis.readUTF();
-                System.out.println(st);
+                //System.out.println(st);
                 status.setText(st);
                 if (st.equals("Poprawne dane")) {
                     Thread.sleep(300);
@@ -100,6 +101,13 @@ public class LoginController implements Initializable {
                     window.setScene(scene);
                     window.show();
                 }
+                /*if(System.exit(0))
+                {
+                    System.out.println("Client " + this.s + " sends exit...");
+                    System.out.println("Closing this connection.");
+                    this.s.close();
+                    System.out.println("Connection closed");
+                }*/
                 break;
             }
             dis.close();
