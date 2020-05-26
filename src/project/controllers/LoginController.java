@@ -37,6 +37,11 @@ public class LoginController implements Initializable {
     private String l;
     private String p;
     private String st;
+    private Socket s;
+    private InetAddress ip;
+    private DataInputStream dis;
+    private DataOutputStream dos;
+    //InetAddress ia, Socket socket, DataInputStream in, DataOutputStream out
 
     @FXML
     private Button button;
@@ -55,6 +60,7 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         makeDraggable();
+
 
     }
 
@@ -79,19 +85,18 @@ public class LoginController implements Initializable {
     @FXML
     public void go_menu(ActionEvent event) throws IOException {
         try {
-            InetAddress ip = InetAddress.getByName("localhost");
-            Socket s = new Socket(ip, 5057);
-
-            DataInputStream dis = new DataInputStream(s.getInputStream());
-            DataOutputStream dos = new DataOutputStream(s.getOutputStream());
-
-
             while (true) {
+
+                ip = InetAddress.getByName("localhost");
+                s = new Socket(ip, 5057);
+                dis = new DataInputStream(s.getInputStream());
+                dos = new DataOutputStream(s.getOutputStream());
+
                 dos.writeInt(1);
                 dos.writeUTF(login.getText());
                 dos.writeUTF(password.getText());
                 st = dis.readUTF();
-                //System.out.println(st);
+                System.out.println(st);
                 status.setText(st);
                 if (st.equals("Poprawne dane")) {
                     Thread.sleep(300);
@@ -101,17 +106,11 @@ public class LoginController implements Initializable {
                     window.setScene(scene);
                     window.show();
                 }
-                /*if(System.exit(0))
-                {
-                    System.out.println("Client " + this.s + " sends exit...");
-                    System.out.println("Closing this connection.");
-                    this.s.close();
-                    System.out.println("Connection closed");
-                }*/
                 break;
             }
             dis.close();
             dos.close();
+            s.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

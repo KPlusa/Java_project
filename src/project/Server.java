@@ -12,24 +12,23 @@ public class Server {
     private static String password = "qazwsx";
     public static void main(String[] args) throws IOException {
         ServerSocket ss = new ServerSocket(5057);
+        System.out.println("Server dziala");
         while (true) {
             Socket s = null;
-
             try {
-                System.out.println("Server is running");
-                s = ss.accept();
 
-                System.out.println("A new client is connected : " + s);
+                s = ss.accept();
+                System.out.println("\nPolaczono z socketem: " + s);
 
                 DataInputStream dis = new DataInputStream(s.getInputStream());
                 DataOutputStream dos = new DataOutputStream(s.getOutputStream());
 
-                System.out.println("Assigning new thread for this client");
 
                 Thread t = new ClientHandler(s, dis, dos);
                 t.start();
 
             } catch (Exception e) {
+                System.out.println("\n zamykanie polaczenia");
                 s.close();
                 e.printStackTrace();
             }
@@ -58,25 +57,27 @@ class ClientHandler extends Thread {
         while (true) {
 
             try {
-                int choice=dis.readInt();
-                switch (choice)
-                {
+                int choice = dis.readInt();
+                switch (choice) {
                     case 1:
+                        System.out.println("Logowanie");
                         String to_return = "Niepoprawna nazwa uzytkownika lub haslo";
                         String login = dis.readUTF();
                         String pass = dis.readUTF();
-                        System.out.println("Entered Login: " + login + "\n" + "Entered password: " + pass);
+                        System.out.println("Wprowadzany login: " + login + "\n" + "Wprowadzane haslo: " + pass);
 
                         if (login.equals(username) && pass.equals(password))
                             to_return = "Poprawne dane";
 
                         dos.writeUTF(to_return);
+                        //System.out.println("Zamykanie socketa");
+                        //s.close();
                         break;
                     default:
                         break;
                 }
 
-                break;
+break;
             } catch (IOException e) {
                 e.printStackTrace();
             }
