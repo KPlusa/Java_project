@@ -20,6 +20,7 @@ public class QuestionsController implements Initializable {
     private Stage stage;
     @FXML
     private AnchorPane AnchorPaneMain;
+
     @FXML
     private void closeAction(MouseEvent event){
         System.exit(0);

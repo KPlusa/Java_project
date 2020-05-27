@@ -64,14 +64,14 @@
                         <Blend />
                     </effect>
                 </Label>
-                <TableView layoutX="308.0" layoutY="12.0" prefHeight="325.0" prefWidth="451.0" stylesheets="@../styles/tableview.css">
+                <TableView fx:id="QClosed" layoutX="308.0" layoutY="12.0" prefHeight="325.0" prefWidth="451.0" stylesheets="@../styles/tableview.css">
                     <columns>
-                        <TableColumn prefWidth="75.0" text="Id" />
-                        <TableColumn prefWidth="75.0" text="Pytanie" />
-                        <TableColumn prefWidth="69.0" text="Odp.A" />
-                        <TableColumn prefWidth="81.0" text="Odp.B" />
-                        <TableColumn prefWidth="75.0" text="Odp.C" />
-                        <TableColumn prefWidth="75.0" text="Odp.D" />
+                        <TableColumn fx:id="Id" prefWidth="75.0" text="Id" />
+                        <TableColumn fx:id="Pytanie" prefWidth="75.0" text="Pytanie" />
+                        <TableColumn fx:id="OdpA" prefWidth="69.0" text="OdpA" />
+                        <TableColumn fx:id="OdpB" prefWidth="81.0" text="OdpB" />
+                        <TableColumn fx:id="OdpC" prefWidth="75.0" text="OdpC" />
+                        <TableColumn fx:id="OdpD" prefWidth="75.0" text="OdpD" />
                     </columns>
                 </TableView>
                 <TextField layoutX="51.0" layoutY="313.0" prefHeight="30.0" prefWidth="219.0" promptText="D." styleClass="data" stylesheets="@../styles/login.css" />

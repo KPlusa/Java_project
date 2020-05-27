@@ -41,7 +41,6 @@ public class LoginController implements Initializable {
     private InetAddress ip;
     private DataInputStream dis;
     private DataOutputStream dos;
-    //InetAddress ia, Socket socket, DataInputStream in, DataOutputStream out
 
     @FXML
     private Button button;
@@ -86,11 +85,15 @@ public class LoginController implements Initializable {
     public void go_menu(ActionEvent event) throws IOException {
         try {
             while (true) {
-
-                ip = InetAddress.getByName("localhost");
-                s = new Socket(ip, 5057);
-                dis = new DataInputStream(s.getInputStream());
-                dos = new DataOutputStream(s.getOutputStream());
+                try {
+                    ip = InetAddress.getByName("192.168.1.6");
+                    s = new Socket(ip, 5057);
+                    dis = new DataInputStream(s.getInputStream());
+                    dos = new DataOutputStream(s.getOutputStream());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    status.setText("Brak polaczenia z serwerem");
+                }
 
                 dos.writeInt(1);
                 dos.writeUTF(login.getText());
