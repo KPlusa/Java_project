@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="AnchorPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.Edit_matController">
+   <children>
+      <Pane layoutY="150.0" prefHeight="450.0" prefWidth="800.0">
+         <children>
+            <TableView layoutX="309.0" layoutY="31.0" prefHeight="300.0" prefWidth="450.0" stylesheets="@../styles/tableview.css">
+               <columns>
+                  <TableColumn fx:id="col_id" prefWidth="50.0" text="ID" />
+                  <TableColumn fx:id="col_przedmiot" prefWidth="95.0" text="Przedmiot" />
+                  <TableColumn fx:id="col_przedmiot1" prefWidth="95.0" text="Typ przedmiotu" />
+                  <TableColumn fx:id="col_przedmiot2" prefWidth="209.0" text="Treść" />
+               </columns>
+            </TableView>
+            <Button alignment="CENTER" layoutX="662.0" layoutY="393.0" mnemonicParsing="false" onAction="#go_back" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Powrót" textFill="#575757">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" layoutX="309.0" layoutY="333.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Dodaj" textFill="#575757">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_add_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="CENTER" layoutX="662.0" layoutY="333.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Usuń" textFill="#575757">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_delete_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="486.0" layoutY="333.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Aktualizuj" textFill="#575757">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_edit_32px_1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <TextField layoutX="95.0" layoutY="32.0" prefHeight="30.0" prefWidth="179.0" styleClass="data" stylesheets="@../styles/login.css" />
+            <TextField layoutX="95.0" layoutY="111.0" prefHeight="30.0" prefWidth="179.0" styleClass="data" stylesheets="@../styles/login.css" />
+            <TextField layoutX="95.0" layoutY="205.0" prefHeight="30.0" prefWidth="179.0" styleClass="data" stylesheets="@../styles/login.css" />
+            <Label layoutX="31.0" layoutY="39.0" text="ID" textFill="#575757">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Label layoutX="12.0" layoutY="126.0" text="Przedmiot" textFill="#575757">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Label layoutX="11.0" layoutY="211.0" text="Typ przedm." textFill="#575757">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Label layoutX="25.0" layoutY="302.0" text="Treść" textFill="#575757">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <TextArea layoutX="91.0" layoutY="291.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="187.0" styleClass="data" stylesheets="@../styles/login.css" />
+         </children>
+      </Pane>
+      <AnchorPane fx:id="FunctionAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="800.0" style="-fx-background-color: FF847F;">
+         <children>
+            <ImageView fx:id="close" accessibleRole="BUTTON" fitHeight="30.0" fitWidth="30.0" layoutX="756.0" layoutY="14.0" onMouseClicked="#closeAction" pickOnBounds="true" preserveRatio="true" styleClass="data" AnchorPane.bottomAnchor="156.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+               <image>
+                  <Image url="@../images/icons8_close_window_50px.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="mini" fitHeight="30.0" fitWidth="30.0" layoutX="696.0" layoutY="14.0" onMouseClicked="#minAction" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="106.0" AnchorPane.rightAnchor="74.0" AnchorPane.topAnchor="14.0">
+               <image>
+                  <Image url="@../images/icons8_minimize_window_50px.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="maxi" fitHeight="30.0" fitWidth="30.0" layoutX="726.0" layoutY="14.0" onMouseClicked="#maxAction" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="106.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="14.0">
+               <image>
+                  <Image url="@../images/icons8_maximize_window_50px.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="42.0" layoutY="45.0" onMouseClicked="#go_menu_avatar">
+               <children>
+                  <ImageView fitHeight="61.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_laptop_100px.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="69.0" layoutY="1.0" text="E-learning" textFill="#575757">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="69.0" layoutY="38.0" text="Effective learning" textFill="#575757" />
+               </children>
+            </AnchorPane>
+            <ImageView fitHeight="61.0" fitWidth="70.0" layoutX="370.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8_edit_100px_1.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="280.0" layoutY="92.0" text="Edycja materiałów" textFill="#575757">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
