@@ -79,15 +79,18 @@ public class EditQuestionsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         makeDraggable();
-
-        fill_table_view();
+try {
+    fill_table_view();
+}catch (IOException e) {
+    e.printStackTrace();
+}
 
 
     }
 
     @FXML
-    private void fill_table_view() {
-
+    private void fill_table_view() throws IOException  {
+/*
         ObservableList id_OL = FXCollections.observableArrayList();
         ObservableList questions_OL = FXCollections.observableArrayList();
         ObservableList answer_a_OL = FXCollections.observableArrayList();
@@ -100,7 +103,7 @@ public class EditQuestionsController implements Initializable {
         answer_b_OL.clear();
         answer_c_OL.clear();
         answer_d_OL.clear();
-
+*/
         try {
             while (true) {
 
@@ -115,9 +118,10 @@ public class EditQuestionsController implements Initializable {
                 }
 
 
-                dos.writeInt(8);
-                counter = dis.readInt();
-                System.out.println(counter);
+               // dos.writeInt(8);
+                //counter = dis.readInt();
+                System.out.println(dis.readInt());
+                break;}
                 /*for (int i = 0; i < counter; i++) {
                     int ID = dis.readInt();
                     String question = dis.readUTF();
@@ -133,6 +137,7 @@ public class EditQuestionsController implements Initializable {
                     answer_c_OL.add(answer_c);
                     answer_d_OL.add(answer_d);
                 }*/
+                /*
                 for (int i = 0; i < counter; i++) {
                     int ID = dis.readInt();
                     id_OL.add(ID);
@@ -172,8 +177,10 @@ public class EditQuestionsController implements Initializable {
                 OdpB.setCellValueFactory(cellDataFeatures -> answer_b_OL);
                 OdpC.setCellValueFactory(cellDataFeatures -> answer_c_OL);
                 OdpD.setCellValueFactory(cellDataFeatures -> answer_d_OL);
+
+
                 break;
-            }
+            }*/
             dis.close();
             dos.close();
             s.close();

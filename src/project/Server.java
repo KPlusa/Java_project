@@ -56,12 +56,7 @@ class ClientHandler extends Thread {
     private static Connection con;
     private Statement stmt;
     private ResultSet rs;
-    private List<Integer> id_list=new ArrayList<Integer>();
-    private List<String> question_list=new ArrayList<String>();
-    private List<String> answer_A_list=new ArrayList<String>();
-    private List<String> answer_B_list=new ArrayList<String>();
-    private List<String> answer_C_list=new ArrayList<String>();
-    private List<String> answer_D_list=new ArrayList<String>();
+
 
     public ClientHandler(Socket s, DataInputStream dis, DataOutputStream dos) {
         this.s = s;
@@ -187,6 +182,12 @@ class ClientHandler extends Thread {
                         rs = stmt.executeQuery("Select * from pytania where id in (select id from PRZEDMIOT where nazwa='"+receiver+"')");
 
 
+                        List<String> question_list=new ArrayList<String>();List<Integer> id_list=new ArrayList<Integer>();
+                        List<String> answer_A_list=new ArrayList<String>();
+                        List<String> answer_B_list=new ArrayList<String>();
+                        List<String> answer_C_list=new ArrayList<String>();
+                        List<String> answer_D_list=new ArrayList<String>();
+
                         while(rs.next()){
                             int ID=rs.getInt(1);
                             String question=rs.getString(2);
@@ -207,14 +208,9 @@ class ClientHandler extends Thread {
                         {
                             System.out.println("W liscie jest: "+id_list.get(i));
                         }
-                        break;
-                    case 8:
-                        System.out.println(counter);
+                        System.out.println("Licznik: "+counter);
                         dos.writeInt(counter);
-                        for(int i=1; i<3;i++)
-                        {
-                            System.out.println("W liscie jest: "+id_list.get(i));
-                        }
+
 
                         for(int ID: id_list){
                             dos.writeInt(ID);
@@ -243,7 +239,13 @@ class ClientHandler extends Thread {
                             dos.writeUTF(answer_d);
                             System.out.println("Do wysylki: "+answer_d);
                         }
+
                         break;
+
+
+
+                    case 8:
+
 
 
 
