@@ -1,11 +1,7 @@
 package project.controllers;
 
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.Interpolator;
@@ -20,9 +16,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -31,73 +24,17 @@ import javafx.util.Duration;
 
 public class RegisterController implements Initializable {
     private double x, y;
-    private String l;
-    private String p;
-    private String mmail;
-    private Socket s;
-    private String st;
-    private InetAddress ip;
-    private DataInputStream dis;
-    private DataOutputStream dos;
     private Stage stage;
     @FXML
     private Button button;
     @FXML
     private AnchorPane container;
-    @FXML
-    private TextField username;
-    @FXML
-    private PasswordField pass;
-    @FXML
-    private PasswordField pass2;
-    @FXML
-    private TextField mail;
-    @FXML
-    private Label status;
-
 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        // TODO
         makeDraggable();
-    }
-    @FXML
-    public void go_register(ActionEvent event) throws IOException {
-        try {
-            while (true) {
-                try {
-                    ip = InetAddress.getByName("192.168.1.6");
-                    s = new Socket(ip, 5057);
-                    dis = new DataInputStream(s.getInputStream());
-                    dos = new DataOutputStream(s.getOutputStream());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    status.setText("Brak polaczenia z serwerem");
-                }
-                dos.writeInt(2);
-                dos.writeUTF(username.getText());
-                dos.writeUTF(pass.getText());
-                dos.writeUTF(pass2.getText());
-                dos.writeUTF(mail.getText());
-                st = dis.readUTF();
-                System.out.println(st);
-                status.setText(st);
-                if(st.equals("Zarejestrowano"))
-                {
-                    username.setText("");
-                    pass.setText("");
-                    pass2.setText("");
-                    mail.setText("");
-                }
-                break;
-            }
-            dis.close();
-            dos.close();
-            s.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     @FXML

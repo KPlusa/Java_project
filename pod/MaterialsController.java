@@ -1,4 +1,5 @@
 package project.controllers;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,13 +11,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import project.Materialsclass;
 
 import javax.swing.*;
 import java.io.DataInputStream;
@@ -40,11 +37,7 @@ public class MaterialsController implements Initializable {
     private Stage stage;
     final ObservableList mylist = FXCollections.observableArrayList();
     @FXML
-    public TableView tabela = new TableView();
-    @FXML
-    private TableColumn<String,Materialsclass> mattable;
-    @FXML
-    private ComboBox chb;
+    private ChoiceBox chb;
     @FXML
     private AnchorPane AnchorPaneMain;
     @FXML
@@ -69,30 +62,23 @@ public class MaterialsController implements Initializable {
             stage.setResizable(true);
         }
     }
-    @FXML
+ /*   @FXML
     private void fillcombo() throws IOException {
-        chb.setMaxHeight(30);
         mylist.clear();
         try {
             while (true) {
-                try {
+
                 ip = InetAddress.getByName("localhost");
                 s = new Socket(ip, 6485);
                 dis = new DataInputStream(s.getInputStream());
                 dos = new DataOutputStream(s.getOutputStream());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    System.out.println("Brak polaczenia z serwerem");
-                }
+
                 dos.writeInt(3);
                 counter = dis.readInt();
-                System.out.println(counter);
-                for(int i=0;i<counter;i++) {
+                for(int i=0;counter>=i;i++) {
                     materials=dis.readUTF();
                     mylist.add(materials);
                 }
-                chb.setItems(mylist);
-                break;
             }
         }
         catch (Exception e) {
@@ -102,18 +88,35 @@ public class MaterialsController implements Initializable {
             s.close();
         }
 
-    }
+    }*/
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         makeDraggable();
-        try {
-            fillcombo();
-        } catch (IOException e) {
+        chb.setMaxHeight(30);
+        mylist.clear();
+       /* try {
+            while (true) {
+
+                ip = InetAddress.getByName("localhost");
+                s = new Socket(ip, 6485);
+                dis = new DataInputStream(s.getInputStream());
+                dos = new DataOutputStream(s.getOutputStream());
+
+                dos.writeInt(3);
+                counter = dis.readInt();
+                for (int i = 0; counter >= i; i++) {
+                    materials = dis.readUTF().toString();
+                    mylist.add(materials);
+                }
+                break;
+            }
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        mattable.setCellValueFactory(new PropertyValueFactory<>("material"));
+        }*/
+        chb.setItems(mylist);
     }
+
     @FXML
     public void go_menu(ActionEvent event) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("../fxml/menu.fxml"));
@@ -144,13 +147,13 @@ public class MaterialsController implements Initializable {
             stage.setY(event.getScreenY()-y);
         }));
     }
-    @FXML
-    private void setdisplay(ActionEvent event) throws IOException{
-        tabela.getItems().clear();
-        names=chb.getValue().toString();
+   /* @FXML
+    private void setdisplay(MouseEvent event) throws IOException{
+        //names=chb.getValue().toString();
+        names="SYSTEMY OPERACYJNE";
         try {
             while (true) {
-                counter=0;
+
                 ip = InetAddress.getByName("localhost");
                 s = new Socket(ip, 6485);
                 dis = new DataInputStream(s.getInputStream());
@@ -159,7 +162,6 @@ public class MaterialsController implements Initializable {
                 dos.writeUTF(names);
                 counter = dis.readInt();
                 materials=dis.readUTF();
-                //break;
                 break;
             }
         }
@@ -169,9 +171,8 @@ public class MaterialsController implements Initializable {
             dos.close();
             s.close();
         }
-        tabela.getItems().add(new Materialsclass(materials));
-        tabela.getVisibleLeafColumns();
+        chb.setValue(materials);
 
-    }
+    }*/
 }
 

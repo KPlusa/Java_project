@@ -13,9 +13,8 @@
               <columns>
                 <TableColumn fx:id="col_id" prefWidth="130.0" text="ID" />
                 <TableColumn fx:id="col_przedmiot" prefWidth="130.0" text="Przedmiot" />
-                  <TableColumn fx:id="col_imie" prefWidth="130.0" text="Imię" />
-                  <TableColumn fx:id="col_nazwisko" prefWidth="130.0" text="Nazwisko" />
-                  <TableColumn fx:id="col_punkty" prefWidth="130.0" text="Punkty" />
+                  <TableColumn fx:id="col_imie" prefWidth="225.00003051757812" text="Nazwa użytkownika" />
+                  <TableColumn fx:id="col_punkty" minWidth="0.0" prefWidth="162.20001220703125" text="Punkty" />
               </columns>
             </TableView>
             <TextField layoutX="265.0" layoutY="380.0" prefHeight="27.0" prefWidth="164.0" promptText="imię i nazwisko użytkownika" styleClass="data" stylesheets="@../styles/login.css" />

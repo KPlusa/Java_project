@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="AnchorPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.EditController">
+<AnchorPane fx:id="AnchorPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.EditController">
    <children>
       <AnchorPane fx:id="FunctionAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="800.0" style="-fx-background-color: FF847F;">
          <children>
@@ -57,7 +53,7 @@
       </AnchorPane>
       <Pane layoutY="150.0" prefHeight="450.0" prefWidth="800.0">
          <children>
-            <ComboBox fx:id="subject_choice" layoutX="63.0" layoutY="54.0" prefHeight="18.0" prefWidth="475.0" promptText="Wybierz przedmiot" style="-fx-background-color: transparent; -fx-border-color: #FF847F; -fx-border-width: 0px 0px 2px 0px;" />
+            <ComboBox layoutX="63.0" layoutY="54.0" prefHeight="18.0" prefWidth="475.0" promptText="Wybierz przedmiot" style="-fx-background-color: transparent; -fx-border-color: #FF847F; -fx-border-width: 0px 0px 2px 0px;" />
             <ComboBox layoutX="63.0" layoutY="176.0" prefHeight="18.0" prefWidth="475.0" promptText="Materiały/pytania" style="-fx-background-color: transparent; -fx-border-color: #FF847F; -fx-border-width: 0px 0px 2px 0px;" />
             <Button layoutX="612.0" layoutY="54.0" mnemonicParsing="false" onAction="#go_add_delete_subject" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: FF847F; -fx-background-radius: 15;" text="Dodaj/usuń przedmiot" textFill="#575757" />
             <Button layoutX="612.0" layoutY="175.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: FF847F; -fx-background-radius: 15;" text="Usuń materiały/pytania" textFill="#575757" />
@@ -76,7 +72,6 @@
                   <Font name="Arial" size="12.0" />
                </font>
             </Button>
-            <Label fx:id="status" contentDisplay="CENTER" layoutX="288.0" layoutY="360.0" prefHeight="23.0" prefWidth="241.0" textFill="#fd0000" />
          </children>
       </Pane>
       <Button alignment="CENTER" layoutX="662.0" layoutY="540.0" mnemonicParsing="false" onAction="#go_menu" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Powrót" textFill="#575757">
