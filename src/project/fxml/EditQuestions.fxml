@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="AnchorPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.EditQuestionsController">
+<AnchorPane fx:id="AnchorPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.EditController">
     <children>
         <AnchorPane fx:id="FunctionAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="800.0" style="-fx-background-color: FF847F;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -64,14 +64,14 @@
                         <Blend />
                     </effect>
                 </Label>
-                <TableView layoutX="308.0" layoutY="12.0" prefHeight="325.0" prefWidth="451.0" stylesheets="@../styles/tableview.css">
+                <TableView fx:id="QClosed" layoutX="308.0" layoutY="12.0" prefHeight="325.0" prefWidth="451.0" stylesheets="@../styles/tableview.css">
                     <columns>
-                        <TableColumn prefWidth="75.0" text="Id" />
-                        <TableColumn prefWidth="75.0" text="Pytanie" />
-                        <TableColumn prefWidth="69.0" text="Odp.A" />
-                        <TableColumn prefWidth="81.0" text="Odp.B" />
-                        <TableColumn prefWidth="75.0" text="Odp.C" />
-                        <TableColumn prefWidth="75.0" text="Odp.D" />
+                        <TableColumn fx:id="Id" prefWidth="75.0" text="Id" />
+                        <TableColumn fx:id="Pytanie" prefWidth="75.0" text="Pytanie" />
+                        <TableColumn fx:id="OdpA" prefWidth="69.0" text="OdpA" />
+                        <TableColumn fx:id="OdpB" prefWidth="81.0" text="OdpB" />
+                        <TableColumn fx:id="OdpC" prefWidth="75.0" text="OdpC" />
+                        <TableColumn fx:id="OdpD" prefWidth="75.0" text="OdpD" />
                     </columns>
                 </TableView>
                 <TextField layoutX="51.0" layoutY="313.0" prefHeight="30.0" prefWidth="219.0" promptText="D." styleClass="data" stylesheets="@../styles/login.css" />
