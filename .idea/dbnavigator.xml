@@ -25,8 +25,8 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="880f0f17-a3a5-4ac4-bf20-9b5a505afb39">
-        <schema name="JAVAPRO" object-types="view, synonym, materialized view, table" />
-        <schema name="PUBLIC" object-types="view, synonym, materialized view, table" />
+        <schema name="JAVAPRO" object-types="synonym, table, view, materialized view" />
+        <schema name="PUBLIC" object-types="synonym, table, view, materialized view" />
       </connection>
     </loaded-nodes>
   </component>

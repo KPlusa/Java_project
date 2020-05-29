@@ -3,7 +3,6 @@ package project;
 public class Materialsclass {
     private String material;
     public Materialsclass(){
-
     }
     public Materialsclass(String material){
         this.material=material;

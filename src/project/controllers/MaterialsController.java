@@ -159,7 +159,6 @@ public class MaterialsController implements Initializable {
                 dos.writeUTF(names);
                 counter = dis.readInt();
                 materials=dis.readUTF();
-                //break;
                 break;
             }
         }
