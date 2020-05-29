@@ -9,12 +9,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import project.EditQC;
 
-import javax.swing.table.TableColumn;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -35,19 +37,19 @@ public class EditQuestionsController implements Initializable {
     private DataOutputStream dos;
     //private String st;
     @FXML
-    private TableView QClosed;
+    private TableView QClosed = new TableView();
     @FXML
-    private javafx.scene.control.TableColumn Id;
+    private javafx.scene.control.TableColumn<Integer, EditQC> Id;
     @FXML
-    private javafx.scene.control.TableColumn Pytanie;
+    private javafx.scene.control.TableColumn<String,EditQC> Pytanie;
     @FXML
-    private javafx.scene.control.TableColumn OdpA;
+    private javafx.scene.control.TableColumn<String,EditQC> OdpA;
     @FXML
-    private javafx.scene.control.TableColumn OdpB;
+    private javafx.scene.control.TableColumn<String,EditQC> OdpB;
     @FXML
-    private javafx.scene.control.TableColumn OdpC;
+    private javafx.scene.control.TableColumn<String,EditQC> OdpC;
     @FXML
-    private javafx.scene.control.TableColumn OdpD;
+    private TableColumn<String,EditQC> OdpD;
 
     @FXML
     private AnchorPane AnchorPaneMain;
@@ -83,6 +85,12 @@ try {
     fill_table_view();
 }catch (IOException e) {
     e.printStackTrace();
+    Id.setCellValueFactory(new PropertyValueFactory<>("id"));
+    Pytanie.setCellValueFactory(new PropertyValueFactory<>("odp_a") );
+    OdpA.setCellValueFactory(new PropertyValueFactory<>("odp_a"));
+    OdpB.setCellValueFactory(new PropertyValueFactory<>("odp_b"));
+    OdpC.setCellValueFactory(new PropertyValueFactory<>("odp_c"));
+    OdpD.setCellValueFactory(new PropertyValueFactory<>("odp_d"));
 }
 
 

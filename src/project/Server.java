@@ -42,7 +42,9 @@ class ClientHandler extends Thread {
     final DataOutputStream dos;
     final Socket s;
     private int id=1;
+    private String cs5;
     private String name_of_subject;
+    private String help;
     private int counter=0;
     private List<String> list=new ArrayList<String>();
     private String username; private String login;
@@ -149,7 +151,66 @@ class ClientHandler extends Thread {
                         //System.out.println("Zamykanie socketa");
                         //s.close();
                         break;
+                    case 3:
+                        counter=0;
+                        stmt=con.createStatement();
+                        rs=stmt.executeQuery("select NAZWA from Przedmiot");
+                        while(rs.next()){
+                            help=rs.getString(1);
+                            list.add(help);
+                            counter++;
+                        }
+                        dos.writeInt(counter);
+                        for(String help:list){
+                            dos.writeUTF(help);
+                        }
+                        break;
+                    case 4:
 
+                        stmt=con.createStatement();
+                        rs = stmt.executeQuery("select NAZWA,RODZAJ from PRZEDMIOT");
+                        List<String> nazwa_przedmiotu = new ArrayList<String>();
+                        List<String> rodzaj_przedmiotu = new ArrayList<String>();
+                        while(rs.next()){
+                            String nazwaPrzedmiotu = rs.getString(1);
+                            String rodzajPrzedmiotu = rs.getString(2);
+                            nazwa_przedmiotu.add(nazwaPrzedmiotu);
+                            rodzaj_przedmiotu.add(rodzajPrzedmiotu);
+                            System.out.println("Dodano: "+nazwaPrzedmiotu+"\t"+ rodzajPrzedmiotu);
+                            counter++;
+                        }
+                        for(int i=0; i<counter;i++)
+                        {
+                            System.out.println("W liscie jest: "+nazwa_przedmiotu.get(i));
+                        }
+                        System.out.println(counter);
+                        dos.writeInt(counter);
+
+                        for(String nazwaPrzedmiotu:nazwa_przedmiotu){
+                            dos.writeUTF(nazwaPrzedmiotu);
+                            System.out.println("Do wysylki:"+nazwaPrzedmiotu);
+                        }
+
+                        for(String rodzajPrzedmiotu:rodzaj_przedmiotu){
+                            dos.writeUTF(rodzajPrzedmiotu);
+                            System.out.println("Do wysylki:"+rodzajPrzedmiotu);
+                        }
+                        break;
+                    case 5:
+                        cs5=dis.readUTF();
+                        stmt=con.createStatement();
+                        rs=stmt.executeQuery("select Material from Material where przedmiot_id=(select id from przedmiot where nazwa='"+cs5+"')");
+                        while(rs.next()){
+                            help=rs.getString(1);
+                            list.add(help);
+                            counter++;
+                        }
+                        dos.writeInt(counter);
+                        for(String help:list){
+                            dos.writeUTF(help);
+                        }
+                        dos.writeUTF(cs5);
+                        break;
                     case 6://Edycja
                         stmt=con.createStatement();
                         rs=stmt.executeQuery("select NAZWA from Przedmiot");
@@ -173,6 +234,7 @@ class ClientHandler extends Thread {
                             System.out.println("Do wysylki: "+name_of_subject);
                         }
                         break;
+
 
                     case 7://Pytania zamkniete
                         System.out.println("Edycja pytan zamknietych");

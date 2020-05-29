@@ -6,92 +6,71 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class EditQC {
-    private IntegerProperty id;
-    private StringProperty pytanie;
-    private StringProperty odp_a;
-    private StringProperty odp_b;
-    private StringProperty odp_c;
-    private StringProperty odp_d;
+    private int id;
+    private String pytanie;
+    private String  odp_a;
+    private String  odp_b;
+    private String  odp_c;
+    private String  odp_d;
 
     public EditQC(){
-        this.id= new SimpleIntegerProperty();
-        this.pytanie= new SimpleStringProperty();
-        this.odp_a=new SimpleStringProperty();
-        this.odp_b=new SimpleStringProperty();
-        this.odp_c=new SimpleStringProperty();
-        this.odp_d=new SimpleStringProperty();
     }
-    public int get_id(){
-        return  id.get();
-    }
-    public IntegerProperty get_Pid(){
+
+
+    public int getId(){
         return  id;
     }
-    public void set_id(int id)
+
+    public void setId(int id)
     {
-        this.id.set(id);
+        this.id=id;
     }
     ///////////////////////////////
-    public String get_pytanie(){ return  pytanie.get();
+    public String getPytanie(){ return  pytanie;
     }
-    public StringProperty get_Ppytanie()
+
+    public void setPytanie(String pytanie)
     {
-        return pytanie;
-    }
-    public void set_pytanie(String pytanie)
-    {
-        this.pytanie.set(pytanie);
+        this.pytanie=pytanie;
     }
     //////////////////////////////////
-    public String get_odp_a(){
-        return  odp_a.get();
+    public String getOdp_a(){
+        return  odp_a;
     }
-    public StringProperty get_Podp_a()
+
+    public void setOdp_a(String odp_a)
     {
-        return odp_a;
-    }
-    public void set_Podp_a(String odp_a)
-    {
-        this.odp_a.set(odp_a);
+        this.odp_a=odp_a;
     }
     //////////////////////////////////
 
-    public String get_odp_b(){
-        return  odp_b.get();
+    public String getOdp_b(){
+        return  odp_b;
     }
-    public StringProperty get_Podp_b()
+
+    public void setOdp_b(String odp_b)
     {
-        return odp_b;
-    }
-    public void set_Podp_b(String odp_b)
-    {
-        this.odp_b.set(odp_b);
+        this.odp_b=odp_b;
     }
     //////////////////////////////////
 
-    public String get_odp_c(){
-        return  odp_c.get();
+    public String getOdp_c(){
+        return  odp_c;
     }
-    public StringProperty get_Podp_c()
+
+    public void setOdp_c(String odp_c)
     {
-        return odp_c;
-    }
-    public void set_Podp_c(String odp_c)
-    {
-        this.odp_c.set(odp_c);
+        this.odp_c=odp_c;
     }
     //////////////////////////////////
 
-    public String get_odp_d(){
-        return  odp_d.get();
+    public String getOdp_d(){
+        return  odp_d;
     }
-    public StringProperty get_Podp_d()
+
+    public void setOdp_d(String odp_d)
     {
-        return odp_d;
-    }
-    public void set_Podp_d(String odp_d)
-    {
-        this.odp_d.set(odp_d);
+        this.odp_d=odp_d;
     }
     //////////////////////////////////
 

@@ -1,6 +1,5 @@
 package project.controllers;
 
-import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,7 +10,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -25,8 +26,6 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class EditController implements Initializable {
@@ -40,6 +39,13 @@ public class EditController implements Initializable {
     private int counter;
     private String receiver; private String value;
     private ObservableList mylist = FXCollections.observableArrayList();
+    private ObservableList<EditQC> EditQC_list =FXCollections.observableArrayList();
+    ObservableList<Integer> id_OL = FXCollections.observableArrayList();
+    ObservableList<String> questions_OL = FXCollections.observableArrayList();
+    ObservableList<String> answer_a_OL = FXCollections.observableArrayList();
+    ObservableList<String> answer_b_OL = FXCollections.observableArrayList();
+    ObservableList<String> answer_c_OL = FXCollections.observableArrayList();
+    ObservableList<String> answer_d_OL = FXCollections.observableArrayList();
 
     @FXML
     private Label status;
@@ -48,19 +54,19 @@ public class EditController implements Initializable {
     @FXML
     private ComboBox subject_choice=new ComboBox(mylist);
     @FXML
-    private TableView QClosed;
+    private TableView QClosed= new TableView();
     @FXML
-    private javafx.scene.control.TableColumn Id;
+    private TableColumn<Integer,EditQC> Id;
     @FXML
-    private javafx.scene.control.TableColumn Pytanie;
+    private TableColumn<String,EditQC> Pytanie;
     @FXML
-    private javafx.scene.control.TableColumn OdpA;
+    private TableColumn<String,EditQC> OdpA;
     @FXML
-    private javafx.scene.control.TableColumn OdpB;
+    private TableColumn<String,EditQC> OdpB;
     @FXML
-    private javafx.scene.control.TableColumn OdpC;
+    private TableColumn<String,EditQC> OdpC;
     @FXML
-    private javafx.scene.control.TableColumn OdpD;
+    private TableColumn<String,EditQC> OdpD;
 
     @FXML
     private void fill_combo_subject() throws IOException {
@@ -98,37 +104,6 @@ public class EditController implements Initializable {
         }
 
     }
-    /*@FXML
-    private void fill_combo_materials() throws IOException {
-        mylist.clear();
-        try {
-            while (true) {
-
-                ip = InetAddress.getByName("localhost");
-                s = new Socket(ip, 5057);
-                dis = new DataInputStream(s.getInputStream());
-                dos = new DataOutputStream(s.getOutputStream());
-
-                dos.writeInt(6);
-                counter = dis.readInt();
-                System.out.println(counter);
-                for(int i=0;i<counter;i++) {
-                    receiver =dis.readUTF();
-                    System.out.println("Otrzymano: "+receiver);
-                    mylist.add(receiver);
-                }
-                subject_choice.setItems(mylist);
-                break;
-            }
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            dis.close();
-            dos.close();
-            s.close();
-        }
-
-    }*/
 
     @FXML
     private void closeAction(MouseEvent event){
@@ -159,9 +134,14 @@ public class EditController implements Initializable {
         makeDraggable();
         try {
             fill_combo_subject();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+
+
 
     }
 
@@ -208,25 +188,20 @@ public class EditController implements Initializable {
     @FXML
     public void go_edit_questions(ActionEvent event) throws IOException {
 
+
         value =subject_choice.getSelectionModel().getSelectedItem().toString();
         System.out.println("Wartosc: "+value);
-        ///
-        ObservableList<EditQC> EditQC_list =FXCollections.observableArrayList();
-        ///
-        ObservableList id_OL = FXCollections.observableArrayList();
-        ObservableList questions_OL = FXCollections.observableArrayList();
-        ObservableList answer_a_OL = FXCollections.observableArrayList();
-        ObservableList answer_b_OL = FXCollections.observableArrayList();
-        ObservableList answer_c_OL = FXCollections.observableArrayList();
-        ObservableList answer_d_OL = FXCollections.observableArrayList();
         id_OL.clear();
         questions_OL.clear();
         answer_a_OL.clear();
         answer_b_OL.clear();
         answer_c_OL.clear();
         answer_d_OL.clear();
+        QClosed.getItems().clear();
+
         try {
             while (true) {
+
                 if(value.equals(""))
                     status.setText("Wybierz przedmiot");
                 try {
@@ -248,27 +223,29 @@ public class EditController implements Initializable {
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(scene);
                 window.show();
+
+
                 int c=dis.readInt();
                 System.out.println("Licznik: "+c);
-                for (int i = 0; i < counter; i++) {
+                for (int i = 0; i < c; i++) {
                     int ID = dis.readInt();
                     id_OL.add(ID);
                     System.out.println("Otrzymano: "+ID+"\t\n");
                 }
-                for (int i = 0; i < counter; i++) {
+                for (int i = 0; i < c; i++) {
                     String question = dis.readUTF();
                     questions_OL.add(question);
                     System.out.println("Otrzymano: "+question+"\t\n");
 
                 }
-                for (int i = 0; i < counter; i++) {
+                for (int i = 0; i < c; i++) {
 
                     String answer_a = dis.readUTF();
                     answer_a_OL.add(answer_a);
                     System.out.println("Otrzymano: "+answer_a+"\t\n");
 
                 }
-                for (int i = 0; i < counter; i++) {
+                for (int i = 0; i < c; i++) {
 
                     String answer_b = dis.readUTF();
 
@@ -276,41 +253,42 @@ public class EditController implements Initializable {
                     System.out.println("Otrzymano: "+answer_b+"\t\n");
 
                 }
-                for (int i = 0; i < counter; i++) {
+                for (int i = 0; i < c; i++) {
 
                     String answer_c = dis.readUTF();
                     answer_c_OL.add(answer_c);
                     System.out.println("Otrzymano: "+answer_c+"\t\n");
 
                 }
-                for (int i = 0; i < counter; i++) {
+                for (int i = 0; i < c; i++) {
                     String answer_d = dis.readUTF();
                     answer_d_OL.add(answer_d);
                     System.out.println("Otrzymano: "+answer_d+"\t\n");
                 }
+                Id.setCellValueFactory(new PropertyValueFactory<>("id"));
+                Pytanie.setCellValueFactory(new PropertyValueFactory<>("odp_a"));
+                OdpA.setCellValueFactory(new PropertyValueFactory<>("odp_a"));
+                OdpB.setCellValueFactory(new PropertyValueFactory<>("odp_b"));
+                OdpC.setCellValueFactory(new PropertyValueFactory<>("odp_c"));
+                OdpD.setCellValueFactory(new PropertyValueFactory<>("odp_d"));
 
-                for(int i = 0; i < counter; i++ )
+                for(int i = 0; i < c; i++ )
                 {
                     EditQC eqc= new EditQC();
-                    eqc.set_id(id_OL.get(i));
-                    eqc.set_pytanie(questions_OL.get(i));
-                    eqc.set_Podp_a(answer_a_OL.get(i));
-                    eqc.set_Podp_b(answer_b_OL.get(i));
-                    eqc.set_Podp_c(answer_c_OL.get(i));
-                    eqc.set_Podp_d(answer_d_OL.get(i));
+                    eqc.setId(id_OL.get(i));
+                    eqc.setPytanie(questions_OL.get(i));
+                    eqc.setOdp_a(answer_a_OL.get(i));
+                    eqc.setOdp_b(answer_b_OL.get(i));
+                    eqc.setOdp_c(answer_c_OL.get(i));
+                    eqc.setOdp_d(answer_d_OL.get(i));
                     EditQC_list.add(eqc);
                 }
-                /*
-                Id.setCellValueFactory(cellDataFeatures -> id_OL);
-                Pytanie.setCellValueFactory(cellDataFeatures -> questions_OL);
-                OdpA.setCellValueFactory(cellDataFeatures -> answer_a_OL);
-                OdpB.setCellValueFactory(cellDataFeatures -> answer_b_OL);
-                OdpC.setCellValueFactory(cellDataFeatures -> answer_c_OL);
-                OdpD.setCellValueFactory(cellDataFeatures -> answer_d_OL);
-                */
 
+                QClosed.setItems(EditQC_list);
                 break;
             }
+
+
             dis.close();
             dos.close();
             s.close();
@@ -328,9 +306,9 @@ public class EditController implements Initializable {
         window.setScene(scene);
         window.show();
     }
-    @FXML
+   /* @FXML
     private void fill_table_view() throws IOException  {
-/*
+
         ObservableList id_OL = FXCollections.observableArrayList();
         ObservableList questions_OL = FXCollections.observableArrayList();
         ObservableList answer_a_OL = FXCollections.observableArrayList();
@@ -343,7 +321,7 @@ public class EditController implements Initializable {
         answer_b_OL.clear();
         answer_c_OL.clear();
         answer_d_OL.clear();
-*/
+
         try {
             while (true) {
 
@@ -420,7 +398,7 @@ public class EditController implements Initializable {
 
 
                 break;
-            }*/
+            }
             dis.close();
             dos.close();
             s.close();
@@ -429,6 +407,7 @@ public class EditController implements Initializable {
         }
 
     }
+    */
 
     @FXML
     private void makeDraggable()
