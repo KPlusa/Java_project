@@ -68,7 +68,7 @@ public class RegisterController implements Initializable {
             while (true) {
                 try {
                     ip = InetAddress.getByName("localhost");
-                    s = new Socket(ip, 6485);
+                    s = new Socket(ip, 5057);
                     dis = new DataInputStream(s.getInputStream());
                     dos = new DataOutputStream(s.getOutputStream());
                 } catch (Exception e) {
