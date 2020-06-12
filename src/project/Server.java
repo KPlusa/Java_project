@@ -305,6 +305,31 @@ class ClientHandler extends Thread {
                         }
 
                         break;
+                    case 8:
+
+                        stmt=con.createStatement();
+                        rs = stmt.executeQuery("select przedmiot.ID,PRZEDMIOT.NAZWA,PRZEDMIOT.RODZAJ,TRESC from PYTANIA JOIN PRZEDMIOT ON PRZEDMIOT.ID=PYTANIA.PRZEDMIOT_ID");
+                        List<Integer> id = new ArrayList<Integer>();
+                        List<String> Przedmiot = new ArrayList<String>();
+                        while(rs.next()){
+                            String support = rs.getString(2);
+                            System.out.println(support);
+                            Przedmiot.add(support);
+                            support = rs.getString(3);
+                            System.out.println(support);
+                            Przedmiot.add(support);
+                            support = rs.getString(4);
+                            System.out.println(support);
+                            Przedmiot.add(support);
+                            counter++;
+                        }
+                        System.out.println(counter);
+                        dos.writeInt(counter);
+
+                        for(String P:Przedmiot){
+                            dos.writeUTF(P);
+                        }
+                        break;
 
                     default:
                         break;
