@@ -41,6 +41,7 @@ public class LoginController implements Initializable {
     private InetAddress ip;
     private DataInputStream dis;
     private DataOutputStream dos;
+    public int user_id;
     //InetAddress ia, Socket socket, DataInputStream in, DataOutputStream out
 
     @FXML
@@ -88,7 +89,7 @@ public class LoginController implements Initializable {
             while (true) {
 
                 ip = InetAddress.getByName("localhost");
-                s = new Socket(ip, 6485);
+                s = new Socket(ip, 5057);
                 dis = new DataInputStream(s.getInputStream());
                 dos = new DataOutputStream(s.getOutputStream());
 
@@ -96,6 +97,7 @@ public class LoginController implements Initializable {
                 dos.writeUTF(login.getText());
                 dos.writeUTF(password.getText());
                 st = dis.readUTF();
+                //user_id=dis.readInt();
                 System.out.println(st);
                 status.setText(st);
                 if (st.equals("Poprawne dane")) {

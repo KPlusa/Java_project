@@ -11,7 +11,7 @@ import java.net.*;
 public class Server {
 
     public static void main(String[] args) throws IOException {
-        ServerSocket ss = new ServerSocket(6485);
+        ServerSocket ss = new ServerSocket(5057);
         System.out.println("Server dziala");
         while (true) {
             Socket s = null;
@@ -43,6 +43,7 @@ class ClientHandler extends Thread {
     final DataOutputStream dos;
     final Socket s;
     private int id=1;
+    private int user_id=0;
     private String cs5;
     private String name_of_subject;
     private int counter=0;
@@ -95,6 +96,7 @@ class ClientHandler extends Thread {
                         String pass = dis.readUTF();
                         System.out.println("Wprowadzany login: " + login + "\n" + "Wprowadzane haslo: " + pass);
                         while (rs.next()) {
+                            //user_id=rs.getInt(1);
                             username =rs.getString(1);
                             password =rs.getString(2);
                             if (login.equals(username) && pass.equals(password)) {
@@ -107,6 +109,7 @@ class ClientHandler extends Thread {
                            //to_return = "Poprawne dane";
 
                         dos.writeUTF(to_return);
+                       // dos.writeInt(user_id);
                         //System.out.println("Zamykanie socketa");
                         //s.close();
                         break;
@@ -180,7 +183,7 @@ class ClientHandler extends Thread {
                             String nazwaPrzedmiotu = rs.getString(1);
                             String rodzajPrzedmiotu = rs.getString(2);
                             nazwa_przedmiotu.add(nazwaPrzedmiotu);
-                            rodzaj_przedmiotu.add(rodzajPrzedmiotu);
+                            nazwa_przedmiotu.add(rodzajPrzedmiotu);
                             System.out.println("Dodano: "+nazwaPrzedmiotu+"\t"+ rodzajPrzedmiotu);
                             counter++;
                         }
@@ -194,11 +197,6 @@ class ClientHandler extends Thread {
                         for(String nazwaPrzedmiotu:nazwa_przedmiotu){
                             dos.writeUTF(nazwaPrzedmiotu);
                             System.out.println("Do wysylki:"+nazwaPrzedmiotu);
-                        }
-
-                        for(String rodzajPrzedmiotu:rodzaj_przedmiotu){
-                            dos.writeUTF(rodzajPrzedmiotu);
-                            System.out.println("Do wysylki:"+rodzajPrzedmiotu);
                         }
                         break;
                     case 5:

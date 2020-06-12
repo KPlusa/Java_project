@@ -32,14 +32,15 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import project.Materialsclass;
-import project.Subjectclass;
+import project.SubjectClass;
 
 
 public class SubjectController implements Initializable {
     private String st;
     private int counter;
     private Socket s;
-    private String subject;
+    private String name;
+    private String type;
     private InetAddress ip;
     private DataInputStream dis;
     private DataOutputStream dos;
@@ -47,22 +48,17 @@ public class SubjectController implements Initializable {
     private double x,y;
     private Stage stage;
 
-
     @FXML
-    private TableColumn<String, Subjectclass> ColSubName;
+    TableView<SubjectClass>table;
     @FXML
-    private TableColumn<String, Subjectclass> ColSubType;
+    private TableColumn<SubjectClass,String> ColSubName;
     @FXML
-    public TableView subjectTable = new TableView();
-    @FXML
-    private TableView<Subjectclass> table;
+    private TableColumn<SubjectClass,String> ColSubType;
 
     @FXML
     private AnchorPane anchorRoot;
     @FXML
     private AnchorPane AnchorPaneMain;
-    final ObservableList mylist = FXCollections.observableArrayList();
-    public ObservableList<Subjectclass> list = FXCollections.observableArrayList();
 
     @FXML
     private void closeAction(MouseEvent event){
@@ -88,8 +84,8 @@ public class SubjectController implements Initializable {
     }
 
     @FXML
-    private void fill_table() throws IOException{
-        mylist.clear();
+    private ObservableList<SubjectClass> fill_table() throws IOException{
+        ObservableList<SubjectClass> subject = FXCollections.observableArrayList();
         try{
             while(true){
                 try{
@@ -103,10 +99,10 @@ public class SubjectController implements Initializable {
                 }
                 dos.writeInt(4);
                 counter = dis.readInt();
-                mylist.add(dis.readUTF());
                 for(int i=0;i<counter;i++) {
-                    subject=dis.readUTF();
-                  //  mylist.add();
+                    name=dis.readUTF();
+                    type=dis.readUTF();
+                    subject.add(new SubjectClass(name,type));
                 }
 
                 break;
@@ -118,25 +114,26 @@ public class SubjectController implements Initializable {
             dos.close();
             s.close();
         }
+        return subject;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         makeDraggable();
-
-        try {
-            fill_table();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        ColSubName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        ColSubName.setMinWidth(200);
+        ColSubType.setMinWidth(200);
+        ColSubName.setCellValueFactory(new PropertyValueFactory<>("nazwa"));
         ColSubType.setCellValueFactory(new PropertyValueFactory<>("rodzaj"));
+        try {
+            table.setItems(fill_table());
+        }
+        catch (Exception e) {
+        }
+       // table.getColumns().addAll(ColSubName,ColSubType);
 
-        // ColSubName.setCellValueFactory(cellData-> cellData.getValue().getSubjectName());
-        //ColSubType.setCellValueFactory(cellData-> cellData.getValue().getSubjectType());
 
-        //makeDraggable();
+
 
     }
 
