@@ -26,11 +26,11 @@ class ClientHandler extends Thread {
     private String pass2;
     private String help;
     private String mail;
-    private String ma,sub;
+    private String ma;
     private String receiver;
     private static String url = "jdbc:oracle:thin:@localhost:1521:xe";
-    private static String db_user = "javapro";
-    private static String db_pass = "haslo";
+    private static String db_user = "DB_ADMIN";
+    private static String db_pass = "qazwsx";
     private static Connection con;
     private Statement stmt;
     private ResultSet rs;
@@ -57,7 +57,6 @@ class ClientHandler extends Thread {
 
             try {
                 int choice = dis.readInt();
-                counter=0;
                 switch (choice) {
                     case 1:
                         stmt = con.createStatement();
@@ -132,6 +131,7 @@ class ClientHandler extends Thread {
                         break;
 
                     case 3:
+                        counter=0;
                         stmt=con.createStatement();
                         rs=stmt.executeQuery("select NAZWA from Przedmiot");
                         while(rs.next()){
@@ -274,8 +274,10 @@ class ClientHandler extends Thread {
                             dos.writeUTF(answer_d);
                             System.out.println("Do wysylki: "+answer_d);
                         }
+
                         break;
                     case 8:
+
                         stmt=con.createStatement();
                         rs = stmt.executeQuery("select przedmiot.ID,PRZEDMIOT.NAZWA,PRZEDMIOT.RODZAJ,TRESC from PYTANIA JOIN PRZEDMIOT ON PRZEDMIOT.ID=PYTANIA.PRZEDMIOT_ID");
                         List<Integer> id = new ArrayList<Integer>();
@@ -299,6 +301,7 @@ class ClientHandler extends Thread {
                             dos.writeUTF(P);
                         }
                         break;
+
                     case 9://Historia
                         nick=dis.readUTF();
                         date=dis.readUTF();
@@ -321,228 +324,7 @@ class ClientHandler extends Thread {
 
                         dos.writeUTF(test);
                         dos.writeUTF(percent);
-                        break;
-                    case 10:
-                        stmt=con.createStatement();
-                        sub = dis.readUTF();
-                            rs = stmt.executeQuery("select Ranking.ID,PRZEDMIOT.NAZWA,UZYTKOWNIK.NAZWA,RANKING.PUNKTY from RANKING JOIN PRZEDMIOT ON RANKING.PRZEDMIOT_ID=PRZEDMIOT.ID JOIN UZYTKOWNIK ON RANKING.UZYTKOWNIK_ID=UZYTKOWNIK.ID ORDER BY RANKING.PUNKTY DESC");
-                        id = new ArrayList<Integer>();
-                        Przedmiot = new ArrayList<String>();
-                        List<String> Uzytkownik = new ArrayList<String>();
-                        List<Integer> Punkty = new ArrayList<Integer>();
-                        while(rs.next()){
-                            int support = rs.getInt(1);
-                            id.add(support);
-                            String przedmiot = rs.getString(2);
-                            Przedmiot.add(przedmiot);
-                            String uzytkownik = rs.getString(3);
-                            Uzytkownik.add(uzytkownik);
-                            support = rs.getInt(4);
-                            Punkty.add(support);
-                            counter++;
-                        }
-                        System.out.println(counter);
-                        dos.writeInt(counter);
 
-                        for(int i=0;i<counter;i++){
-                            dos.writeInt(id.get(i));
-                            dos.writeUTF(Przedmiot.get(i));
-                            dos.writeUTF(Uzytkownik.get(i));
-                            dos.writeInt(Punkty.get(i));
-                        }
-                        break;
-                    case 11:
-                        stmt=con.createStatement();
-                        sub = dis.readUTF();
-                        rs = stmt.executeQuery("select Ranking.ID,PRZEDMIOT.NAZWA,UZYTKOWNIK.NAZWA,RANKING.PUNKTY from RANKING JOIN PRZEDMIOT ON RANKING.PRZEDMIOT_ID=PRZEDMIOT.ID JOIN UZYTKOWNIK ON RANKING.UZYTKOWNIK_ID=UZYTKOWNIK.ID WHERE PRZEDMIOT.NAZWA='"+sub+"'ORDER BY RANKING.PUNKTY DESC");
-                        id = new ArrayList<Integer>();
-                        Przedmiot = new ArrayList<String>();
-                        Uzytkownik = new ArrayList<String>();
-                        Punkty = new ArrayList<Integer>();
-                        while(rs.next()){
-                            int support = rs.getInt(1);
-                            id.add(support);
-                            String przedmiot = rs.getString(2);
-                            Przedmiot.add(przedmiot);
-                            String uzytkownik = rs.getString(3);
-                            Uzytkownik.add(uzytkownik);
-                            support = rs.getInt(4);
-                            Punkty.add(support);
-                            counter++;
-                        }
-                        System.out.println(counter);
-                        dos.writeInt(counter);
-
-                        for(int i=0;i<counter;i++){
-                            dos.writeInt(id.get(i));
-                            dos.writeUTF(Przedmiot.get(i));
-                            dos.writeUTF(Uzytkownik.get(i));
-                            dos.writeInt(Punkty.get(i));
-                        }
-                        break;
-                    case 12:
-                        stmt=con.createStatement();
-                        sub = dis.readUTF();
-                        rs = stmt.executeQuery("select Ranking.ID,PRZEDMIOT.NAZWA,UZYTKOWNIK.NAZWA,RANKING.PUNKTY from RANKING JOIN PRZEDMIOT ON RANKING.PRZEDMIOT_ID=PRZEDMIOT.ID JOIN UZYTKOWNIK ON RANKING.UZYTKOWNIK_ID=UZYTKOWNIK.ID WHERE UZYTKOWNIK.NAZWA='"+sub+"'ORDER BY RANKING.PUNKTY DESC");
-                        id = new ArrayList<Integer>();
-                        Przedmiot = new ArrayList<String>();
-                        Uzytkownik = new ArrayList<String>();
-                        Punkty = new ArrayList<Integer>();
-                        while(rs.next()){
-                            int support = rs.getInt(1);
-                            id.add(support);
-                            String przedmiot = rs.getString(2);
-                            Przedmiot.add(przedmiot);
-                            String uzytkownik = rs.getString(3);
-                            Uzytkownik.add(uzytkownik);
-                            support = rs.getInt(4);
-                            Punkty.add(support);
-                            counter++;
-                        }
-                        System.out.println(counter);
-                        dos.writeInt(counter);
-
-                        for(int i=0;i<counter;i++){
-                            dos.writeInt(id.get(i));
-                            dos.writeUTF(Przedmiot.get(i));
-                            dos.writeUTF(Uzytkownik.get(i));
-                            dos.writeInt(Punkty.get(i));
-                        }
-                        break;
-                    case 13:
-                        stmt=con.createStatement();
-                        sub=dis.readUTF();
-                        rs=stmt.executeQuery("select RODZAJ from Przedmiot WHERE NAZWA='"+sub+"'");
-                        while(rs.next()){
-                            help=rs.getString(1);
-                            list.add(help);
-                            counter++;
-                        }
-                        dos.writeInt(counter);
-                        for(String help:list){
-                            dos.writeUTF(help);
-                        }
-                        break;
-                    case 18:
-                        stmt=con.createStatement();
-                        login=dis.readUTF();
-                        sub=dis.readUTF();
-                        String typ=dis.readUTF();
-                        int imp=dis.readInt();
-                        String data=dis.readUTF();
-                        rs=stmt.executeQuery("(Select max(id) from ranking)");
-                        rs.next();
-                        int ranking_id_i=rs.getInt(1);
-                        ranking_id_i++;
-                        System.out.println(ranking_id_i);
-                        stmt=con.createStatement();
-                        rs=stmt.executeQuery("(select id from PRZEDMIOT WHERE PRZEDMIOT.NAZWA='"+sub+"' AND PRZEDMIOT.RODZAJ='"+typ+"')");
-                        rs.next();
-                        int przedmiot_id_i=rs.getInt(1);
-                        stmt=con.createStatement();
-                        rs=stmt.executeQuery("Select ID FROM UZYTKOWNIK WHERE UZYTKOWNIK.NAZWA='"+login+"'");
-                        rs.next();
-                        int user_id_i=rs.getInt(1);
-                        stmt=con.createStatement();
-                        rs=stmt.executeQuery("INSERT INTO RANKING(id,przedmiot_id,uzytkownik_id,punkty,data) VALUES ("+ranking_id_i+","+przedmiot_id_i+","+user_id_i+","+imp+",TO_DATE('"+data+"', 'YYYY-MM-DD'))");
-                        System.out.println(login);
-                        System.out.println(sub);
-                        System.out.println(typ);
-                        System.out.println(imp);
-                        System.out.println(data);
-                        break;
-                    case 19:
-                        stmt=con.createStatement();
-                        sub=dis.readUTF();
-                        String type_of_subject = dis.readUTF();
-                        List<String> list_tresc = new ArrayList<String>();
-                        List<String> list_odp_a = new ArrayList<String>();
-                        List<String> list_odp_b = new ArrayList<String>();
-                        List<String> list_odp_c = new ArrayList<String>();
-                        List<String> list_odp_d = new ArrayList<String>();
-                        List<Integer> list_popr_o = new ArrayList<Integer>();
-                        rs=stmt.executeQuery("select TRESC,ODP_A,ODP_B,ODP_C,ODP_D,POPR_Z from PYTANIA JOIN PRZEDMIOT ON PYTANIA.PRZEDMIOT_ID=PRZEDMIOT.ID WHERE PRZEDMIOT.NAZWA='"+sub+"' AND PRZEDMIOT.RODZAJ='"+type_of_subject+"'AND PYTANIA.O_Z!=1");
-                        while(rs.next()){
-                            String Tresc =rs.getString(1);
-                            list_tresc.add(Tresc);
-                            String Odp_a =rs.getString(2);
-                            list_odp_a.add(Odp_a);
-                            String Odp_b =rs.getString(3);
-                            list_odp_b.add(Odp_b);
-                            String Odp_c =rs.getString(4);
-                            list_odp_c.add(Odp_c);
-                            String Odp_d =rs.getString(5);
-                            list_odp_d.add(Odp_d);
-                            int Popr_o =rs.getInt(6);
-                            list_popr_o.add(Popr_o);
-                            counter++;
-                        }
-                        dos.writeInt(counter);
-                        for(int i=0;i<counter;i++){
-                            dos.writeInt(i);
-                            dos.writeUTF(list_tresc.get(i));
-                            dos.writeUTF(list_odp_a.get(i));
-                            dos.writeUTF(list_odp_b.get(i));
-                            dos.writeUTF(list_odp_c.get(i));
-                            dos.writeUTF(list_odp_d.get(i));
-                            dos.writeInt(list_popr_o.get(i));
-                        }
-                        break;
-                    case 21:
-                        stmt=con.createStatement();
-                        sub=dis.readUTF();
-                        type_of_subject=dis.readUTF();
-                        System.out.println(sub);
-                        System.out.println(type_of_subject);
-                        rs=stmt.executeQuery("SELECT TRESC,ODP_A,ODP_B,ODP_C,ODP_D,POPR_Z FROM PYTANIA JOIN PRZEDMIOT ON PYTANIA.PRZEDMIOT_ID=PRZEDMIOT.ID WHERE PRZEDMIOT.NAZWA='"+sub+"' AND PRZEDMIOT.RODZAJ='"+type_of_subject+"' AND PYTANIA.O_Z!=1");
-                        while(rs.next()){
-                            String Tresc =rs.getString(1);
-                            String Odp_a =rs.getString(2);
-                            String Odp_b =rs.getString(3);
-                            String Odp_c =rs.getString(4);
-                            String Odp_d =rs.getString(5);
-                            int Popr_o =rs.getInt(6);
-                            counter++;
-                        }
-                        dos.writeInt(counter);
-                        break;
-                    case 27:
-                        stmt=con.createStatement();
-                        sub=dis.readUTF();
-                        type_of_subject = dis.readUTF();
-                        list_tresc = new ArrayList<String>();
-                        List<String> list_odp_o = new ArrayList<String>();
-                        rs=stmt.executeQuery("select TRESC,odp_o from PYTANIA JOIN PRZEDMIOT ON PYTANIA.PRZEDMIOT_ID=PRZEDMIOT.ID WHERE PRZEDMIOT.NAZWA='"+sub+"' AND PRZEDMIOT.RODZAJ='"+type_of_subject+"'AND PYTANIA.O_Z!=0");
-                        while(rs.next()){
-                            String Tresc =rs.getString(1);
-                            list_tresc.add(Tresc);
-                            String Popr_o =rs.getString(2);
-                            list_odp_o.add(Popr_o);
-                            counter++;
-                        }
-                        dos.writeInt(counter);
-
-                        break;
-                    case 33:
-                        stmt=con.createStatement();
-                        sub=dis.readUTF();
-                        type_of_subject = dis.readUTF();
-                        list_tresc = new ArrayList<String>();
-                        list_odp_o = new ArrayList<String>();
-                        rs=stmt.executeQuery("select TRESC,odp_o from PYTANIA JOIN PRZEDMIOT ON PYTANIA.PRZEDMIOT_ID=PRZEDMIOT.ID WHERE PRZEDMIOT.NAZWA='"+sub+"' AND PRZEDMIOT.RODZAJ='"+type_of_subject+"'AND PYTANIA.O_Z!=0");
-                        while(rs.next()){
-                            String Tresc =rs.getString(1);
-                            list_tresc.add(Tresc);
-                            String Popr_o =rs.getString(2);
-                            list_odp_o.add(Popr_o);
-                            counter++;
-                        }
-                        dos.writeInt(counter);
-                        for(int i=0;i<counter;i++){
-                            dos.writeInt(i);
-                            dos.writeUTF(list_tresc.get(i));
-                            dos.writeUTF(list_odp_o.get(i));
-                        }
                     default:
                         break;
                 }
