@@ -19,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.collections.FXCollections;
 import project.EditQC;
+import project.StoreLogin;
 
 
 import java.io.DataInputStream;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class EditController implements Initializable {
+public class EditController extends StoreLogin implements Initializable {
     private double x,y;
     private Stage stage;
     private Socket s;
@@ -137,40 +138,55 @@ public class EditController implements Initializable {
 
     @FXML
     public void go_back(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("../fxml/edit.fxml"));
-        Scene scene = new Scene(parent);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/edit.fxml"));
+        Parent root = loader.load();
+        EditController editController = loader.getController();
+        editController.store_username(login);
+        Scene scene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
     }
     @FXML
     public void go_menu(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("../fxml/menu.fxml"));
-        Scene scene = new Scene(parent);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
+        Parent root = loader.load();
+        MenuController menuController = loader.getController();
+        menuController.store_username(login);
+        Scene scene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
     }
     @FXML
     public void go_menu_avatar(MouseEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("../fxml/menu.fxml"));
-        Scene scene = new Scene(parent);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
+        Parent root = loader.load();
+        MenuController menuController = loader.getController();
+        menuController.store_username(login);
+        Scene scene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
     }
     @FXML
     public void go_add_delete_subject(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("../fxml/Add_delete_subject.fxml"));
-        Scene scene = new Scene(parent);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Add_delete_subject.fxml"));
+        Parent root = loader.load();
+        Add_delete_subjectController add_delete_subjectController = loader.getController();
+        add_delete_subjectController.store_username(login);
+        Scene scene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
     }
     @FXML
     public void go_edit_mat(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("../fxml/Edit_mat.fxml"));
-        Scene scene = new Scene(parent);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Edit_mat.fxml"));
+        Parent root = loader.load();
+        Edit_matController edit_matController = loader.getController();
+        edit_matController.store_username(login);
+        Scene scene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
@@ -272,8 +288,11 @@ public class EditController implements Initializable {
             e.printStackTrace();
         }
 
-            Parent parent = FXMLLoader.load(getClass().getResource("../fxml/EditQuestions.fxml"));
-            Scene scene = new Scene(parent);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/EditQuestions.fxml"));
+        Parent root = loader.load();
+        EditController editController = loader.getController();
+        editController.store_username(login);
+        Scene scene = new Scene(root);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(scene);
 
@@ -282,8 +301,11 @@ public class EditController implements Initializable {
     }
     @FXML
     public void go_edit_questions_opn(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("../fxml/EditQuestionsopen.fxml"));
-        Scene scene = new Scene(parent);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/EditQuestionsopen.fxml"));
+        Parent root = loader.load();
+        EditQuestionsopenController editQuestionsopenController = loader.getController();
+        editQuestionsopenController.store_username(login);
+        Scene scene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();

@@ -17,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import project.Materialsclass;
+import project.StoreLogin;
 
 import javax.swing.*;
 import java.io.DataInputStream;
@@ -27,7 +28,7 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MaterialsController implements Initializable {
+public class MaterialsController extends StoreLogin implements Initializable {
     private String st;
     private String materials;
     private String names;
@@ -116,16 +117,22 @@ public class MaterialsController implements Initializable {
     }
     @FXML
     public void go_menu(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("../fxml/menu.fxml"));
-        Scene scene = new Scene(parent);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
+        Parent root = loader.load();
+        MenuController menuController = loader.getController();
+        menuController.store_username(login);
+        Scene scene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
     }
     @FXML
     public void go_menu_avatar(MouseEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("../fxml/menu.fxml"));
-        Scene scene = new Scene(parent);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
+        Parent root = loader.load();
+        MenuController menuController = loader.getController();
+        menuController.store_username(login);
+        Scene scene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();

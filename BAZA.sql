@@ -53,7 +53,7 @@ INSERT INTO MATERIAL VALUES (1,'ASDFF',1);
 INSERT INTO MATERIAL VALUES (2,'wraezcwetdzsvxatsdzfxcvzfdstedzxvdtsxcxdstrxcbgrwesfjck cgfdgkfsodazcmkxvj jbfgdnsfeadzlmcx mvbndsfplzxmc bnsfjedmzl;cxcv nkdghrsfejdml;zcx, vmfds',2);
 INSERT INTO PYTANIA VALUES (1,'A',1,'A','B','C','D','OTWARTE',1,1);
 INSERT INTO PYTANIA VALUES (2,'A',2,'A','B','C','D','OTWARTE',2,2);
-INSERT INTO RANKING VALUES (1,2,1,20,TO_DATE('2020-06-05', 'YYYY-MM-DD'));
+INSERT INTO RANKING VALUES (1,2,1,20,TO_DATE('05-06-2020', 'DD-MM-YYYY'));
 
 
 

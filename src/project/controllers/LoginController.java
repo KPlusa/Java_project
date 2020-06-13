@@ -20,10 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -63,6 +60,7 @@ public class LoginController implements Initializable {
         makeDraggable();
 
 
+
     }
 
     @FXML
@@ -72,7 +70,6 @@ public class LoginController implements Initializable {
         root.translateYProperty().set(scene.getHeight());
 
         parentContainer.getChildren().add(root);
-
         Timeline timeline = new Timeline();
         KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
         KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
@@ -102,8 +99,15 @@ public class LoginController implements Initializable {
                 status.setText(st);
                 if (st.equals("Poprawne dane")) {
                     Thread.sleep(300);
-                    Parent parent = FXMLLoader.load(getClass().getResource("../fxml/menu.fxml"));
-                    Scene scene = new Scene(parent);
+                    //Parent parent = FXMLLoader.load(getClass().getResource("../fxml/menu.fxml"));
+
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
+                    Parent root = loader.load();
+                    MenuController menuController = loader.getController();
+                    //Pass whatever data you want. You can have multiple method calls here
+                    menuController.store_username(login.getText());
+                    //menuController.getUserame();
+                    Scene scene = new Scene(root);
                     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     window.setScene(scene);
                     window.show();

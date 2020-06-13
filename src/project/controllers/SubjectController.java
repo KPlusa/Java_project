@@ -32,10 +32,11 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import project.Materialsclass;
+import project.StoreLogin;
 import project.SubjectClass;
 
 
-public class SubjectController implements Initializable {
+public class SubjectController extends StoreLogin implements Initializable {
     private String st;
     private int counter;
     private Socket s;
@@ -140,16 +141,22 @@ public class SubjectController implements Initializable {
 
     @FXML
     public void go_menu(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("../fxml/menu.fxml"));
-        Scene scene = new Scene(parent);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
+        Parent root = loader.load();
+        MenuController menuController = loader.getController();
+        menuController.store_username(login);
+        Scene scene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
     }
     @FXML
     public void go_menu_avatar(MouseEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("../fxml/menu.fxml"));
-        Scene scene = new Scene(parent);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
+        Parent root = loader.load();
+        MenuController menuController = loader.getController();
+        menuController.store_username(login);
+        Scene scene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
