@@ -16,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import project.Questionsclass;
+import project.StoreLogin;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -25,7 +26,7 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class QuestionsController implements Initializable {
+public class QuestionsController extends StoreLogin implements Initializable {
     private double x, y;
     private String st;
     private int counter;
@@ -96,8 +97,11 @@ public class QuestionsController implements Initializable {
 
     @FXML
     public void go_menu(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("../fxml/menu.fxml"));
-        Scene scene = new Scene(parent);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
+        Parent root = loader.load();
+        MenuController menuController = loader.getController();
+        menuController.store_username(login);
+        Scene scene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
@@ -105,8 +109,11 @@ public class QuestionsController implements Initializable {
 
     @FXML
     public void go_menu_avatar(MouseEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("../fxml/menu.fxml"));
-        Scene scene = new Scene(parent);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
+        Parent root = loader.load();
+        MenuController menuController = loader.getController();
+        menuController.store_username(login);
+        Scene scene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();

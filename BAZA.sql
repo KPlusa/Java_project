@@ -44,7 +44,6 @@ PUNKTY NUMBER(6)NULL,
 DATA DATE
 );
 
-
 Insert into Uzytkownik values (1,'admin','admin','wut');
 Insert into Uzytkownik values (2,'a','ad','wut');
 INSERT INTO PRZEDMIOT values (1,'SYSTEMY OPERACYJNE','WYKLAD');
@@ -53,7 +52,6 @@ INSERT INTO MATERIAL VALUES (1,'ASDFF',1);
 INSERT INTO MATERIAL VALUES (2,'wraezcwetdzsvxatsdzfxcvzfdstedzxvdtsxcxdstrxcbgrwesfjck cgfdgkfsodazcmkxvj jbfgdnsfeadzlmcx mvbndsfplzxmc bnsfjedmzl;cxcv nkdghrsfejdml;zcx, vmfds',2);
 INSERT INTO PYTANIA VALUES (1,'A',1,'A','B','C','D','OTWARTE',1,1);
 INSERT INTO PYTANIA VALUES (2,'A',2,'A','B','C','D','OTWARTE',2,2);
-INSERT INTO RANKING VALUES (1,2,1,20,TO_DATE('2020-06-05', 'YYYY-MM-DD'));
-
+INSERT INTO RANKING VALUES (1,1,1,20,TO_DATE('2012-06-05', 'YYYY-MM-DD'));
 
 
