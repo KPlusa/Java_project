@@ -1,52 +1,46 @@
 package project;
 
 public class Rankclass {
-    int id,subject_id,user_id,score,data;
+    int id,points;
+    String subject,name;
 
     public Rankclass(){
         this.id=0;
-        this.subject_id=0;
-        this.user_id=0;
-        this.score=0;
-        this.data=0;
+        this.subject="";
+        this.name="";
+        this.points=0;
     }
-    public Rankclass(int id, int subject_id, int user_id, int score, int data){
+    public Rankclass(int id, String subject, String name, int points){
         this.id=id;
-        this.subject_id=subject_id;
-        this.user_id=user_id;
-        this.score=score;
-        this.data=data;
+        this.subject=subject;
+        this.name=name;
+        this.points=points;
     }
-    public int getid(){
+    public int getId(){
         return id;
     }
-    public void setid(int id){
+    public void setId(int id){
         this.id=id;
     }
-    public int getSubject_id(){
-        return subject_id;
+    public String getSubject(){
+        return subject;
     }
-    public void setSubject_id(int subject_id){
-        this.subject_id=subject_id;
+    public void setSubject(String subject){
+        this.subject=subject;
     }
-    public int getuser_id(){
-        return user_id;
+    public String getName(){
+        return name;
     }
-    public void setuser_id(int id){
-        this.user_id=user_id;
+    public void setName(String name){
+        this.name=name;
     }
-    public int getscore(){
-        return score;
+    public int getPoints(){
+        return points;
     }
-    public void setscore(int score){
-        this.score=score;
+    public void setPoints(int points){
+        this.points=points;
     }
-    public int getdata(){
-        return data;
-    }
-    public void setdata(int data){
-        this.data=data;
-    }
+
 
 }
 

@@ -10,12 +10,13 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import project.StoreLogin;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Add_delete_subjectController implements Initializable {
+public class Add_delete_subjectController extends StoreLogin implements Initializable {
     private double x, y;
     private Stage stage;
     @FXML
@@ -53,16 +54,22 @@ public class Add_delete_subjectController implements Initializable {
 
     @FXML
     public void go_back(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("../fxml/edit.fxml"));
-        Scene scene = new Scene(parent);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/edit.fxml"));
+        Parent root = loader.load();
+        MenuController menuController = loader.getController();
+        menuController.store_username(login);
+        Scene scene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
     }
     @FXML
     public void go_menu_avatar(MouseEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("../fxml/menu.fxml"));
-        Scene scene = new Scene(parent);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
+        Parent root = loader.load();
+        MenuController menuController = loader.getController();
+        menuController.store_username(login);
+        Scene scene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
