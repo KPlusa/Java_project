@@ -2,9 +2,10 @@ package project;
 
 public class Testclosedclass {
     String tresc, odp_a, odp_b, odp_c,odp_d;
-    int odp_popr;
+    int odp_popr,id;
     public Testclosedclass()
     {
+        this.id=0;
         this.tresc="";
         this.odp_a="";
         this.odp_b="";
@@ -12,8 +13,9 @@ public class Testclosedclass {
         this.odp_d="";
         this.odp_popr=0;
     }
-    public Testclosedclass(String tresc, String odp_a, String odp_b, String odp_c, String odp_d, int odp_popr)
+    public Testclosedclass(int id,String tresc, String odp_a, String odp_b, String odp_c, String odp_d, int odp_popr)
     {
+        this.id=id;
         this.tresc=tresc;
         this.odp_a=odp_a;
         this.odp_b=odp_b;
@@ -56,5 +58,11 @@ public class Testclosedclass {
     }
     public void setOdp_popr(int odp_popr){
         this.odp_popr=odp_popr;
+    }
+    public int  getId(){
+        return id;
+    }
+    public void setId(int id){
+        this.id=id;
     }
 }

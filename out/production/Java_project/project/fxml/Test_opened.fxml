@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="AnchorPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: 000000;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.Test_openedController">
+<AnchorPane fx:id="AnchorPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: 000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.Test_openedController">
    <children>
       <AnchorPane fx:id="FunctionAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="800.0" style="-fx-background-color: FF847F;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -49,35 +53,35 @@
       </AnchorPane>
       <Pane layoutY="150.0" prefHeight="450.0" prefWidth="800.0">
          <children>
-            <Label alignment="CENTER" layoutX="282.0" layoutY="27.0" prefHeight="30.0" prefWidth="238.0" text="Treść Pytania" textFill="#575757">
+            <Label fx:id="question" alignment="CENTER" layoutX="282.0" layoutY="27.0" prefHeight="30.0" prefWidth="238.0" text="Treść Pytania" textFill="#575757">
                <effect>
                   <Blend />
                </effect>
             </Label>
-            <TextArea layoutX="238.0" layoutY="100.0" prefHeight="157.0" prefWidth="309.0" styleClass="data" stylesheets="@../styles/login.css" />
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="489.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
+            <TextArea fx:id="odpowiedz" layoutX="238.0" layoutY="100.0" prefHeight="157.0" prefWidth="309.0" styleClass="data" stylesheets="@../styles/login.css" />
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="489.0" layoutY="303.0" onMouseClicked="#go_right" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8_arrow_100px.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="258.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="258.0" layoutY="303.0" onMouseClicked="#go_left" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8_arrow_pointing_left_100px.png" />
                </image>
             </ImageView>
-            <Button alignment="CENTER" layoutX="556.0" layoutY="390.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Ok" textFill="#575757">
+            <Label fx:id="nr_pyt" alignment="CENTER" layoutX="341.0" layoutY="313.0" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #FF847F;" textAlignment="CENTER" />
+            <Label fx:id="error_msg" alignment="CENTER" layoutY="343.0" prefHeight="20.0" prefWidth="793.0" textAlignment="CENTER" textFill="#fd0000">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button alignment="CENTER" layoutX="689.0" layoutY="397.0" mnemonicParsing="false" onMouseClicked="#end_test" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Zakończ" textFill="#575757">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
             </Button>
-            <TextField fx:id="nrPytania" alignment="CENTER" layoutX="333.0" layoutY="315.0" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #FF847F;" text="nr pytania" />
          </children>
       </Pane>
-      <Button alignment="CENTER" layoutX="662.0" layoutY="540.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Powrót" textFill="#575757">
-         <font>
-            <Font name="Arial" size="12.0" />
-         </font>
-      </Button>
       <Label layoutX="376.0" layoutY="92.0" text="Test" textFill="#575757">
          <font>
             <Font size="30.0" />
