@@ -56,20 +56,20 @@
     </AnchorPane>
       <AnchorPane layoutY="144.0" prefHeight="450.0" prefWidth="800.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="144.0">
          <children>
-            <ComboBox fx:id="combo_subject" layoutX="319.0" layoutY="64.0" onAction="#fillsecondcombo" prefHeight="40.0" prefWidth="161.0" promptText="Wybierz przedmiot" styleClass="data" stylesheets="@../../../../java%20projekt_backup/src/project/styles/login.css" />
-            <ComboBox fx:id="combo_type" layoutX="319.0" layoutY="126.0" prefHeight="40.0" prefWidth="161.0" promptText="Wybierz typ przedmiotu" styleClass="data" stylesheets="@../../../../java%20projekt_backup/src/project/styles/login.css" />
-            <ComboBox fx:id="combo_test_type" layoutX="319.0" layoutY="185.0" prefHeight="40.0" prefWidth="161.0" promptText="Wybierz rodzaj testu" styleClass="data" stylesheets="@../../../../java%20projekt_backup/src/project/styles/login.css" />
-            <Button alignment="CENTER" layoutX="563.0" layoutY="403.0" mnemonicParsing="false" onAction="#go_to_test" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Ok" textFill="#575757">
+            <ComboBox fx:id="combo_subject" layoutX="319.0" layoutY="61.0" onAction="#fillsecondcombo" prefHeight="40.0" prefWidth="161.0" promptText="Wybierz przedmiot" styleClass="data" stylesheets="@../../../../java%20projekt/src/project/styles/login.css" AnchorPane.leftAnchor="319.0" AnchorPane.rightAnchor="319.4" AnchorPane.topAnchor="61.0" />
+            <ComboBox fx:id="combo_type" layoutX="319.0" layoutY="134.0" prefHeight="40.0" prefWidth="161.0" promptText="Wybierz typ przedmiotu" styleClass="data" stylesheets="@../../../../java%20projekt/src/project/styles/login.css" AnchorPane.leftAnchor="319.0" AnchorPane.rightAnchor="319.4" AnchorPane.topAnchor="134.0" />
+            <ComboBox fx:id="combo_test_type" layoutX="319.0" layoutY="218.0" prefHeight="40.0" prefWidth="161.0" promptText="Wybierz rodzaj testu" styleClass="data" stylesheets="@../../../../java%20projekt/src/project/styles/login.css" AnchorPane.leftAnchor="319.0" AnchorPane.rightAnchor="319.4" AnchorPane.topAnchor="218.0" />
+            <Button alignment="CENTER" layoutX="563.0" layoutY="403.0" mnemonicParsing="false" onAction="#go_to_test" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Ok" textFill="#575757" AnchorPane.bottomAnchor="16.6" AnchorPane.rightAnchor="139.4">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" layoutX="672.0" layoutY="403.0" mnemonicParsing="false" onAction="#go_menu" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Powrót" textFill="#575757">
+            <Button alignment="CENTER" layoutX="672.0" layoutY="403.0" mnemonicParsing="false" onAction="#go_menu" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Powrót" textFill="#575757" AnchorPane.bottomAnchor="16.6" AnchorPane.rightAnchor="30.400000000000006">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
             </Button>
-            <Label fx:id="error_msg" layoutX="309.0" layoutY="288.0" prefHeight="17.0" prefWidth="181.0" textFill="#fd0000" />
+            <Label fx:id="error_msg" layoutX="309.0" layoutY="322.0" prefHeight="17.0" prefWidth="181.0" textFill="#fd0000" />
          </children>
       </AnchorPane>
 </children>

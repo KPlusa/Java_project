@@ -44,17 +44,17 @@
                   <Label fx:id="ans_a" prefHeight="36.0" prefWidth="238.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                </children>
             </GridPane>
-            <Label fx:id="question" alignment="CENTER" layoutX="263.0" layoutY="21.0" prefHeight="30.0" prefWidth="277.0" text="Treść Pytania" textFill="#575757">
+            <Label fx:id="question" alignment="CENTER" layoutX="263.0" layoutY="21.0" prefHeight="30.0" prefWidth="277.0" text="Treść Pytania" textFill="#575757" AnchorPane.leftAnchor="263.0" AnchorPane.rightAnchor="261.0" AnchorPane.topAnchor="21.0">
                <effect>
                   <Blend />
                </effect>
             </Label>
-            <ImageView fx:id="right" fitHeight="50.0" fitWidth="50.0" layoutX="498.0" layoutY="268.0" onMouseClicked="#go_right" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="132.0">
+            <ImageView fx:id="right" fitHeight="50.0" fitWidth="50.0" layoutX="498.0" layoutY="268.0" onMouseClicked="#go_right" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="132.0" AnchorPane.rightAnchor="253.0">
                <image>
                   <Image url="@../images/icons8_arrow_100px.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="left" fitHeight="50.0" fitWidth="50.0" layoutX="252.0" layoutY="268.0" onMouseClicked="#go_left" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="132.0">
+            <ImageView fx:id="left" fitHeight="50.0" fitWidth="50.0" layoutX="252.0" layoutY="268.0" onMouseClicked="#go_left" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="132.0" AnchorPane.leftAnchor="252.0" AnchorPane.rightAnchor="499.0">
                <image>
                   <Image url="@../images/icons8_arrow_pointing_left_100px.png" />
                </image>
@@ -64,12 +64,12 @@
                   <Font name="Arial" size="12.0" />
                </font>
             </Button>
-            <Label fx:id="error_msg" alignment="CENTER" layoutX="1.0" layoutY="362.0" prefHeight="20.0" prefWidth="800.0" textAlignment="CENTER" textFill="#fd0000">
+            <Label fx:id="error_msg" alignment="CENTER" layoutX="1.0" layoutY="362.0" prefHeight="20.0" prefWidth="800.0" textAlignment="CENTER" textFill="#fd0000" AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="nr_pyt" alignment="CENTER" layoutX="340.0" layoutY="278.0" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #FF847F;" text="Label" textAlignment="CENTER" AnchorPane.bottomAnchor="142.0" />
+            <Label fx:id="nr_pyt" alignment="CENTER" layoutX="340.0" layoutY="278.0" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #FF847F;" text="Label" textAlignment="CENTER" AnchorPane.bottomAnchor="142.0" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="341.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="FunctionAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="800.0" style="-fx-background-color: #FF847F;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
