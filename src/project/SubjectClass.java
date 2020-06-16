@@ -1,5 +1,5 @@
 package project;
-
+/** Klasa przechowujaca dane dotyczące przedmiotu*/
 public class SubjectClass {
     private String nazwa;
     private String rodzaj;

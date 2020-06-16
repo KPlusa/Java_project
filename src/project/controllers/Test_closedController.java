@@ -393,7 +393,6 @@ public class Test_closedController extends Storage implements Initializable {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
-
     }
 }
 

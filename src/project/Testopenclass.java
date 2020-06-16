@@ -1,5 +1,5 @@
 package project;
-
+/** Klasa przechowujaca dane do testu zawierającego pytania otwarte*/
 public class Testopenclass {
     String tresc, odp_o;
     int id;

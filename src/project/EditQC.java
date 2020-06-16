@@ -1,5 +1,5 @@
 package project;
-
+/** Klasa przechowujaca dane potrzebne do edycji pytan zamknietych*/
 public class EditQC {
     private int id,right_answer;
     private String pytanie, odp_a, odp_b, odp_c, odp_d;

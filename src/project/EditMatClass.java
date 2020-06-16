@@ -1,5 +1,5 @@
 package project;
-
+/** Klasa przechowujaca dane potrzebne do edycji materialow*/
 public class EditMatClass {
     private String tresc;
     public EditMatClass()

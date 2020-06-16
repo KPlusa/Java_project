@@ -8,68 +8,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="AnchorPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.Edit_matController">
    <children>
-      <Pane layoutY="150.0" prefHeight="450.0" prefWidth="800.0">
-         <children>
-            <TableView fx:id="EditMat" layoutX="309.0" layoutY="31.0" prefHeight="300.0" prefWidth="450.0" stylesheets="@../styles/tableview.css">
-               <columns>
-                  <TableColumn fx:id="Tresc" prefWidth="449.0" text="Treść" />
-               </columns>
-            </TableView>
-            <Button alignment="CENTER" layoutX="662.0" layoutY="393.0" mnemonicParsing="false" onAction="#go_back" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Powrót" textFill="#575757">
-               <font>
-                  <Font name="Arial" size="12.0" />
-               </font>
-            </Button>
-            <Button alignment="CENTER" layoutX="309.0" layoutY="333.0" mnemonicParsing="false" onAction="#insert" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Dodaj" textFill="#575757">
-               <font>
-                  <Font name="Arial" size="12.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="39.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/icons8_add_32px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button alignment="CENTER" layoutX="662.0" layoutY="333.0" mnemonicParsing="false" onAction="#delete" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Usuń" textFill="#575757">
-               <font>
-                  <Font name="Arial" size="12.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="39.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/icons8_delete_32px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button alignment="CENTER" layoutX="486.0" layoutY="333.0" mnemonicParsing="false" onAction="#update" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Aktualizuj" textFill="#575757">
-               <font>
-                  <Font name="Arial" size="12.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="39.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/icons8_edit_32px_1.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Label layoutX="34.0" layoutY="173.0" text="Treść" textFill="#575757">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <TextArea fx:id="TEXT" layoutX="99.0" layoutY="101.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="161.0" prefWidth="187.0" styleClass="data" stylesheets="@../styles/login.css" />
-            <Label fx:id="status" layoutX="12.0" layoutY="340.0" prefHeight="17.0" prefWidth="286.0" textFill="RED" />
-         </children>
-      </Pane>
-      <AnchorPane fx:id="FunctionAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="800.0" style="-fx-background-color: FF847F;">
+      <AnchorPane fx:id="FunctionAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="800.0" style="-fx-background-color: FF847F;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fx:id="close" accessibleRole="BUTTON" fitHeight="30.0" fitWidth="30.0" layoutX="756.0" layoutY="14.0" onMouseClicked="#closeAction" pickOnBounds="true" preserveRatio="true" styleClass="data" AnchorPane.bottomAnchor="156.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                <image>
@@ -111,6 +54,63 @@
                   <Font size="30.0" />
                </font>
             </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="150.0" prefHeight="450.0" prefWidth="800.0" AnchorPane.bottomAnchor="-0.39999999999997726" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
+         <children>
+            <TableView fx:id="EditMat" layoutX="296.0" layoutY="30.0" prefHeight="300.0" prefWidth="450.0" stylesheets="@../styles/tableview.css" AnchorPane.bottomAnchor="120.39999999999998" AnchorPane.leftAnchor="296.0" AnchorPane.rightAnchor="53.60000000000002" AnchorPane.topAnchor="30.0">
+               <columns>
+                  <TableColumn fx:id="Tresc" prefWidth="449.0" text="Treść" />
+               </columns>
+            </TableView>
+            <Button alignment="CENTER" layoutX="687.0" layoutY="405.0" mnemonicParsing="false" onAction="#go_back" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Powrót" textFill="#575757" AnchorPane.bottomAnchor="14.999999999999979" AnchorPane.rightAnchor="15.400000000000006">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" layoutX="302.0" layoutY="342.0" mnemonicParsing="false" onAction="#insert" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Dodaj" textFill="#575757" AnchorPane.bottomAnchor="77.99999999999997" AnchorPane.rightAnchor="400.4">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_add_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="CENTER" layoutX="633.0" layoutY="342.0" mnemonicParsing="false" onAction="#delete" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Usuń" textFill="#575757" AnchorPane.bottomAnchor="77.99999999999997" AnchorPane.rightAnchor="69.4">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_delete_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="CENTER" layoutX="473.0" layoutY="342.0" mnemonicParsing="false" onAction="#update" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Aktualizuj" textFill="#575757" AnchorPane.bottomAnchor="77.99999999999997" AnchorPane.rightAnchor="229.4">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_edit_32px_1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label layoutX="128.0" layoutY="60.0" text="Treść" textFill="#575757" AnchorPane.leftAnchor="128.0" AnchorPane.topAnchor="60.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="TEXT" layoutX="42.0" layoutY="110.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="161.0" prefWidth="187.0" styleClass="data" stylesheets="@../styles/login.css" AnchorPane.leftAnchor="42.0" AnchorPane.topAnchor="110.0" />
+            <Label fx:id="status" layoutX="9.0" layoutY="295.0" prefHeight="17.0" prefWidth="286.0" textFill="RED" AnchorPane.bottomAnchor="137.79999999999995" AnchorPane.leftAnchor="9.0" />
          </children>
       </AnchorPane>
    </children>

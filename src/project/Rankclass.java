@@ -1,5 +1,5 @@
 package project;
-
+/** Klasa przechowujaca dane dotyczace rankingu*/
 public class Rankclass {
     int id,points;
     String subject,name;

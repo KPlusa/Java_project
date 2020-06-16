@@ -1,5 +1,5 @@
 package project;
-
+/** Klasa przechowujaca dane dotyczace pytan(sama tresc)*/
 public class Questionsclass {
     private int id;
     private String przedmiot,typ,tresc;
