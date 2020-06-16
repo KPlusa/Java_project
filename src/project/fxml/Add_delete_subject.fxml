@@ -51,8 +51,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <ChoiceBox layoutX="546.0" layoutY="233.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: ff847f; -fx-border-width: 0px 0px 2px 0px;" />
-      <Button alignment="CENTER" layoutX="573.0" layoutY="270.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Usuń" textFill="#575757">
+      <Button alignment="CENTER" layoutX="591.0" layoutY="270.0" mnemonicParsing="false" onAction="#delete" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Usuń" textFill="#575757">
          <font>
             <Font name="Arial" size="12.0" />
          </font>
@@ -64,13 +63,13 @@
             </ImageView>
          </graphic>
       </Button>
-      <TextArea layoutX="114.0" layoutY="231.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="187.0" styleClass="data" stylesheets="@../styles/login.css" />
+      <TextArea fx:id="text" layoutX="114.0" layoutY="231.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="187.0" styleClass="data" stylesheets="@../styles/login.css" />
       <Button alignment="CENTER" layoutX="662.0" layoutY="540.0" mnemonicParsing="false" onAction="#go_back" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Powrót" textFill="#575757">
          <font>
             <Font name="Arial" size="12.0" />
          </font>
       </Button>
-      <Button alignment="CENTER" layoutX="159.0" layoutY="270.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Dodaj" textFill="#575757">
+      <Button alignment="CENTER" layoutX="159.0" layoutY="270.0" mnemonicParsing="false" onAction="#insert" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Dodaj" textFill="#575757">
          <font>
             <Font name="Arial" size="12.0" />
          </font>
@@ -81,6 +80,14 @@
                </image>
             </ImageView>
          </graphic>
+      </Button>
+      <ComboBox fx:id="choice_type" layoutX="325.0" layoutY="233.0" prefHeight="27.0" prefWidth="187.0" promptText="Wybierz typ przedmiotu" styleClass="data" stylesheets="@../styles/login.css" />
+      <ComboBox fx:id="choice_subject" layoutX="546.0" layoutY="233.0" onAction="#fill_combo_type" prefHeight="27.0" prefWidth="187.0" promptText="Wybierz przedmiot" styleClass="data" stylesheets="@../styles/login.css" />
+      <Label fx:id="status" contentDisplay="CENTER" layoutX="205.0" layoutY="340.0" prefHeight="23.0" prefWidth="241.0" textFill="#fd0000" />
+      <Button fx:id="clean" alignment="CENTER" layoutX="591.0" layoutY="321.0" mnemonicParsing="false" onAction="#clean_" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Wyczyść" textFill="#575757">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
       </Button>
    </children>
 </AnchorPane>

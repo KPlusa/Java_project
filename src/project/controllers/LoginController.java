@@ -21,34 +21,27 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import project.Storage;
 
 
-public class LoginController implements Initializable {
-    private double x, y;
-    private Stage stage;
-    private String l;
-    private String p;
+public class LoginController extends Storage implements Initializable {
     private String st;
     private Socket s;
     private InetAddress ip;
     private DataInputStream dis;
     private DataOutputStream dos;
-    public int user_id;
-    //InetAddress ia, Socket socket, DataInputStream in, DataOutputStream out
-
     @FXML
     private Button button;
     @FXML
-    private AnchorPane anchorRoot;
+    private AnchorPane AnchorPaneMain;
     @FXML
     private StackPane parentContainer;
     @FXML
-    private TextField login;
+    private TextField loginn;
     @FXML
     private PasswordField password;
     @FXML
@@ -56,11 +49,7 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         makeDraggable();
-
-
-
     }
 
     @FXML
@@ -68,14 +57,13 @@ public class LoginController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/Register.fxml"));
         Scene scene = button.getScene();
         root.translateYProperty().set(scene.getHeight());
-
         parentContainer.getChildren().add(root);
         Timeline timeline = new Timeline();
         KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
         KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
         timeline.getKeyFrames().add(kf);
         timeline.setOnFinished(t -> {
-            parentContainer.getChildren().remove(anchorRoot);
+            parentContainer.getChildren().remove(AnchorPaneMain);
         });
         timeline.play();
     }
@@ -84,29 +72,22 @@ public class LoginController implements Initializable {
     public void go_menu(ActionEvent event) throws IOException {
         try {
             while (true) {
-
                 ip = InetAddress.getByName("localhost");
                 s = new Socket(ip, 5057);
                 dis = new DataInputStream(s.getInputStream());
                 dos = new DataOutputStream(s.getOutputStream());
-
                 dos.writeInt(1);
-                dos.writeUTF(login.getText());
+                dos.writeUTF(loginn.getText());
                 dos.writeUTF(password.getText());
                 st = dis.readUTF();
-                //user_id=dis.readInt();
                 System.out.println(st);
                 status.setText(st);
                 if (st.equals("Poprawne dane")) {
                     Thread.sleep(300);
-                    //Parent parent = FXMLLoader.load(getClass().getResource("../fxml/menu.fxml"));
-
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
                     Parent root = loader.load();
                     MenuController menuController = loader.getController();
-                    //Pass whatever data you want. You can have multiple method calls here
-                    menuController.store_username(login.getText());
-                    //menuController.getUserame();
+                    menuController.store_username(loginn.getText());
                     Scene scene = new Scene(root);
                     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     window.setScene(scene);
@@ -126,30 +107,11 @@ public class LoginController implements Initializable {
     }
 
 
-    @FXML
-    private void closeAction(MouseEvent event) {
-        System.exit(0);
-    }
 
-    @FXML
-    private void minAction(MouseEvent event) {
-        Stage stage = (Stage) parentContainer.getScene().getWindow();
-        stage.setIconified(true);
-    }
 
-    @FXML
-    private void makeDraggable() {
-        anchorRoot.setOnMousePressed(((event) -> {
-            x = event.getSceneX();
-            y = event.getSceneY();
-        }));
 
-        anchorRoot.setOnMouseDragged(((event) -> {
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setX(event.getScreenX() - x);
-            stage.setY(event.getScreenY() - y);
-        }));
-    }
+
+
 
 
 }

@@ -64,14 +64,14 @@
                   <Blend />
                </effect>
             </Label>
-            <TableView layoutX="308.0" layoutY="12.0" prefHeight="325.0" prefWidth="451.0" stylesheets="@../styles/tableview.css">
+            <TableView fx:id="Qopened" layoutX="308.0" layoutY="12.0" prefHeight="325.0" prefWidth="451.0" stylesheets="@../styles/tableview.css">
                <columns>
-                  <TableColumn minWidth="150.0" prefWidth="75.0" text="Id" />
-                  <TableColumn minWidth="150.0" prefWidth="75.0" text="Pytanie" />
-                  <TableColumn minWidth="150.0" prefWidth="69.0" text="Odp" />
+                  <TableColumn fx:id="Id" minWidth="150.0" prefWidth="75.0" text="Id" />
+                  <TableColumn fx:id="Pytanie" minWidth="150.0" prefWidth="75.0" text="Pytanie" />
+                  <TableColumn fx:id="Odp" minWidth="150.0" prefWidth="69.0" text="Odp" />
                </columns>
             </TableView>
-            <Button alignment="CENTER" layoutX="329.0" layoutY="343.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Dodaj" textFill="#575757">
+            <Button alignment="CENTER" layoutX="329.0" layoutY="343.0" mnemonicParsing="false" onAction="#insert" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Dodaj" textFill="#575757">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
@@ -83,7 +83,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="492.0" layoutY="343.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Aktualizuj" textFill="#575757">
+            <Button alignment="CENTER" layoutX="492.0" layoutY="343.0" mnemonicParsing="false" onAction="#update" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Aktualizuj" textFill="#575757">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
@@ -95,7 +95,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="CENTER" layoutX="662.0" layoutY="343.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Usuń" textFill="#575757">
+            <Button alignment="CENTER" layoutX="662.0" layoutY="343.0" mnemonicParsing="false" onAction="#delete" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Usuń" textFill="#575757">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
@@ -112,14 +112,15 @@
                   <Font name="Arial" size="12.0" />
                </font>
             </Button>
-            <TextArea layoutX="111.0" layoutY="133.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="167.0" styleClass="data" stylesheets="@../styles/login.css" />
-            <TextArea layoutX="111.0" layoutY="225.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="167.0" styleClass="data" stylesheets="@../styles/login.css" />
-            <TextField layoutX="112.0" layoutY="42.0" prefHeight="30.0" prefWidth="167.0" styleClass="data" stylesheets="@../styles/login.css" />
+            <TextArea fx:id="TEXT" layoutX="111.0" layoutY="133.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="167.0" styleClass="data" stylesheets="@../styles/login.css" />
+            <TextArea fx:id="A" layoutX="111.0" layoutY="225.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="167.0" styleClass="data" stylesheets="@../styles/login.css" />
+            <TextField fx:id="IDC" layoutX="112.0" layoutY="42.0" prefHeight="30.0" prefWidth="167.0" styleClass="data" stylesheets="@../styles/login.css" />
             <Label layoutX="53.0" layoutY="49.0" text="ID" textFill="#575757">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
+            <Label fx:id="status" layoutX="19.0" layoutY="318.0" prefHeight="17.0" prefWidth="275.0" textFill="RED" />
          </children>
       </Pane>
    </children>

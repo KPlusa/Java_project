@@ -13,10 +13,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import project.Questionsclass;
-import project.StoreLogin;
+import project.Storage;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -26,9 +25,7 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class QuestionsController extends StoreLogin implements Initializable {
-    private double x, y;
-    private String st;
+public class QuestionsController extends Storage implements Initializable {
     private int counter;
     private Socket s;
     private Integer id;
@@ -36,15 +33,6 @@ public class QuestionsController extends StoreLogin implements Initializable {
     private InetAddress ip;
     private DataInputStream dis;
     private DataOutputStream dos;
-    private Stage stage;
-    @FXML
-    private AnchorPane AnchorPaneMain;
-
-    @FXML
-    private void closeAction(MouseEvent event) {
-        System.exit(0);
-    }
-
     @FXML
     TableView<Questionsclass> table;
     @FXML
@@ -57,27 +45,9 @@ public class QuestionsController extends StoreLogin implements Initializable {
     private TableColumn<Questionsclass, String> col_tresc;
 
 
-    @FXML
-    private void minAction(MouseEvent event) {
-        Stage stage = (Stage) AnchorPaneMain.getScene().getWindow();
-        stage.setIconified(true);
-    }
-
-    @FXML
-    private void maxAction(MouseEvent event) {
-        Stage stage = (Stage) AnchorPaneMain.getScene().getWindow();
-        if (stage.isMaximized()) {
-            stage.setMaximized(false);
-            stage.setResizable(false);
-        } else {
-            stage.setMaximized(true);
-            stage.setResizable(true);
-        }
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         makeDraggable();
         col_id.setMinWidth(2);
         col_przedmiot.setMinWidth(200);
@@ -120,21 +90,6 @@ public class QuestionsController extends StoreLogin implements Initializable {
     }
 
     @FXML
-    private void makeDraggable() {
-        AnchorPaneMain.setOnMousePressed(((event) -> {
-            x = event.getSceneX();
-            y = event.getSceneY();
-        }));
-
-        AnchorPaneMain.setOnMouseDragged(((event) -> {
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setX(event.getScreenX() - x);
-            stage.setY(event.getScreenY() - y);
-        }));
-    }
-
-
-    @FXML
     private ObservableList<Questionsclass> fill_table() throws IOException {
         ObservableList<Questionsclass> questions = FXCollections.observableArrayList();
         try {
@@ -160,7 +115,6 @@ public class QuestionsController extends StoreLogin implements Initializable {
                     System.out.println(tresc);
                     questions.add(new Questionsclass(id, przedmiot, typ, tresc));
                 }
-
                 break;
             }
         } catch (Exception e) {
