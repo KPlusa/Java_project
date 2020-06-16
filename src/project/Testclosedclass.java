@@ -1,5 +1,5 @@
 package project;
-
+/** Klasa przechowujaca dane do testu zawierającego pytania zamkniete*/
 public class Testclosedclass {
     String tresc, odp_a, odp_b, odp_c,odp_d;
     int odp_popr,id;

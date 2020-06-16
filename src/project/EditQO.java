@@ -1,5 +1,5 @@
 package project;
-
+/** Klasa przechowujaca dane potrzebne do edycji pytan otwartych*/
 public class EditQO {
     private int id;
     private String pytanie, odp;
