@@ -12,10 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import project.StoreLogin;
-
+import project.Storage;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -24,16 +22,7 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Generate_testController extends StoreLogin implements Initializable {
-    private double x, y;
-    private Stage stage;
-    @FXML
-    private AnchorPane AnchorPaneMain;
-
-    @FXML
-    private void closeAction(MouseEvent event) {
-        System.exit(0);
-    }
+public class Generate_testController extends Storage implements Initializable {
 
     @FXML
     private ComboBox combo_subject;
@@ -53,27 +42,9 @@ public class Generate_testController extends StoreLogin implements Initializable
     private DataOutputStream dos;
     private String sub, typ;
 
-    @FXML
-    private void minAction(MouseEvent event) {
-        Stage stage = (Stage) AnchorPaneMain.getScene().getWindow();
-        stage.setIconified(true);
-    }
-
-    @FXML
-    private void maxAction(MouseEvent event) {
-        Stage stage = (Stage) AnchorPaneMain.getScene().getWindow();
-        if (stage.isMaximized()) {
-            stage.setMaximized(false);
-            stage.setResizable(false);
-        } else {
-            stage.setMaximized(true);
-            stage.setResizable(true);
-        }
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         makeDraggable();
         try {
             fillcombo();
@@ -107,19 +78,7 @@ public class Generate_testController extends StoreLogin implements Initializable
         window.show();
     }
 
-    @FXML
-    private void makeDraggable() {
-        AnchorPaneMain.setOnMousePressed(((event) -> {
-            x = event.getSceneX();
-            y = event.getSceneY();
-        }));
 
-        AnchorPaneMain.setOnMouseDragged(((event) -> {
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setX(event.getScreenX() - x);
-            stage.setY(event.getScreenY() - y);
-        }));
-    }
 
     private void fillcombo() throws IOException {
         combo_subject.setMaxHeight(30);

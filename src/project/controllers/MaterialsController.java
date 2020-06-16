@@ -8,7 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -17,9 +16,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import project.Materialsclass;
-import project.StoreLogin;
+import project.Storage;
 
-import javax.swing.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -28,8 +26,7 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MaterialsController extends StoreLogin implements Initializable {
-    private String st;
+public class MaterialsController extends Storage implements Initializable {
     private String materials;
     private String names;
     private int counter;
@@ -37,8 +34,6 @@ public class MaterialsController extends StoreLogin implements Initializable {
     private InetAddress ip;
     private DataInputStream dis;
     private DataOutputStream dos;
-    private double x, y;
-    private Stage stage;
     final ObservableList mylist = FXCollections.observableArrayList();
     @FXML
     public TableView tabela = new TableView();
@@ -46,30 +41,8 @@ public class MaterialsController extends StoreLogin implements Initializable {
     private TableColumn<String,Materialsclass> mattable;
     @FXML
     private ComboBox chb;
-    @FXML
-    private AnchorPane AnchorPaneMain;
-    @FXML
-    private void closeAction(MouseEvent event){
-        System.exit(0);
-    }
 
-    @FXML
-    private void minAction(MouseEvent event){
-        Stage stage=(Stage) AnchorPaneMain.getScene().getWindow();
-        stage.setIconified(true);
-    }
-    @FXML
-    private void maxAction(MouseEvent event){
-        Stage stage=(Stage) AnchorPaneMain.getScene().getWindow();
-        if(stage.isMaximized()) {
-            stage.setMaximized(false);
-            stage.setResizable(false);
-        }
-        else {
-            stage.setMaximized(true);
-            stage.setResizable(true);
-        }
-    }
+
     @FXML
     private void fillcombo() throws IOException {
         chb.setMaxHeight(30);
@@ -77,10 +50,10 @@ public class MaterialsController extends StoreLogin implements Initializable {
         try {
             while (true) {
                 try {
-                ip = InetAddress.getByName("localhost");
-                s = new Socket(ip, 5057);
-                dis = new DataInputStream(s.getInputStream());
-                dos = new DataOutputStream(s.getOutputStream());
+                    ip = InetAddress.getByName("localhost");
+                    s = new Socket(ip, 5057);
+                    dis = new DataInputStream(s.getInputStream());
+                    dos = new DataOutputStream(s.getOutputStream());
                 } catch (Exception e) {
                     e.printStackTrace();
                     System.out.println("Brak polaczenia z serwerem");
@@ -106,7 +79,6 @@ public class MaterialsController extends StoreLogin implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         makeDraggable();
         try {
             fillcombo();
@@ -137,20 +109,7 @@ public class MaterialsController extends StoreLogin implements Initializable {
         window.setScene(scene);
         window.show();
     }
-    @FXML
-    private void makeDraggable()
-    {
-        AnchorPaneMain.setOnMousePressed(((event) -> {
-            x=event.getSceneX();
-            y=event.getSceneY();
-        }));
 
-        AnchorPaneMain.setOnMouseDragged(((event) -> {
-            stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setX(event.getScreenX()-x);
-            stage.setY(event.getScreenY()-y);
-        }));
-    }
     @FXML
     private void setdisplay(ActionEvent event) throws IOException{
         tabela.getItems().clear();

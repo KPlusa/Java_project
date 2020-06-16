@@ -8,10 +8,6 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,23 +17,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import project.Materialsclass;
-import project.StoreLogin;
+import project.Storage;
 import project.SubjectClass;
 
 
-public class SubjectController extends StoreLogin implements Initializable {
-    private String st;
+public class SubjectController extends Storage implements Initializable {
     private int counter;
     private Socket s;
     private String name;
@@ -46,8 +35,6 @@ public class SubjectController extends StoreLogin implements Initializable {
     private DataInputStream dis;
     private DataOutputStream dos;
 
-    private double x,y;
-    private Stage stage;
 
     @FXML
     TableView<SubjectClass>table;
@@ -56,33 +43,8 @@ public class SubjectController extends StoreLogin implements Initializable {
     @FXML
     private TableColumn<SubjectClass,String> ColSubType;
 
-    @FXML
-    private AnchorPane anchorRoot;
-    @FXML
-    private AnchorPane AnchorPaneMain;
 
-    @FXML
-    private void closeAction(MouseEvent event){
-        System.exit(0);
-    }
 
-    @FXML
-    private void minAction(MouseEvent event){
-        Stage stage=(Stage) AnchorPaneMain.getScene().getWindow();
-        stage.setIconified(true);
-    }
-    @FXML
-    private void maxAction(MouseEvent event){
-        Stage stage=(Stage) AnchorPaneMain.getScene().getWindow();
-        if(stage.isMaximized()) {
-            stage.setMaximized(false);
-            stage.setResizable(false);
-        }
-        else {
-            stage.setMaximized(true);
-            stage.setResizable(true);
-        }
-    }
 
     @FXML
     private ObservableList<SubjectClass> fill_table() throws IOException{
@@ -94,7 +56,6 @@ public class SubjectController extends StoreLogin implements Initializable {
                     s = new Socket(ip,5057);
                     dis = new DataInputStream(s.getInputStream());
                     dos = new DataOutputStream(s.getOutputStream());
-
                 } catch (Exception e){
                     e.printStackTrace();
                 }
@@ -105,7 +66,6 @@ public class SubjectController extends StoreLogin implements Initializable {
                     type=dis.readUTF();
                     subject.add(new SubjectClass(name,type));
                 }
-
                 break;
             }
         }
@@ -120,7 +80,6 @@ public class SubjectController extends StoreLogin implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         makeDraggable();
         ColSubName.setMinWidth(200);
         ColSubType.setMinWidth(200);
@@ -156,19 +115,4 @@ public class SubjectController extends StoreLogin implements Initializable {
         window.setScene(scene);
         window.show();
     }
-    @FXML
-    private void makeDraggable()
-    {
-        AnchorPaneMain.setOnMousePressed(((event) -> {
-        x=event.getSceneX();
-        y=event.getSceneY();
-        }));
-
-        AnchorPaneMain.setOnMouseDragged(((event) -> {
-            stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setX(event.getScreenX()-x);
-            stage.setY(event.getScreenY()-y);
-        }));
-    }
-
 }

@@ -8,13 +8,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
-import project.StoreLogin;
+import project.Storage;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -24,17 +22,12 @@ import java.net.Socket;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
-public class HistoryController extends StoreLogin implements Initializable {
-    private double x, y;
-    List<String> list = new ArrayList<>();
+public class HistoryController extends Storage implements Initializable {
 
     private String test,percent;
     private String temp;
-    private Stage stage;
     private Socket s;
     private InetAddress ip;
     private DataInputStream dis;
@@ -46,38 +39,11 @@ public class HistoryController extends StoreLogin implements Initializable {
     private Text score;
     @FXML
     DatePicker datePicker;
-    @FXML
-    private TextField inputField;
-    @FXML
-    private AnchorPane AnchorPaneMain;
-    @FXML
-    private void closeAction(MouseEvent event){
-        System.exit(0);
-    }
 
-    @FXML
-    private void minAction(MouseEvent event){
-        Stage stage=(Stage) AnchorPaneMain.getScene().getWindow();
-        stage.setIconified(true);
-    }
-    @FXML
-    private void maxAction(MouseEvent event){
-        Stage stage=(Stage) AnchorPaneMain.getScene().getWindow();
-        if(stage.isMaximized()) {
-            stage.setMaximized(false);
-            stage.setResizable(false);
-        }
-        else {
-            stage.setMaximized(true);
-            stage.setResizable(true);
-        }
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         makeDraggable();
-
         StringConverter<LocalDate> converter = new StringConverter<LocalDate>() {
             DateTimeFormatter dateFormatter =
                     DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -100,12 +66,6 @@ public class HistoryController extends StoreLogin implements Initializable {
             }
         };
         datePicker.setConverter(converter);
-
-
-
-
-
-
     }
     @FXML
     public void show_information(ActionEvent event) throws IOException {
@@ -162,20 +122,7 @@ public class HistoryController extends StoreLogin implements Initializable {
         window.setScene(scene);
         window.show();
     }
-    @FXML
-    private void makeDraggable()
-    {
-        AnchorPaneMain.setOnMousePressed(((event) -> {
-            x=event.getSceneX();
-            y=event.getSceneY();
-        }));
 
-        AnchorPaneMain.setOnMouseDragged(((event) -> {
-            stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setX(event.getScreenX()-x);
-            stage.setY(event.getScreenY()-y);
-        }));
-    }
 
 
 }

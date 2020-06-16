@@ -16,34 +16,28 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import project.Storage;
 
-public class RegisterController implements Initializable {
-    private double x, y;
-    private String l;
-    private String p;
-    private String mmail;
+public class RegisterController extends Storage implements Initializable {
     private Socket s;
     private String st;
     private InetAddress ip;
     private DataInputStream dis;
     private DataOutputStream dos;
-    private Stage stage;
     @FXML
     private Button button;
     @FXML
-    private AnchorPane container;
+    private AnchorPane AnchorPaneMain;
     @FXML
     private TextField username;
     @FXML
@@ -59,9 +53,9 @@ public class RegisterController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         makeDraggable();
     }
+
     @FXML
     public void go_register(ActionEvent event) throws IOException {
         try {
@@ -105,43 +99,16 @@ public class RegisterController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/Login.fxml"));
         Scene scene = button.getScene();
         root.translateXProperty().set(scene.getWidth());
-
         StackPane parentContainer = (StackPane) button.getScene().getRoot();
-
         parentContainer.getChildren().add(root);
-
         Timeline timeline = new Timeline();
         KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
         KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
         timeline.getKeyFrames().add(kf);
         timeline.setOnFinished(t -> {
-            parentContainer.getChildren().remove(container);
+            parentContainer.getChildren().remove(AnchorPaneMain);
         });
         timeline.play();
     }
 
-    @FXML
-    private void closeAction(MouseEvent event) {
-        System.exit(0);
-    }
-
-    @FXML
-    private void minAction(MouseEvent event) {
-        Stage stage = (Stage) container.getScene().getWindow();
-        stage.setIconified(true);
-    }
-    @FXML
-    private void makeDraggable()
-    {
-        container.setOnMousePressed(((event) -> {
-            x=event.getSceneX();
-            y=event.getSceneY();
-        }));
-
-        container.setOnMouseDragged(((event) -> {
-            stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setX(event.getScreenX()-x);
-            stage.setY(event.getScreenY()-y);
-        }));
-    }
 }

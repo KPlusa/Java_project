@@ -17,11 +17,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import project.Materialsclass;
 import project.Rankclass;
-import project.StoreLogin;
-
-import javax.swing.*;
+import project.Storage;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -30,9 +27,7 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class RankController extends StoreLogin implements Initializable {
-    private double x, y;
-    private Stage stage;
+public class RankController extends Storage implements Initializable {
     private int counter;
     private Socket s;
     private String name;
@@ -43,8 +38,6 @@ public class RankController extends StoreLogin implements Initializable {
     private DataOutputStream dos;
     int id, points;
     final ObservableList mylist = FXCollections.observableArrayList();
-    @FXML
-    private AnchorPane AnchorPaneMain;
     @FXML
     private ComboBox chb;
     @FXML
@@ -60,34 +53,9 @@ public class RankController extends StoreLogin implements Initializable {
     @FXML
     private TextField text;
 
-    @FXML
-    private void closeAction(MouseEvent event) {
-        System.exit(0);
-    }
-
-    @FXML
-    private void minAction(MouseEvent event) {
-        Stage stage = (Stage) AnchorPaneMain.getScene().getWindow();
-        stage.setIconified(true);
-    }
-
-    @FXML
-    private void maxAction(MouseEvent event) {
-        Stage stage = (Stage) AnchorPaneMain.getScene().getWindow();
-        if (stage.isMaximized()) {
-            stage.setMaximized(false);
-            stage.setResizable(false);
-        } else {
-            stage.setMaximized(true);
-            stage.setResizable(true);
-        }
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         makeDraggable();
-
         ColId.setCellValueFactory(new PropertyValueFactory<>("id"));
         ColSub.setCellValueFactory(new PropertyValueFactory<>("subject"));
         ColName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -101,7 +69,6 @@ public class RankController extends StoreLogin implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 
@@ -129,19 +96,6 @@ public class RankController extends StoreLogin implements Initializable {
         window.show();
     }
 
-    @FXML
-    private void makeDraggable() {
-        AnchorPaneMain.setOnMousePressed(((event) -> {
-            x = event.getSceneX();
-            y = event.getSceneY();
-        }));
-
-        AnchorPaneMain.setOnMouseDragged(((event) -> {
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setX(event.getScreenX() - x);
-            stage.setY(event.getScreenY() - y);
-        }));
-    }
 
     @FXML
     private ObservableList<Rankclass> fill_table() throws IOException {
@@ -153,7 +107,6 @@ public class RankController extends StoreLogin implements Initializable {
                     s = new Socket(ip, 5057);
                     dis = new DataInputStream(s.getInputStream());
                     dos = new DataOutputStream(s.getOutputStream());
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -162,12 +115,11 @@ public class RankController extends StoreLogin implements Initializable {
                 counter = dis.readInt();
                 for (int i = 0; i < counter; i++) {
                     id = dis.readInt();
-                    name = dis.readUTF();
                     subject = dis.readUTF();
+                    name = dis.readUTF();
                     points = dis.readInt();
                     rank.add(new Rankclass(id, subject, name, points));
                 }
-
                 break;
             }
         } catch (Exception e) {
@@ -216,6 +168,7 @@ public class RankController extends StoreLogin implements Initializable {
     private void setdisplay() throws IOException{
         table.setItems(Combo_fill_table());
     }
+
     @FXML
     private ObservableList<Rankclass> Combo_fill_table() throws IOException {
         ObservableList<Rankclass> rank = FXCollections.observableArrayList();
@@ -234,8 +187,8 @@ public class RankController extends StoreLogin implements Initializable {
                 counter = dis.readInt();
                 for (int i = 0; i < counter; i++) {
                     id = dis.readInt();
-                    name = dis.readUTF();
                     subject = dis.readUTF();
+                    name = dis.readUTF();
                     points = dis.readInt();
                     rank.add(new Rankclass(id, subject, name, points));
                 }
@@ -271,8 +224,8 @@ public class RankController extends StoreLogin implements Initializable {
                 counter = dis.readInt();
                 for (int i = 0; i < counter; i++) {
                     id = dis.readInt();
-                    name = dis.readUTF();
                     subject = dis.readUTF();
+                    name = dis.readUTF();
                     points = dis.readInt();
                     rank.add(new Rankclass(id, subject, name, points));
                 }

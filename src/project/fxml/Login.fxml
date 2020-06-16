@@ -7,11 +7,11 @@
 
 <StackPane fx:id="parentContainer" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.LoginController">
    <children>
-      <AnchorPane fx:id="anchorRoot" prefHeight="400.0" prefWidth="600.0">
+      <AnchorPane fx:id="AnchorPaneMain" prefHeight="400.0" prefWidth="600.0">
          <children>
             <AnchorPane layoutX="250.0" prefHeight="400.0" prefWidth="350.0">
                <children>
-                  <TextField fx:id="login" focusTraversable="true" layoutX="101.0" layoutY="165.0" promptText="nazwa użytkownika/email" styleClass="data" stylesheets="@../styles/login.css" />
+                  <TextField fx:id="loginn" focusTraversable="true" layoutX="101.0" layoutY="165.0" promptText="nazwa użytkownika/email" styleClass="data" stylesheets="@../styles/login.css" />
                   <PasswordField fx:id="password" layoutX="101.0" layoutY="215.0" promptText="hasło" styleClass="data" stylesheets="@../styles/login.css" />
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="76.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
                      <image>

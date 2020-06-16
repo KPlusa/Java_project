@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="AnchorPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.EditController">
+<AnchorPane fx:id="AnchorPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.EditQuestionsController">
     <children>
         <AnchorPane fx:id="FunctionAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="800.0" style="-fx-background-color: FF847F;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -74,15 +74,11 @@
                         <TableColumn fx:id="OdpD" prefWidth="75.0" text="OdpD" />
                     </columns>
                 </TableView>
-                <TextField layoutX="51.0" layoutY="313.0" prefHeight="30.0" prefWidth="219.0" promptText="D." styleClass="data" stylesheets="@../styles/login.css" />
-                <TextField layoutX="51.0" layoutY="200.0" prefHeight="30.0" prefWidth="219.0" promptText="B." styleClass="data" stylesheets="@../styles/login.css" />
-                <TextField layoutX="51.0" layoutY="253.0" prefHeight="30.0" prefWidth="219.0" promptText="C." styleClass="data" stylesheets="@../styles/login.css" />
-                <TextField layoutX="51.0" layoutY="144.0" prefHeight="30.0" prefWidth="219.0" promptText="A." styleClass="data" stylesheets="@../styles/login.css" />
-                <CheckBox layoutX="10.0" layoutY="151.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="41.0" text="A." textFill="#575757" />
-                <CheckBox layoutX="10.0" layoutY="207.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="41.0" text="B." textFill="#575757" />
-                <CheckBox layoutX="11.0" layoutY="260.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="41.0" text="C." textFill="#575757" />
-                <CheckBox layoutX="10.0" layoutY="320.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="41.0" text="D." textFill="#575757" />
-            <Button alignment="CENTER" layoutX="329.0" layoutY="343.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Dodaj" textFill="#575757">
+                <TextField fx:id="AD" layoutX="51.0" layoutY="313.0" prefHeight="30.0" prefWidth="219.0" promptText="D." styleClass="data" stylesheets="@../styles/login.css" />
+                <TextField fx:id="AB" layoutX="51.0" layoutY="200.0" prefHeight="30.0" prefWidth="219.0" promptText="B." styleClass="data" stylesheets="@../styles/login.css" />
+                <TextField fx:id="AC" layoutX="51.0" layoutY="253.0" prefHeight="30.0" prefWidth="219.0" promptText="C." styleClass="data" stylesheets="@../styles/login.css" />
+                <TextField fx:id="AA" layoutX="51.0" layoutY="144.0" prefHeight="30.0" prefWidth="219.0" promptText="A." styleClass="data" stylesheets="@../styles/login.css" />
+            <Button alignment="CENTER" layoutX="329.0" layoutY="343.0" mnemonicParsing="false" onAction="#insert" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Dodaj" textFill="#575757">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
@@ -94,7 +90,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="492.0" layoutY="343.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Aktualizuj" textFill="#575757">
+            <Button alignment="CENTER" layoutX="492.0" layoutY="343.0" mnemonicParsing="false" onAction="#update" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Aktualizuj" textFill="#575757">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
@@ -106,7 +102,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="CENTER" layoutX="662.0" layoutY="343.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Usuń" textFill="#575757">
+            <Button alignment="CENTER" layoutX="662.0" layoutY="343.0" mnemonicParsing="false" onAction="#delete" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Usuń" textFill="#575757">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
@@ -123,13 +119,21 @@
                   <Font name="Arial" size="12.0" />
                </font>
             </Button>
-            <TextArea layoutX="103.0" layoutY="72.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="167.0" styleClass="data" stylesheets="@../styles/login.css" />
-            <TextField layoutX="103.0" layoutY="25.0" prefHeight="30.0" prefWidth="167.0" styleClass="data" stylesheets="@../styles/login.css" />
+            <TextArea fx:id="TEXT" layoutX="103.0" layoutY="72.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="167.0" styleClass="data" stylesheets="@../styles/login.css" />
+            <TextField fx:id="IDC" layoutX="103.0" layoutY="25.0" prefHeight="30.0" prefWidth="167.0" styleClass="data" stylesheets="@../styles/login.css" />
             <Label layoutX="46.0" layoutY="32.0" text="ID" textFill="#575757">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
+            <Label fx:id="status" layoutX="19.0" layoutY="365.0" prefHeight="17.0" prefWidth="286.0" textFill="RED" />
+            <RadioButton fx:id="RA" layoutX="14.0" layoutY="151.0" mnemonicParsing="false" text="A.">
+               <toggleGroup>
+                  <ToggleGroup fx:id="ra" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="RB" layoutX="14.0" layoutY="207.0" mnemonicParsing="false" text="B." toggleGroup="$ra" />
+            <RadioButton fx:id="RC" layoutX="13.0" layoutY="260.0" mnemonicParsing="false" text="C." toggleGroup="$ra" />
+            <RadioButton fx:id="RD" layoutX="13.0" layoutY="320.0" mnemonicParsing="false" text="D." toggleGroup="$ra" />
             </children>
         </Pane>
     </children>

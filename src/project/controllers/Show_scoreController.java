@@ -9,10 +9,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import project.StoreLogin;
+import project.Storage;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -20,22 +19,15 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
-import java.util.Date;
 import java.util.ResourceBundle;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
-public class Show_scoreController extends StoreLogin implements Initializable {
-    private double x,y;
-    private int counter;
+public class Show_scoreController extends Storage implements Initializable {
     private Socket s;
     private InetAddress ip;
     private DataInputStream dis;
     private DataOutputStream dos;
-    private String sub, typ;
-    private Stage stage;
-    @FXML
-    private AnchorPane AnchorPaneMain;
     @FXML
     private Label error_msg;
     @FXML
@@ -44,35 +36,9 @@ public class Show_scoreController extends StoreLogin implements Initializable {
     private Text points;
     @FXML
     private Text per;
-
-    @FXML
-    private void closeAction(MouseEvent event){
-        System.exit(0);
-    }
-
-    @FXML
-    private void minAction(MouseEvent event){
-        Stage stage=(Stage) AnchorPaneMain.getScene().getWindow();
-        stage.setIconified(true);
-    }
-    @FXML
-    private void maxAction(MouseEvent event){
-        Stage stage=(Stage) AnchorPaneMain.getScene().getWindow();
-        if(stage.isMaximized()) {
-            stage.setMaximized(false);
-            stage.setResizable(false);
-        }
-        else {
-            stage.setMaximized(true);
-            stage.setResizable(true);
-        }
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         makeDraggable();
-
     }
 
 
@@ -98,20 +64,7 @@ public class Show_scoreController extends StoreLogin implements Initializable {
         window.setScene(scene);
         window.show();
     }
-    @FXML
-    private void makeDraggable()
-    {
-        AnchorPaneMain.setOnMousePressed(((event) -> {
-            x=event.getSceneX();
-            y=event.getSceneY();
-        }));
 
-        AnchorPaneMain.setOnMouseDragged(((event) -> {
-            stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setX(event.getScreenX()-x);
-            stage.setY(event.getScreenY()-y);
-        }));
-    }
     public void get_error(int tmp){
         error_msg.setText("Dostępne "+tmp+" pytan na 20, test nie aktywowany oraz nie zapisany.");
     }

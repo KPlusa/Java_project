@@ -1,5 +1,8 @@
 package project.controllers;
 
+import javafx.animation.PauseTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,47 +10,59 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import project.StoreLogin;
-
+import javafx.util.Duration;
+import project.EditQO;
+import project.Storage;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EditQuestionsopenController extends StoreLogin implements Initializable {
-    private double x,y;
-    private Stage stage;
+public class EditQuestionsopenController extends Storage implements Initializable {
+    private String tmp;
+    private int counter = 0;
+    private Integer ID;
+    private String id,pytanie, odp;
+    private Socket s;
+    private InetAddress ip;
+    private DataInputStream dis;
+    private DataOutputStream dos;
     @FXML
-    private AnchorPane AnchorPaneMain;
+    private TableView<EditQO> Qopened;
     @FXML
-    private void closeAction(MouseEvent event){
-        System.exit(0);
-    }
+    private javafx.scene.control.TableColumn<EditQO, Integer> Id;
+    @FXML
+    private javafx.scene.control.TableColumn<EditQO, String> Pytanie;
+    @FXML
+    private javafx.scene.control.TableColumn<EditQO, String> Odp;
+    @FXML
+    private TextField IDC;
+    @FXML
+    private TextArea TEXT;
+    @FXML
+    private TextArea A;
+    @FXML
+    private Label status;
 
-    @FXML
-    private void minAction(MouseEvent event){
-        Stage stage=(Stage) AnchorPaneMain.getScene().getWindow();
-        stage.setIconified(true);
-    }
-    @FXML
-    private void maxAction(MouseEvent event){
-        Stage stage=(Stage) AnchorPaneMain.getScene().getWindow();
-        if(stage.isMaximized()) {
-            stage.setMaximized(false);
-            stage.setResizable(false);
-        }
-        else {
-            stage.setMaximized(true);
-            stage.setResizable(true);
-        }
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         makeDraggable();
+        Id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        Pytanie.setCellValueFactory(new PropertyValueFactory<>("pytanie"));
+        Odp.setCellValueFactory(new PropertyValueFactory<>("odp"));
+        Qopened.setOnMouseClicked((MouseEvent event) -> {
+            if (event.getClickCount() > 0) {
+                onEdit();
+            }
+        });
 
     }
 
@@ -74,19 +89,177 @@ public class EditQuestionsopenController extends StoreLogin implements Initializ
         window.setScene(scene);
         window.show();
     }
-    @FXML
-    private void makeDraggable()
-    {
-        AnchorPaneMain.setOnMousePressed(((event) -> {
-            x=event.getSceneX();
-            y=event.getSceneY();
-        }));
 
-        AnchorPaneMain.setOnMouseDragged(((event) -> {
-            stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setX(event.getScreenX()-x);
-            stage.setY(event.getScreenY()-y);
-        }));
+    private void onEdit() {
+        if (Qopened.getSelectionModel().getSelectedItem() != null) {
+            EditQO editQo = Qopened.getSelectionModel().getSelectedItem();
+            IDC.setText(String.valueOf(editQo.getId()));
+            TEXT.setText(editQo.getPytanie());
+            A.setText(editQo.getOdp());
+        }
+    }
+
+    @FXML
+    public ObservableList<EditQO> fill_table(String a, String b) throws IOException {
+        System.out.println("W metodzie w editqo mam: " + a);
+        ObservableList<EditQO> EditQO_list = FXCollections.observableArrayList();
+        try {
+            while (true) {
+                try {
+                    ip = InetAddress.getByName("localhost");
+                    s = new Socket(ip, 5057);
+                    dis = new DataInputStream(s.getInputStream());
+                    dos = new DataOutputStream(s.getOutputStream());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                dos.writeInt(17);
+                dos.writeUTF(a);
+                dos.writeUTF(b);
+                counter = dis.readInt();
+                System.out.println("Licznik: " + counter);
+                for (int i = 1; i <= counter; i++) {
+                    id=dis.readUTF();
+                    ID=Integer.valueOf(id);
+                    System.out.println("ID: " + ID);
+                    pytanie = dis.readUTF();
+                    System.out.println("Pytanie: " + pytanie);
+                    odp = dis.readUTF();
+                    System.out.println("odp: " + odp);
+                    EditQO_list.add(new EditQO(ID, pytanie, odp));
+                }
+                Qopened.setItems(EditQO_list);
+                break;
+            }
+            dis.close();
+            dos.close();
+            s.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return EditQO_list;
+    }
+    @FXML
+    private void insert(ActionEvent event) throws IOException {
+        try {
+            while (true) {
+                try {
+                    ip = InetAddress.getByName("localhost");
+                    s = new Socket(ip, 5057);
+                    dis = new DataInputStream(s.getInputStream());
+                    dos = new DataOutputStream(s.getOutputStream());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                dos.writeInt(24);
+                dos.writeInt(Integer.valueOf(IDC.getText()));
+                dos.writeUTF(TEXT.getText());
+                dos.writeUTF(A.getText());
+                dos.writeUTF(subject_storage);
+                dos.writeUTF(type_storage);
+                tmp=dis.readUTF();
+                status.setText(tmp);
+                if (tmp.equals("Pomyslnie dodano")) {
+                    IDC.setText("");
+                    TEXT.setText("");
+                    A.setText("");
+                    Thread.sleep(300);
+                }
+                fill_table(subject_storage,type_storage);
+                PauseTransition pause = new PauseTransition(Duration.seconds(1));
+                pause.setOnFinished(even ->
+                        status.setText("")
+                );
+                pause.play();
+                break;
+            }
+            dis.close();
+            dos.close();
+            s.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void update(ActionEvent event) throws IOException {
+        try {
+            while (true) {
+                try {
+                    ip = InetAddress.getByName("localhost");
+                    s = new Socket(ip, 5057);
+                    dis = new DataInputStream(s.getInputStream());
+                    dos = new DataOutputStream(s.getOutputStream());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                dos.writeInt(25);
+                dos.writeInt(Integer.valueOf(IDC.getText()));
+                dos.writeUTF(TEXT.getText());
+                dos.writeUTF(A.getText());
+                dos.writeUTF(subject_storage);
+                dos.writeUTF(type_storage);
+                tmp=dis.readUTF();
+                status.setText(tmp);
+                if(tmp.equals("Pomyslnie zaktualizowano")) {
+                    IDC.setText("");
+                    TEXT.setText("");
+                    A.setText("");
+                    Thread.sleep(300);
+                    fill_table(subject_storage,type_storage);
+                }
+                PauseTransition pause = new PauseTransition(Duration.seconds(1));
+                pause.setOnFinished(even ->
+                        status.setText("")
+                );
+                pause.play();
+                break;
+            }
+            dis.close();
+            dos.close();
+            s.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    private void delete(ActionEvent event) throws IOException {
+        try {
+            while (true) {
+                try {
+                    ip = InetAddress.getByName("localhost");
+                    s = new Socket(ip, 5057);
+                    dis = new DataInputStream(s.getInputStream());
+                    dos = new DataOutputStream(s.getOutputStream());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                dos.writeInt(16);
+                dos.writeInt(Integer.valueOf(IDC.getText()));
+                tmp=dis.readUTF();
+                status.setText(tmp);
+                if(tmp.equals("Pomyslnie usunieto")) {
+                    IDC.setText("");
+                    TEXT.setText("");
+                    A.setText("");
+                    Thread.sleep(300);
+                    fill_table(subject_storage,type_storage);
+                }
+                PauseTransition pause = new PauseTransition(Duration.seconds(1));
+                pause.setOnFinished(even ->
+                        status.setText("")
+                );
+                pause.play();
+                break;
+            }
+            dis.close();
+            dos.close();
+            s.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

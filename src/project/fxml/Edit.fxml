@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="AnchorPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.EditController">
+<AnchorPane fx:id="AnchorPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.EditController">
    <children>
-      <AnchorPane fx:id="FunctionAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="800.0" style="-fx-background-color: FF847F;">
+      <AnchorPane fx:id="FunctionAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="800.0" style="-fx-background-color: FF847F;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fx:id="close" fitHeight="30.0" fitWidth="30.0" layoutX="756.0" layoutY="14.0" onMouseClicked="#closeAction" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="106.4" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                <image>
@@ -55,34 +51,35 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Pane layoutY="150.0" prefHeight="450.0" prefWidth="800.0">
+      <AnchorPane layoutY="150.0" prefHeight="450.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
          <children>
-            <ComboBox fx:id="subject_choice" layoutX="63.0" layoutY="54.0" prefHeight="18.0" prefWidth="475.0" promptText="Wybierz przedmiot" style="-fx-background-color: transparent; -fx-border-color: #FF847F; -fx-border-width: 0px 0px 2px 0px;" />
-            <ComboBox layoutX="63.0" layoutY="176.0" prefHeight="18.0" prefWidth="475.0" promptText="Materiały/pytania" style="-fx-background-color: transparent; -fx-border-color: #FF847F; -fx-border-width: 0px 0px 2px 0px;" />
-            <Button layoutX="612.0" layoutY="54.0" mnemonicParsing="false" onAction="#go_add_delete_subject" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: FF847F; -fx-background-radius: 15;" text="Dodaj/usuń przedmiot" textFill="#575757" />
-            <Button layoutX="612.0" layoutY="175.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: FF847F; -fx-background-radius: 15;" text="Usuń materiały/pytania" textFill="#575757" />
-            <Button alignment="CENTER" layoutX="63.0" layoutY="281.0" mnemonicParsing="false" onAction="#go_edit_questions" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Pytania zamknięte" textFill="#575757">
+            <ComboBox fx:id="subject_choice" layoutX="88.0" layoutY="66.0" onAction="#fill_combo_type" prefHeight="18.0" prefWidth="475.0" promptText="Wybierz przedmiot" style="-fx-background-color: transparent; -fx-border-color: #FF847F; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="237.0" />
+            <ComboBox fx:id="QM_choice" layoutX="88.0" layoutY="183.0" prefHeight="18.0" prefWidth="475.0" promptText="Materiały/pytania" style="-fx-background-color: transparent; -fx-border-color: #FF847F; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="237.0" />
+            <Button layoutX="604.0" layoutY="65.0" mnemonicParsing="false" onAction="#go_add_delete_subject" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: FF847F; -fx-background-radius: 15;" text="Dodaj/usuń przedmiot" textFill="#575757" AnchorPane.rightAnchor="56.0" />
+            <Button layoutX="604.0" layoutY="182.0" mnemonicParsing="false" onAction="#delete_qm" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: FF847F; -fx-background-radius: 15;" text="Usuń materiały/pytania" textFill="#575757" AnchorPane.rightAnchor="56.0" />
+            <Button fx:id="goeditqc" alignment="CENTER" layoutX="88.0" layoutY="295.0" mnemonicParsing="false" onAction="#go_edit_questions" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Pytania zamknięte" textFill="#575757" AnchorPane.leftAnchor="88.0">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" layoutX="330.0" layoutY="281.0" mnemonicParsing="false" onAction="#go_edit_questions_opn" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Pytania otwarte" textFill="#575757">
+            <Button alignment="CENTER" layoutX="330.0" layoutY="295.0" mnemonicParsing="false" onAction="#go_edit_questions_opn" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Pytania otwarte" textFill="#575757" AnchorPane.rightAnchor="330.0">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" layoutX="612.0" layoutY="281.0" mnemonicParsing="false" onAction="#go_edit_mat" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Materiały" textFill="#575757">
+            <Button alignment="CENTER" layoutX="604.0" layoutY="295.0" mnemonicParsing="false" onAction="#go_edit_mat" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Materiały" textFill="#575757" AnchorPane.rightAnchor="56.0">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
             </Button>
-            <Label fx:id="status" contentDisplay="CENTER" layoutX="288.0" layoutY="360.0" prefHeight="23.0" prefWidth="241.0" textFill="#fd0000" />
+            <Label fx:id="status" contentDisplay="CENTER" layoutX="88.0" layoutY="379.0" prefHeight="23.0" prefWidth="241.0" textFill="#fd0000" />
+            <ComboBox fx:id="type_choice" layoutX="88.0" layoutY="126.0" onAction="#fill_combo_question_and_mat" prefHeight="18.0" prefWidth="475.0" promptText="Wybierz typ przedmiotu" style="-fx-background-color: transparent; -fx-border-color: #FF847F; -fx-border-width: 0px 0px 2px 0px;" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="237.0" />
+            <Button alignment="CENTER" layoutX="662.0" layoutY="380.0" mnemonicParsing="false" onAction="#go_menu" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Powrót" textFill="#575757" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="41.0">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </Button>
          </children>
-      </Pane>
-      <Button alignment="CENTER" layoutX="662.0" layoutY="540.0" mnemonicParsing="false" onAction="#go_menu" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Powrót" textFill="#575757">
-         <font>
-            <Font name="Arial" size="12.0" />
-         </font>
-      </Button>
+      </AnchorPane>
    </children>
 </AnchorPane>
