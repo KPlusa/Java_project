@@ -62,7 +62,12 @@ public class RankController extends Storage implements Initializable {
             e.printStackTrace();
         }
     }
-    /**Metoda wypelniajaca TableView odpowiednimi wartosciami*/
+
+    /**Metoda wypelniajaca TableView odpowiednimi wartosciami
+     *
+     * @return Rankclass
+     * @throws IOException wyjatek
+     */
     @FXML
     private ObservableList<Rankclass> fill_table() throws IOException {
         ObservableList<Rankclass> rank = FXCollections.observableArrayList();
@@ -100,7 +105,10 @@ public class RankController extends Storage implements Initializable {
         return rank;
     }
 
-    /**Metoda wypelniajaca ComboBox odpowiednimi wartosciami*/
+    /**Metoda wypelniajaca ComboBox odpowiednimi wartosciami
+     *
+     * @throws IOException wyjatek
+     */
     @FXML
     private void fillcombo() throws IOException {
         chb.setMaxHeight(30);
@@ -136,12 +144,21 @@ public class RankController extends Storage implements Initializable {
         s.close();
 
     }
-    /**Metoda wywolujaca ustawiajaca wartosci w TableView*/
+
+    /**Metoda wywolujaca ustawiajaca wartosci w TableView
+     *
+     * @throws IOException wyjatek
+     */
     @FXML
     private void setdisplay() throws IOException{
         table.setItems(Combo_fill_table());
     }
-    /**Metoda wypelniajaca TableView odpowiednimi przy uwzglednieniu wyboru w ComboBox*/
+
+    /**Metoda wypelniajaca TableView odpowiednimi przy uwzglednieniu wyboru w ComboBox
+     *
+     * @return Rankclass
+     * @throws IOException wyjatek
+     */
     @FXML
     private ObservableList<Rankclass> Combo_fill_table() throws IOException {
         ObservableList<Rankclass> rank = FXCollections.observableArrayList();
@@ -178,12 +195,21 @@ public class RankController extends Storage implements Initializable {
         s.close();
         return rank;
     }
-    /**Metoda wywolujaca ustawiajaca wartosci w TableView przy uwzglednieniu wyboru w ComboBox*/
+
+    /**Metoda wywolujaca ustawiajaca wartosci w TableView przy uwzglednieniu wyboru w ComboBox
+     *
+     * @throws IOException wyjatek
+     */
     @FXML
     private void setdisplaybyname() throws IOException{
         table.setItems(Combo_fill_table_by_name());
     }
-    /**Metoda wypelniajaca TableView odpowiednimi przy uwzglednieniu wyboru w TextField*/
+
+    /**Metoda wypelniajaca TableView odpowiednimi przy uwzglednieniu wyboru w TextField
+     *
+     * @return Rankclass
+     * @throws IOException wyjatek
+     */
     @FXML
     private ObservableList<Rankclass> Combo_fill_table_by_name() throws IOException {
         ObservableList<Rankclass> rank = FXCollections.observableArrayList();

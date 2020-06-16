@@ -43,7 +43,10 @@ public class EditController extends Storage implements Initializable {
     public ComboBox type_choice;
     @FXML
     public ComboBox QM_choice;
-/**Metoda wypelniajaca ComboBox nazwami przedmiotow*/
+
+    /**Metoda wypelniajaca ComboBox nazwami przedmiotow
+     * @throws IOException wyjatek
+     */
     @FXML
     private void fill_combo_subject() throws IOException {
         mylist.clear();
@@ -78,7 +81,11 @@ public class EditController extends Storage implements Initializable {
             s.close();
         }
     }
-    /**Metoda wypelniajaca ComboBox typami przedmiotow o wybranej nazwie*/
+
+    /**Metoda wypelniajaca ComboBox typami przedmiotow o wybranej nazwie
+     *
+     * @throws IOException wyjatek
+     */
     @FXML
     private void fill_combo_type() throws IOException {
         myTypelist.clear();
@@ -114,7 +121,11 @@ public class EditController extends Storage implements Initializable {
         }
 
     }
-    /**Metoda wypelniajaca ComboBox dostepnymi zasobami(pytania/materialy) dla wybranej nazwy i typu przedmiotu*/
+
+    /**Metoda wypelniajaca ComboBox dostepnymi zasobami(pytania/materialy) dla wybranej nazwy i typu przedmiotu
+     *
+     * @throws IOException wyjatek
+     */
     @FXML
     private void fill_combo_question_and_mat() throws IOException {
         myQMlist.clear();
@@ -159,7 +170,7 @@ public class EditController extends Storage implements Initializable {
     /**Metoda odpowiada za usuniecie podanej wartosci(pytania/materialy) dla przedmiotu o wybranej nazwie i typie
      *
      * @param event odpowiada za uruchomienie metody po wcisnieciu przycisku usun
-     */
+     * @throws IOException wyjatek */
     @FXML
     private void delete_qm(ActionEvent event) throws IOException {
         if (!QM_choice.getSelectionModel().isEmpty()) {
@@ -216,7 +227,8 @@ public class EditController extends Storage implements Initializable {
         }
     }
     /**Metoda odpowiadajaca za przejscie do formatki "dodaj usun przedmiot"
-     * @param event pozwala na uruchomienie metody w momencie klikniecia przycisku*/
+     * @param event pozwala na uruchomienie metody w momencie klikniecia przycisku
+     *  @throws IOException wyjatek*/
     @FXML
     public void go_add_delete_subject(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Add_delete_subject.fxml"));
@@ -232,7 +244,8 @@ public class EditController extends Storage implements Initializable {
         window.show();
     }
     /**Metoda odpowiadajaca za przejscie do formatki "edytuj materialy"
-     * @param event pozwala na uruchomienie metody w momencie klikniecia przycisku*/
+     * @param event pozwala na uruchomienie metody w momencie klikniecia przycisku
+     * @throws IOException wyjatek*/
     @FXML
     public void go_edit_mat(ActionEvent event) throws IOException {
         if(subject_choice.getSelectionModel().isEmpty())
@@ -263,7 +276,8 @@ public class EditController extends Storage implements Initializable {
         pause.play();
     }
     /**Metoda odpowiadajaca za przejscie do formatki "edytuj pytania zamkniete"
-     * @param event pozwala na uruchomienie metody w momencie klikniecia przycisku*/
+     * @param event pozwala na uruchomienie metody w momencie klikniecia przycisku
+    * @throws IOException wyjatek*/
     @FXML
     public void go_edit_questions(ActionEvent event) throws IOException {
         if(subject_choice.getSelectionModel().isEmpty())
@@ -295,7 +309,8 @@ public class EditController extends Storage implements Initializable {
 
     }
     /**Metoda odpowiadajaca za przejscie do formatki "edytuj pytania otwarte"
-     * @param event pozwala na uruchomienie metody w momencie klikniecia przycisku*/
+     * @param event pozwala na uruchomienie metody w momencie klikniecia przycisku
+    * @throws IOException wyjatek*/
     @FXML
     public void go_edit_questions_opn(ActionEvent event) throws IOException {
         if(subject_choice.getSelectionModel().isEmpty())

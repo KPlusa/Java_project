@@ -71,6 +71,8 @@ public class Test_closedController extends Storage implements Initializable {
      *
      * @param sub nazwa przedmiotu
      * @param typ typ przedmiotu
+     * @return Testclosedclass
+     * @throws IOException wyjatek
      */
     public ObservableList<Testclosedclass> fill_test(String sub, String typ) throws IOException {
         try {
@@ -105,7 +107,11 @@ public class Test_closedController extends Storage implements Initializable {
         s.close();
         return Testclosed;
     }
-    /**Metoda generuje numery pytan uzytych do testu*/
+
+    /**Metoda generuje numery pytan uzytych do testu
+     *
+     * @throws IOException wyjatek
+     */
     public void gen_number()throws IOException {
         for (int i = 0; i < 20; i++) {
             int num = generator.nextInt(counter) + 1;
@@ -122,7 +128,11 @@ public class Test_closedController extends Storage implements Initializable {
             }
         }
     }
-    /**Metoda umieszcza dane dotyczace pierwszego pytania w formatce pytania zamknietego*/
+
+    /**Metoda umieszcza dane dotyczace pierwszego pytania w formatce pytania zamknietego
+     *
+     * @throws IOException wyjatek
+     */
     @FXML
     public void fill_first_quest() throws IOException
     {
@@ -164,6 +174,7 @@ public class Test_closedController extends Storage implements Initializable {
     /**Metoda zapewnia przejscie do kolejnego pytania
      *
      * @param event parametr zapewnia wywolanie metody po nacisnieciu przycisku
+     * @throws IOException wyjatek
      */
     @FXML
     private void go_right(MouseEvent event) throws IOException
@@ -257,6 +268,7 @@ public class Test_closedController extends Storage implements Initializable {
     /**Metoda zapewnia przejscie do poprzedniego pytania
      *
      * @param event parametr zapewnia wywolanie metody po nacisnieciu przycisku
+     * @throws IOException wyjatek
      */
     @FXML
     private void go_left(MouseEvent event) throws IOException
@@ -351,6 +363,7 @@ public class Test_closedController extends Storage implements Initializable {
     /**Metoda zapewnia zakonczenie testu oraz przejscie do formatki "Wynik"
      *
      * @param event parametr zapewnia wywolanie metody po nacisnieciu przycisku
+     * @throws IOException wyjatek;
      */
     @FXML
     private void end_test(MouseEvent event) throws IOException

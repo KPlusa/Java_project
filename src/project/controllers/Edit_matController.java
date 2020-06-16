@@ -56,7 +56,8 @@ public class Edit_matController extends Storage implements Initializable {
 
     }
     /**Metoda odpowiadajaca za powrót do poprzedniej formatki
-     * @param event pozwala na uruchomienie metody w momencie klikniecia przycisku*/
+     * @param event pozwala na uruchomienie metody w momencie klikniecia przycisku
+     * @throws IOException wyjatek*/
     @FXML
     public void go_back(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/edit.fxml"));
@@ -76,7 +77,14 @@ public class Edit_matController extends Storage implements Initializable {
             TEXT.setText(editMatClass.getTresc());
         }
     }
-    /**Metoda wypelnia tablice ktora zawiera elementy wyswietlane w tabeli*/
+
+    /**Metoda wypelnia tablice ktora zawiera elementy wyswietlane w tabeli
+     *
+     * @param a nazwa przedmiotu
+     * @param b rodzaj przedmiotu
+     * @return EditMatClass
+     * @throws IOException wyjatek
+     */
     @FXML
     public ObservableList<EditMatClass> fill_table(String a, String b) throws IOException {
         ObservableList<EditMatClass> EditMat_list = FXCollections.observableArrayList();
@@ -122,6 +130,7 @@ public class Edit_matController extends Storage implements Initializable {
     /**Metoda odpowiadajaca za dodanie rekordu do bazy
      *
      * @param event odpowiada za uruchomienie metody po wcisnieciu przycisku dodaj
+     * @throws IOException wyjatek
      */
     @FXML
     private void insert(ActionEvent event) throws IOException {
@@ -165,7 +174,8 @@ public class Edit_matController extends Storage implements Initializable {
         pause.play();
     }
     /**Metoda aktualizuje rekord podany przez uzytkownika w bazie
-     * @param event odpowiada za uruchomienie metody po wcisnieciu przycisku aktualizuj*/
+     * @param event odpowiada za uruchomienie metody po wcisnieciu przycisku aktualizuj
+     * @throws IOException wyjatek*/
     @FXML
     private void update(ActionEvent event) throws IOException {
         try {
@@ -211,7 +221,8 @@ public class Edit_matController extends Storage implements Initializable {
         }
     }
     /**Metoda usuwa rekord podany przez uzytkownika z bazy
-     * @param event odpowiada za uruchomienie metody po wcisnieciu przycisku usun*/
+     * @param event odpowiada za uruchomienie metody po wcisnieciu przycisku usun
+     *@throws IOException wyjatek*/
     @FXML
     private void delete(ActionEvent event) throws IOException {
         try {

@@ -48,7 +48,8 @@ public class Show_scoreController extends Storage implements Initializable {
      * @param imp wynik testu
      * @param sub nazwa przedmiotu
      * @param typ typ przedmiotu
-     */
+     * @throws IOException wyjatek*/
+
     public void pkt (int imp,String sub,String typ) throws IOException {
         Questions.setText("20");
         points.setText(String.valueOf(imp));

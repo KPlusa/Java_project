@@ -63,7 +63,7 @@ public class HistoryController extends Storage implements Initializable {
     /**Metoda wypelniajaca pola typu TextField odpowiednimi wartosciami
      *
      * @param event parametr zapewnia wywolanie metody po wybraniu daty
-     */
+     * @throws IOException wyjatek*/
     @FXML
     public void show_information(ActionEvent event) throws IOException {
         temp= datePicker.getValue().toString();

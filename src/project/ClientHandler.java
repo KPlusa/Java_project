@@ -40,7 +40,13 @@ class ClientHandler extends Thread {
     private Object NullPointerException;
     private int o_z=0;
     private List<String> l=new ArrayList<String>();
-/**Konstruktor klasy ClientHandler*/
+
+    /**Konstruktor klasy ClientHandler
+     *
+     * @param s socket
+     * @param dis input
+     * @param dos output
+     */
     public ClientHandler(Socket s, DataInputStream dis, DataOutputStream dos) {
         this.s = s;
         this.dis = dis;

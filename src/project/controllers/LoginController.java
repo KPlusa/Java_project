@@ -55,7 +55,7 @@ public class LoginController extends Storage implements Initializable {
     /**Metoda przejscia do okna rejestracji
      *
      *@param event parametr zapewnia wywolanie metody po nacisnieciu przycisku
-     */
+     * @throws IOException wyjatek*/
     @FXML
     private void loadSecond(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/Register.fxml"));

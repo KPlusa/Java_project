@@ -54,7 +54,12 @@ public class QuestionsController extends Storage implements Initializable {
         }
 
     }
-    /**Metoda wypelniajaca TableView odpowiednimi wartosciami*/
+
+    /**Metoda wypelniajaca TableView odpowiednimi wartosciami
+     *
+     * @return Questionsclass
+     * @throws IOException wyjatek
+     */
     @FXML
     private ObservableList<Questionsclass> fill_table() throws IOException {
         ObservableList<Questionsclass> questions = FXCollections.observableArrayList();
