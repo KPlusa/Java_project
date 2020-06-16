@@ -24,7 +24,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+/**Klasa controlera dla opcji "pytania otwarte" w zakladce "edytuj"*/
 public class EditQuestionsopenController extends Storage implements Initializable {
     private String tmp;
     private int counter = 0;
@@ -51,7 +51,7 @@ public class EditQuestionsopenController extends Storage implements Initializabl
     @FXML
     private Label status;
 
-
+    /**Metoda inicjalizacji okna oraz wywolujaca metody wypelniajace kontenery*/
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         makeDraggable();
@@ -65,8 +65,8 @@ public class EditQuestionsopenController extends Storage implements Initializabl
         });
 
     }
-
-
+    /**Metoda odpowiadajaca za powrót do poprzedniej formatki
+     * @param event pozwala na uruchomienie metody w momencie klikniecia przycisku*/
     @FXML
     public void go_back(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/edit.fxml"));
@@ -78,18 +78,7 @@ public class EditQuestionsopenController extends Storage implements Initializabl
         window.setScene(scene);
         window.show();
     }
-    @FXML
-    public void go_menu_avatar(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
-        Parent root = loader.load();
-        MenuController menuController = loader.getController();
-        menuController.store_username(login);
-        Scene scene = new Scene(root);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-
+    /**Metoda odczytuje wartosc z tableview do pol TextField*/
     private void onEdit() {
         if (Qopened.getSelectionModel().getSelectedItem() != null) {
             EditQO editQo = Qopened.getSelectionModel().getSelectedItem();
@@ -98,7 +87,12 @@ public class EditQuestionsopenController extends Storage implements Initializabl
             A.setText(editQo.getOdp());
         }
     }
-
+    /**Metoda wypelnia liste elementami o podanej nazwie przedmiotu oraz typie
+     *
+     * @param a nazwa przedmiotu
+     * @param b typ przedmiotu
+     * @return EditQC_list lista uzyta do wypelnienia tabeli
+     */
     @FXML
     public ObservableList<EditQO> fill_table(String a, String b) throws IOException {
         System.out.println("W metodzie w editqo mam: " + a);
@@ -139,6 +133,10 @@ public class EditQuestionsopenController extends Storage implements Initializabl
         }
         return EditQO_list;
     }
+    /**Metoda odpowiadajaca za dodanie rekordu do bazy
+     *
+     * @param event odpowiada za uruchomienie metody po wcisnieciu przycisku dodaj
+     */
     @FXML
     private void insert(ActionEvent event) throws IOException {
         try {
@@ -180,7 +178,8 @@ public class EditQuestionsopenController extends Storage implements Initializabl
             e.printStackTrace();
         }
     }
-
+    /**Metoda aktualizuje rekord podany przez uzytkownika w bazie
+     * @param event odpowiada za uruchomienie metody po wcisnieciu przycisku aktualizuj*/
     @FXML
     private void update(ActionEvent event) throws IOException {
         try {
@@ -223,7 +222,8 @@ public class EditQuestionsopenController extends Storage implements Initializabl
         }
     }
 
-
+    /**Metoda usuwa rekord podany przez uzytkownika z bazy
+     * @param event odpowiada za uruchomienie metody po wcisnieciu przycisku usun*/
     @FXML
     private void delete(ActionEvent event) throws IOException {
         try {

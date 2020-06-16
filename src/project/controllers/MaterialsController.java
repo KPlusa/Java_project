@@ -3,18 +3,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import project.Materialsclass;
 import project.Storage;
 
@@ -25,7 +18,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+/**Klasa controlera dla zakladki "materialy" dostepnej z poziomu menu*/
 public class MaterialsController extends Storage implements Initializable {
     private String materials;
     private String names;
@@ -42,7 +35,7 @@ public class MaterialsController extends Storage implements Initializable {
     @FXML
     private ComboBox chb;
 
-
+/** Metoda wypelniajaca ComboBox nazwami przedmiotow*/
     @FXML
     private void fillcombo() throws IOException {
         chb.setMaxHeight(30);
@@ -75,8 +68,12 @@ public class MaterialsController extends Storage implements Initializable {
             dos.close();
             s.close();
         }
+        dis.close();
+        dos.close();
+        s.close();
 
     }
+    /**Metoda inicjalizacji okna oraz wywolujaca metody wypelniajace kontenery*/
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         makeDraggable();
@@ -87,29 +84,10 @@ public class MaterialsController extends Storage implements Initializable {
         }
         mattable.setCellValueFactory(new PropertyValueFactory<>("material"));
     }
-    @FXML
-    public void go_menu(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
-        Parent root = loader.load();
-        MenuController menuController = loader.getController();
-        menuController.store_username(login);
-        Scene scene = new Scene(root);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-    @FXML
-    public void go_menu_avatar(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
-        Parent root = loader.load();
-        MenuController menuController = loader.getController();
-        menuController.store_username(login);
-        Scene scene = new Scene(root);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-
+    /**Metoda wypelniajca kontener TableView materialami dla wybranego przedmiotu
+     *
+     * @param event parametr zapewnia wywolanie metody po wybraniu daty
+     */
     @FXML
     private void setdisplay(ActionEvent event) throws IOException{
         tabela.getItems().clear();
@@ -136,6 +114,9 @@ public class MaterialsController extends Storage implements Initializable {
         }
         tabela.getItems().add(new Materialsclass(materials));
         tabela.getVisibleLeafColumns();
+        dis.close();
+        dos.close();
+        s.close();
 
     }
 }

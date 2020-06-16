@@ -3,7 +3,6 @@ package project.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,15 +13,18 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 import project.Storage;
 
-
+/**Klasa controlera dla zakladki "historia" dostepnej po zalogowaniu*/
 public class MenuController extends Storage implements Initializable {
-
+    /**Metoda inicjalizacji okna*/
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
         makeDraggable();
     }
-
+    /**Metoda przejscia do zakladki "przedmiot"
+     *
+     *@param event parametr zapewnia wywolanie metody po nacisnieciu przycisku
+     */
     @FXML
     public void go_subject(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Subject.fxml"));
@@ -34,7 +36,10 @@ public class MenuController extends Storage implements Initializable {
         window.setScene(scene);
         window.show();
     }
-
+    /**Metoda przejscia do zakladki "materialy"
+     *
+     *@param event parametr zapewnia wywolanie metody po nacisnieciu przycisku
+     */
     @FXML
     public void go_materials(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Materials.fxml"));
@@ -46,6 +51,10 @@ public class MenuController extends Storage implements Initializable {
         window.setScene(scene);
         window.show();
     }
+    /**Metoda przejscia do zakladki "pytania"
+     *
+     *@param event parametr zapewnia wywolanie metody po nacisnieciu przycisku
+     */
     @FXML
     public void go_questions(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Questions.fxml"));
@@ -57,6 +66,10 @@ public class MenuController extends Storage implements Initializable {
         window.setScene(scene);
         window.show();
     }
+    /**Metoda przejscia do zakladki "edycja"
+     *
+     *@param event parametr zapewnia wywolanie metody po nacisnieciu przycisku
+     */
     @FXML
     public void go_edit(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/edit.fxml"));
@@ -68,6 +81,10 @@ public class MenuController extends Storage implements Initializable {
         window.setScene(scene);
         window.show();
     }
+    /**Metoda przejscia do zakladki "generuj test"
+     *
+     *@param event parametr zapewnia wywolanie metody po nacisnieciu przycisku
+     */
     @FXML
     public void go_generate_test(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Generate_test.fxml"));
@@ -79,6 +96,10 @@ public class MenuController extends Storage implements Initializable {
         window.setScene(scene);
         window.show();
     }
+    /**Metoda przejscia do zakladki "ranking"
+     *
+     *@param event parametr zapewnia wywolanie metody po nacisnieciu przycisku
+     */
     @FXML
     public void go_rank(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Rank.fxml"));
@@ -90,6 +111,10 @@ public class MenuController extends Storage implements Initializable {
         window.setScene(scene);
         window.show();
     }
+    /**Metoda przejscia do zakladki "historia"
+     *
+     *@param event parametr zapewnia wywolanie metody po nacisnieciu przycisku
+     */
     @FXML
     public void go_history(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/History.fxml"));
@@ -101,6 +126,10 @@ public class MenuController extends Storage implements Initializable {
         window.setScene(scene);
         window.show();
     }
+    /**Metoda przejscia do zakladki "login" oraz wylogowujaca z aplikacji
+     *
+     *@param event parametr zapewnia wywolanie metody po nacisnieciu przycisku
+     */
     @FXML
     public void logout(ActionEvent event) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("../fxml/Login.fxml"));

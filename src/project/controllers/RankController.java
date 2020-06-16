@@ -2,21 +2,13 @@ package project.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import project.Rankclass;
 import project.Storage;
 import java.io.DataInputStream;
@@ -26,7 +18,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+/**Klasa controlera dla zakladki "historia" dostepnej z poziomu menu*/
 public class RankController extends Storage implements Initializable {
     private int counter;
     private Socket s;
@@ -52,7 +44,7 @@ public class RankController extends Storage implements Initializable {
     private TableColumn<Rankclass, Integer> ColPoints;
     @FXML
     private TextField text;
-
+    /**Metoda inicjalizacji okna oraz wywolujaca metody wypelniajace kontenery*/
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         makeDraggable();
@@ -70,33 +62,7 @@ public class RankController extends Storage implements Initializable {
             e.printStackTrace();
         }
     }
-
-
-    @FXML
-    public void go_menu(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
-        Parent root = loader.load();
-        MenuController menuController = loader.getController();
-        menuController.store_username(login);
-        Scene scene = new Scene(root);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-
-    @FXML
-    public void go_menu_avatar(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
-        Parent root = loader.load();
-        MenuController menuController = loader.getController();
-        menuController.store_username(login);
-        Scene scene = new Scene(root);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-
-
+    /**Metoda wypelniajaca TableView odpowiednimi wartosciami*/
     @FXML
     private ObservableList<Rankclass> fill_table() throws IOException {
         ObservableList<Rankclass> rank = FXCollections.observableArrayList();
@@ -128,10 +94,13 @@ public class RankController extends Storage implements Initializable {
             dos.close();
             s.close();
         }
+        dis.close();
+        dos.close();
+        s.close();
         return rank;
     }
 
-
+    /**Metoda wypelniajaca ComboBox odpowiednimi wartosciami*/
     @FXML
     private void fillcombo() throws IOException {
         chb.setMaxHeight(30);
@@ -162,13 +131,17 @@ public class RankController extends Storage implements Initializable {
             dos.close();
             s.close();
         }
+        dis.close();
+        dos.close();
+        s.close();
 
     }
+    /**Metoda wywolujaca ustawiajaca wartosci w TableView*/
     @FXML
     private void setdisplay() throws IOException{
         table.setItems(Combo_fill_table());
     }
-
+    /**Metoda wypelniajaca TableView odpowiednimi przy uwzglednieniu wyboru w ComboBox*/
     @FXML
     private ObservableList<Rankclass> Combo_fill_table() throws IOException {
         ObservableList<Rankclass> rank = FXCollections.observableArrayList();
@@ -200,12 +173,17 @@ public class RankController extends Storage implements Initializable {
             dos.close();
             s.close();
         }
+        dis.close();
+        dos.close();
+        s.close();
         return rank;
     }
+    /**Metoda wywolujaca ustawiajaca wartosci w TableView przy uwzglednieniu wyboru w ComboBox*/
     @FXML
     private void setdisplaybyname() throws IOException{
         table.setItems(Combo_fill_table_by_name());
     }
+    /**Metoda wypelniajaca TableView odpowiednimi przy uwzglednieniu wyboru w TextField*/
     @FXML
     private ObservableList<Rankclass> Combo_fill_table_by_name() throws IOException {
         ObservableList<Rankclass> rank = FXCollections.observableArrayList();
@@ -237,6 +215,9 @@ public class RankController extends Storage implements Initializable {
             dos.close();
             s.close();
         }
+        dis.close();
+        dos.close();
+        s.close();
         return rank;
     }
 }

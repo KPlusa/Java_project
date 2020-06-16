@@ -24,10 +24,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import project.Storage;
-
+/**Klasa controlera dla zakladki "rejestracja" dostepnej z poziomu logowania*/
 public class RegisterController extends Storage implements Initializable {
     private Socket s;
     private String st;
@@ -50,12 +49,16 @@ public class RegisterController extends Storage implements Initializable {
     private Label status;
 
 
-
+    /**Metoda inicjalizacji okna oraz wywolujaca metody wypelniajace kontenery*/
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         makeDraggable();
     }
 
+    /** Metoda pozwalajaca na zarejestrowanie nieistniejacego uzytkownika
+     *
+     * @param event parametr zapewnia wywolanie metody po nacisnieciu przycisku
+     */
     @FXML
     public void go_register(ActionEvent event) throws IOException {
         try {
@@ -92,8 +95,13 @@ public class RegisterController extends Storage implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
+    /** Metoda pozwala na przejscie do zakladki logowanie
+     *
+     * @param event parametr zapewnia wywolanie metody po nacisnieciu przycisku
+     */
     @FXML
     private void loadThird(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/Login.fxml"));

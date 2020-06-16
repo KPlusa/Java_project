@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-// ClientHandler class
+/**Klasa ClientHandler zapewnia polaczenie pomiedzy klientem a serwerem*/
 class ClientHandler extends Thread {
 
     final DataInputStream dis;
@@ -40,13 +40,13 @@ class ClientHandler extends Thread {
     private Object NullPointerException;
     private int o_z=0;
     private List<String> l=new ArrayList<String>();
-
+/**Konstruktor klasy ClientHandler*/
     public ClientHandler(Socket s, DataInputStream dis, DataOutputStream dos) {
         this.s = s;
         this.dis = dis;
         this.dos = dos;
     }
-
+/** Metoda odpowiadajaca za polaczenie z baza oraz odpowiedzi ze strony serwera*/
     @Override
     public void run() {
         try {
@@ -63,6 +63,7 @@ class ClientHandler extends Thread {
                 int choice = dis.readInt();
                 counter=0;
                 switch (choice) {
+                    /**Case 1 odpowiada za sprawdzenie czy podane dane uzytkownika odpowiadaja istniejacemu uzytkownikowi w bazie*/
                     case 1:
                         stmt = con.createStatement();
                         rs = stmt.executeQuery("select NAZWA,HASLO from Uzytkownik");
@@ -82,7 +83,8 @@ class ClientHandler extends Thread {
                         con.close();
                         dos.writeUTF(to_return);
                         break;
-                    case 2: //Rejestracja
+                    /**Case 2 odpowiada za dodanie nowego uzytkownika do bazy*/
+                    case 2:
                         stmt = con.createStatement();
                         rs = stmt.executeQuery("select * from Uzytkownik");
                         System.out.println("Rejestracja");
@@ -121,7 +123,7 @@ class ClientHandler extends Thread {
                         con.close();
                         dos.writeUTF(to_return);
                         break;
-
+                    /**Case 3 odpowiada za wypelnienie ComboBox w zakladce Materialy oraz w zakladce Ranking*/
                     case 3:
                         stmt=con.createStatement();
                         rs=stmt.executeQuery("select NAZWA from Przedmiot");
@@ -135,6 +137,7 @@ class ClientHandler extends Thread {
                             dos.writeUTF(help);
                         }
                         break;
+                    /**Case 4 odpowiada za wypelnienie TableView w zakladce Przedmiot*/
                     case 4:
                         stmt=con.createStatement();
                         rs = stmt.executeQuery("select NAZWA,RODZAJ from PRZEDMIOT");
@@ -159,6 +162,7 @@ class ClientHandler extends Thread {
                             System.out.println("Do wysylki:"+nazwaPrzedmiotu);
                         }
                         break;
+                    /**Case 5 odpowiada za wypelnienie TableView w zakladce Materialy dla wartosci wybranej w ComboBox*/
                     case 5:
                         cs5=dis.readUTF();
                         stmt=con.createStatement();
@@ -174,7 +178,8 @@ class ClientHandler extends Thread {
                         }
                         dos.writeUTF(cs5);
                         break;
-                    case 6://Edycja
+                        /**Case 6 pobiera dane do zakladki Edycja*/
+                    case 6:
                         stmt=con.createStatement();
                         rs=stmt.executeQuery("select NAZWA from Przedmiot");
                         System.out.println("Edycja");
@@ -197,7 +202,8 @@ class ClientHandler extends Thread {
                             System.out.println("Do wysylki: "+name_of_subject);
                         }
                         break;
-                    case 7://Pytania zamkniete
+                    /**Case 7 pobiera dane do zakladki Pytania Zamkniete w zakladce Edycja*/
+                    case 7:
                         System.out.println("Edycja pytan zamknietych");
                         receiver=dis.readUTF();
                         tmp=dis.readUTF();
@@ -247,6 +253,7 @@ class ClientHandler extends Thread {
                         }
                         System.out.println(question_list);
                         break;
+                    /**Case 8 pobiera dane do zakladki Pytania*/
                     case 8:
                         stmt=con.createStatement();
                         rs = stmt.executeQuery("select przedmiot.ID,PRZEDMIOT.NAZWA,PRZEDMIOT.RODZAJ,TRESC from PYTANIA JOIN PRZEDMIOT ON PRZEDMIOT.ID=PYTANIA.PRZEDMIOT_ID");
@@ -270,7 +277,8 @@ class ClientHandler extends Thread {
                             dos.writeUTF(P);
                         }
                         break;
-                    case 9://Historia
+                    /**Case 9 pobiera dane do zakladki Historia dla wybranej daty*/
+                    case 9:
                         nick=dis.readUTF();
                         date=dis.readUTF();
                         System.out.println("Otrzymano: "+nick+"\t"+date);
@@ -292,6 +300,7 @@ class ClientHandler extends Thread {
                         dos.writeUTF(test);
                         dos.writeUTF(percent);
                         break;
+                    /**Case 10 pobiera dane do zakladki Ranking*/
                     case 10:
                         stmt=con.createStatement();
                         sub = dis.readUTF();
@@ -320,6 +329,7 @@ class ClientHandler extends Thread {
                             dos.writeInt(Punkty.get(i));
                         }
                         break;
+                    /**Case 11 pobiera dane do zakladki Ranking dla podanego przedmiotu*/
                     case 11:
                         stmt=con.createStatement();
                         sub = dis.readUTF();
@@ -348,6 +358,7 @@ class ClientHandler extends Thread {
                             dos.writeInt(Punkty.get(i));
                         }
                         break;
+                    /**Case 12 pobiera dane do zakladki Ranking dla podanego loginu*/
                     case 12:
                         stmt=con.createStatement();
                         sub = dis.readUTF();
@@ -377,6 +388,7 @@ class ClientHandler extends Thread {
                             dos.writeInt(Punkty.get(i));
                         }
                         break;
+                    /**Case 13 pobiera dane do zakladki Generuj Test dla podanego przedmiotu*/
                     case 13:
                         stmt=con.createStatement();
                         sub=dis.readUTF();
@@ -391,7 +403,8 @@ class ClientHandler extends Thread {
                             dos.writeUTF(help);
                         }
                         break;
-                    case 14://dodawanie pytan zamknietych
+                    /**Case 14 dodaje wiersz do bazy podany w zakladce Pytania Zamkniete dostepnej w zakladce Edytuj*/
+                    case 14:
                         int idd=dis.readInt();
                         String text= dis.readUTF();
                         String aa= dis.readUTF();
@@ -429,8 +442,8 @@ class ClientHandler extends Thread {
                             dos.writeUTF(st);
                         }
                         break;
-
-                    case 15://aktualizacja pytan zamknietych
+                    /**Case 15 aktualizuje wiersz w bazie podany w zakladce Pytania Zamkniete dostepnej w zakladce Edytuj*/
+                    case 15:
                         idd=dis.readInt();
                         text= dis.readUTF();
                         aa= dis.readUTF();
@@ -458,6 +471,7 @@ class ClientHandler extends Thread {
                         else st = "odpowiedz  a nie  moze byc pusta";
                         dos.writeUTF(st);
                         break;
+                    /**Case 16 usuwa wiersz w bazie podany w zakladce Pytania Zamkniete lub w zakladce Pytania Otwarte dostepnej w zakladce Edytuj*/
                     case 16://usuwanie pytan zamknietych,otwartych
                         idd=dis.readInt();
                         System.out.println("Otrzymano: "+idd+"\t");
@@ -466,7 +480,8 @@ class ClientHandler extends Thread {
                         st="Pomyslnie usunieto";
                         dos.writeUTF(st);
                         break;
-                    case 17://edycja pytan otwartych
+                    /**Case 17 wypelnia Tableview w zakladce Pytania Otwarte dostepnej w zakladce Edytuj danymi*/
+                    case 17:
                         System.out.println("Edycja pytan otwartych");
                         receiver=dis.readUTF();
                         tmp=dis.readUTF();
@@ -493,6 +508,7 @@ class ClientHandler extends Thread {
                             dos.writeUTF(Q);
                         }
                         break;
+                        /**Case 18 dodaje wiersz do bazy dla odpowiedniego uzytkownika i testu(zakladka Wynik)*/
                     case 18:
                         stmt=con.createStatement();
                         login=dis.readUTF();
@@ -521,6 +537,7 @@ class ClientHandler extends Thread {
                         System.out.println(imp);
                         System.out.println(data);
                         break;
+                        /**Case 19 pobiera dane dla testu Pytan Zamknietych*/
                     case 19:
                         stmt=con.createStatement();
                         sub=dis.readUTF();
@@ -558,6 +575,7 @@ class ClientHandler extends Thread {
                             dos.writeInt(list_popr_o.get(i));
                         }
                         break;
+                        /**Case 20 wypelnia ComboBox w zakladce Edytuj oraz Dodaj Usun Przedmiot dostepnej z jej poziomu typami przedmiotow dla odpowiedniej nazwy przedmiotu*/
                     case 20:
                         rcv=dis.readUTF();
                         stmt=con.createStatement();
@@ -575,6 +593,7 @@ class ClientHandler extends Thread {
                             System.out.println("Do wysylki: "+t);
                         }
                         break;
+                        /**Case 21 odpowiada za odczytanie wartosci ilosci pytan dla testu Pytan Zamknietych*/
                     case 21:
                         stmt=con.createStatement();
                         sub=dis.readUTF();
@@ -593,7 +612,8 @@ class ClientHandler extends Thread {
                         }
                         dos.writeInt(counter);
                         break;
-                    case 22://usuwanie przedmiotu
+                        /**Case 22 odpowiada za usuniecie przedmiotu w zakladce Dodaj Usun Przedmiot dostepnej z zakladki Edycja*/
+                    case 22:
                         subject=dis.readUTF();
                         type=dis.readUTF();
                         System.out.println("Otrzymano: "+subject+"\n"+type);
@@ -604,7 +624,8 @@ class ClientHandler extends Thread {
                         rs=stmt.executeQuery("delete from przedmiot WHERE NAZWA='"+subject+"' and rodzaj='"+type+"'");
                         dos.writeUTF("Pomyslnie usunieto");
                         break;
-                    case 23://dodawanie przedmiotu
+                    /**Case 23 odpowiada za dodanie przedmiotu w zakladce Dodaj Usun Przedmiot dostepnej z zakladki Edycja*/
+                    case 23:
                         subject=dis.readUTF();
                         type=dis.readUTF();
                         System.out.println("Otrzymano: "+subject+"\n"+type);
@@ -619,7 +640,8 @@ class ClientHandler extends Thread {
                         else
                             dos.writeUTF("Takie dane juz istnieja w tym przedmiocie");
                         break;
-                    case 24://dodawanie otwartych
+                        /**Case 24 odpowiada za dodawanie wiersza Pytan Otwartych do bazy*/
+                    case 24:
                         idd=dis.readInt();
                         text= dis.readUTF();
                         aa= dis.readUTF();
@@ -645,7 +667,8 @@ class ClientHandler extends Thread {
                             dos.writeUTF(st);
                         }
                         break;
-                    case 25://aktualizowanie otwartych
+                    /**Case 25 odpowiada za aktualizowanie wiersza Pytan Otwartych do bazy*/
+                    case 25:
                         idd=dis.readInt();
                         text= dis.readUTF();
                         aa= dis.readUTF();
@@ -669,6 +692,7 @@ class ClientHandler extends Thread {
                         else st = "Odpowiedz nie moze byc pusta";
                         dos.writeUTF(st);
                         break;
+                        /**Case 26 odpowiada za zaladowanie danych do zakladki Edytuj Material*/
                     case 26:
                         System.out.println("Edycja materialow");
                         receiver=dis.readUTF();
@@ -698,6 +722,7 @@ class ClientHandler extends Thread {
                             dos.writeUTF(M);
                         }
                         break;
+                        /**Case 27 odpowiada za pobranie danych do testu Pytan Otwartych*/
                     case 27:
                         stmt=con.createStatement();
                         sub=dis.readUTF();
@@ -714,7 +739,8 @@ class ClientHandler extends Thread {
                         }
                         dos.writeInt(counter);
                         break;
-                    case 28://dodawanie mat
+                        /**Case 28 odpowiada za dodanie materialow w zakladce Edytuj Material*/
+                    case 28:
 
                         text= dis.readUTF();
                         subject=dis.readUTF();
@@ -731,7 +757,8 @@ class ClientHandler extends Thread {
                         }
                         dos.writeUTF("Takie dane juz istnieja w tym materiale");
                         break;
-                    case 29://edycja mat
+                    /**Case 29 odpowiada za aktualizacje materialow w zakladce Edytuj Material*/
+                    case 29:
                         tmp=dis.readUTF();
                         text= dis.readUTF();
                         subject=dis.readUTF();
@@ -743,7 +770,8 @@ class ClientHandler extends Thread {
                         st="Pomyslnie zaktualizowano";
                         dos.writeUTF(st);
                         break;
-                    case 30://usuwanie mat
+                    /**Case 30 odpowiada za usuwanie materialow w zakladce Edytuj Material*/
+                    case 30:
                         text=dis.readUTF();
                         System.out.println("Otrzymano: "+text+"\t");
                         stmt=con.createStatement();
@@ -751,7 +779,8 @@ class ClientHandler extends Thread {
                         st="Pomyslnie usunieto";
                         dos.writeUTF(st);
                         break;
-                    case 31://combobox materialy pytania
+                    /**Case 31 odpowiada za wypelnienie ComboBox pozwalajacego na wybranie dostepnych zasobow(materialy/pytania) w zakladce Edytuj*/
+                    case 31:
                         int mat=0;
                         int pyt=0;
                         rcv=dis.readUTF();
@@ -783,7 +812,7 @@ class ClientHandler extends Thread {
                             System.out.println("Do wysylki: "+t);
                         }
                         break;
-
+                        /**Case 32 odpowiada za usuniecie materialow lub Pytan dla wybranego przedmiotu oraz jego typu dostepne w zakladce Edytuj*/
                     case 32:
                         rcv=dis.readUTF();
                         receiver=dis.readUTF();
@@ -801,6 +830,7 @@ class ClientHandler extends Thread {
                         else st="error";
                         dos.writeUTF(st);
                         break;
+                    /**Case 19 pobiera dane dla testu Pytan Otwartych*/
                     case 33:
                         stmt=con.createStatement();
                         sub=dis.readUTF();

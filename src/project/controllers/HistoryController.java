@@ -2,15 +2,9 @@ package project.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import project.Storage;
 
@@ -23,7 +17,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-
+/**Klasa controlera dla zakladki "historia" dostepnej z poziomu menu*/
 public class HistoryController extends Storage implements Initializable {
 
     private String test,percent;
@@ -32,15 +26,13 @@ public class HistoryController extends Storage implements Initializable {
     private InetAddress ip;
     private DataInputStream dis;
     private DataOutputStream dos;
-
     @FXML
     private Text Test;
     @FXML
     private Text score;
     @FXML
     DatePicker datePicker;
-
-
+    /**Metoda inicjalizacji okna oraz wywolujaca metody wypelniajace kontenery*/
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         makeDraggable();
@@ -67,6 +59,11 @@ public class HistoryController extends Storage implements Initializable {
         };
         datePicker.setConverter(converter);
     }
+
+    /**Metoda wypelniajaca pola typu TextField odpowiednimi wartosciami
+     *
+     * @param event parametr zapewnia wywolanie metody po wybraniu daty
+     */
     @FXML
     public void show_information(ActionEvent event) throws IOException {
         temp= datePicker.getValue().toString();
@@ -88,6 +85,9 @@ public class HistoryController extends Storage implements Initializable {
                 percent=dis.readUTF();
                 Test.setText(test);
                 score.setText(percent+"%");
+                dis.close();
+                dos.close();
+                s.close();
                 break;
             }
         }
@@ -99,31 +99,5 @@ public class HistoryController extends Storage implements Initializable {
         }
 
     }
-
-    @FXML
-    public void go_menu(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
-        Parent root = loader.load();
-        MenuController menuController = loader.getController();
-        menuController.store_username(login);
-        Scene scene = new Scene(root);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-    @FXML
-    public void go_menu_avatar(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
-        Parent root = loader.load();
-        MenuController menuController = loader.getController();
-        menuController.store_username(login);
-        Scene scene = new Scene(root);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-
-
-
 }
 

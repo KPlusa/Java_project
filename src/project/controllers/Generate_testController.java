@@ -11,7 +11,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import project.Storage;
 import java.io.DataInputStream;
@@ -21,7 +20,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+/**Klasa controlera dla zakladki "generuj test" dostepnej z poziomu menu*/
 public class Generate_testController extends Storage implements Initializable {
 
     @FXML
@@ -42,7 +41,7 @@ public class Generate_testController extends Storage implements Initializable {
     private DataOutputStream dos;
     private String sub, typ;
 
-
+    /**Metoda inicjalizacji okna oraz wywolujaca metody wypelniajace kontenery*/
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         makeDraggable();
@@ -52,34 +51,7 @@ public class Generate_testController extends Storage implements Initializable {
             e.printStackTrace();
         }
     }
-
-
-    @FXML
-    public void go_menu(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
-        Parent root = loader.load();
-        MenuController menuController = loader.getController();
-        menuController.store_username(login);
-        Scene scene = new Scene(root);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-
-    @FXML
-    public void go_menu_avatar(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
-        Parent root = loader.load();
-        MenuController menuController = loader.getController();
-        menuController.store_username(login);
-        Scene scene = new Scene(root);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-
-
-
+    /**Metoda wypelniajaca ComboBox nazwami przedmiotow*/
     private void fillcombo() throws IOException {
         combo_subject.setMaxHeight(30);
         subject_list.clear();
@@ -101,11 +73,15 @@ public class Generate_testController extends Storage implements Initializable {
                     subject_list.add(sub);
                 }
                 combo_subject.setItems(subject_list);
+            dis.close();
+            dos.close();
+            s.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
+    /**Metoda wypelniajace pozostale ComboBox dostepnymi typami przedmiotow oraz testow(otwarte/zamkniete)*/
     @FXML
     private void fillsecondcombo()throws IOException
     {
@@ -131,13 +107,23 @@ public class Generate_testController extends Storage implements Initializable {
 
         } catch (IOException e) {
             e.printStackTrace();
+            dis.close();
+            dos.close();
+            s.close();
         }
+        dis.close();
+        dos.close();
+        s.close();
         combo_type.setItems(type_list);
         type_test_list.clear();
         type_test_list.add("Zamknięty");
         type_test_list.add("Otwarty");
         combo_test_type.setItems(type_test_list);
     }
+
+    /**Metoda odpowiadajaca za przejscie do testu, w tej metodzie wprowadzone sa rowniez zabezpieczenia przed bledna generacja testu
+     *
+     * @param event pozwala na uruchomienie metody w momencie klikniecia przycisku*/
     @FXML
     private void go_to_test(ActionEvent event) throws IOException{
 
@@ -167,12 +153,14 @@ public class Generate_testController extends Storage implements Initializable {
                     dos = new DataOutputStream(s.getOutputStream());
                 } catch (Exception e) {
                     e.printStackTrace();
-                    System.out.println("Brak polaczenia z serwerem");
                 }
                 dos.writeInt(21);
                 dos.writeUTF(sub);
                 dos.writeUTF(typ);
                 counter=dis.readInt();
+                dis.close();
+                dos.close();
+                s.close();
             if(counter<20) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Show_score.fxml"));
                 Parent root = loader.load();
@@ -213,6 +201,9 @@ public class Generate_testController extends Storage implements Initializable {
                 dos.writeUTF(sub);
                 dos.writeUTF(typ);
                 counter=dis.readInt();
+                dis.close();
+                dos.close();
+                s.close();
                 if(counter<20) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Show_score.fxml"));
                     Parent root = loader.load();

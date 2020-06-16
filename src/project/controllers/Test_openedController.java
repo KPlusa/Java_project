@@ -2,7 +2,6 @@ package project.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import project.Storage;
 import project.Testopenclass;
@@ -24,7 +22,7 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
-
+/**Klasa controlera dla zakladki "test zamkniety" dostepnej po poprawnym wygenerowaniu testu*/
 public class Test_openedController extends Storage implements Initializable {
     private int counter,id,obecne;
     private Socket s;
@@ -47,36 +45,16 @@ public class Test_openedController extends Storage implements Initializable {
     private Label error_msg;
     @FXML
     private TextArea odpowiedz;
-
+    /**Metoda inicjalizacji okna oraz wywolujaca metody wypelniajace kontenery*/
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         makeDraggable();
     }
-
-
-    @FXML
-    public void go_menu(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
-        Parent root = loader.load();
-        MenuController menuController = loader.getController();
-        menuController.store_username(login);
-        Scene scene = new Scene(root);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-    @FXML
-    public void go_menu_avatar(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
-        Parent root = loader.load();
-        MenuController menuController = loader.getController();
-        menuController.store_username(login);
-        Scene scene = new Scene(root);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-
+    /**Metoda pobiera dane dla testu
+     *
+     * @param sub nazwa przedmiotu
+     * @param typ typ przedmiotu
+     */
     public ObservableList<Testopenclass> fill_test(String sub, String typ) throws IOException {
         try {
             ip = InetAddress.getByName("localhost");
@@ -101,9 +79,13 @@ public class Test_openedController extends Storage implements Initializable {
             odp_o = dis.readUTF();
             Testopen.add(new Testopenclass(id,tresc,odp_o));
         }
+        dis.close();
+        dos.close();
+        s.close();
 
         return Testopen;
     }
+    /**Metoda generuje numery pytan uzytych do testu*/
     public void gen_number()throws IOException {
         for (int i = 0; i < 20; i++) {
             int num = generator.nextInt(counter) + 1;
@@ -120,6 +102,7 @@ public class Test_openedController extends Storage implements Initializable {
             }
         }
     }
+    /**Metoda umieszcza dane dotyczace pierwszego pytania w formatce pytania otwartego*/
     @FXML
     public void fill_first_quest() throws IOException
     {
@@ -133,6 +116,10 @@ public class Test_openedController extends Storage implements Initializable {
             }
         }
     }
+    /**Metoda zapewnia przejscie do kolejnego pytania
+     *
+     * @param event parametr zapewnia wywolanie metody po nacisnieciu przycisku
+     */
     @FXML
     private void go_right(MouseEvent event) throws IOException
     {
@@ -163,6 +150,10 @@ public class Test_openedController extends Storage implements Initializable {
         odpowiedz.setText(was_selected[obecne]);
         nr_pyt.setText(String.valueOf(obecne+1));
     }
+    /**Metoda zapewnia przejscie do poprzedniego pytania
+     *
+     * @param event parametr zapewnia wywolanie metody po nacisnieciu przycisku
+     */
     @FXML
     private void go_left(MouseEvent event) throws IOException
     {
@@ -195,6 +186,10 @@ public class Test_openedController extends Storage implements Initializable {
         odpowiedz.setText(was_selected[obecne]);
         nr_pyt.setText(String.valueOf(obecne+1));
     }
+    /**Metoda zapewnia zakonczenie testu oraz przejscie do formatki "Wynik"
+     *
+     * @param event parametr zapewnia wywolanie metody po nacisnieciu przycisku
+     */
     @FXML
     private void end_test(MouseEvent event) throws IOException
     {

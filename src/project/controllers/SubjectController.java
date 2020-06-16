@@ -10,22 +10,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import project.Storage;
 import project.SubjectClass;
 
-
+/**Klasa controlera dla zakladki "przedmiot" dostepnej z poziomu menu*/
 public class SubjectController extends Storage implements Initializable {
     private int counter;
     private Socket s;
@@ -34,8 +27,6 @@ public class SubjectController extends Storage implements Initializable {
     private InetAddress ip;
     private DataInputStream dis;
     private DataOutputStream dos;
-
-
     @FXML
     TableView<SubjectClass>table;
     @FXML
@@ -43,9 +34,7 @@ public class SubjectController extends Storage implements Initializable {
     @FXML
     private TableColumn<SubjectClass,String> ColSubType;
 
-
-
-
+    /**Metoda wypelniajaca TableView odpowiednimi wartosciami*/
     @FXML
     private ObservableList<SubjectClass> fill_table() throws IOException{
         ObservableList<SubjectClass> subject = FXCollections.observableArrayList();
@@ -75,9 +64,12 @@ public class SubjectController extends Storage implements Initializable {
             dos.close();
             s.close();
         }
+        dis.close();
+        dos.close();
+        s.close();
         return subject;
     }
-
+    /**Metoda inicjalizacji okna oraz wywolujaca metody wypelniajace kontenery*/
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         makeDraggable();
@@ -92,27 +84,4 @@ public class SubjectController extends Storage implements Initializable {
         }
     }
 
-
-    @FXML
-    public void go_menu(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
-        Parent root = loader.load();
-        MenuController menuController = loader.getController();
-        menuController.store_username(login);
-        Scene scene = new Scene(root);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-    @FXML
-    public void go_menu_avatar(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
-        Parent root = loader.load();
-        MenuController menuController = loader.getController();
-        menuController.store_username(login);
-        Scene scene = new Scene(root);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
 }
