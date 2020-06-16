@@ -165,7 +165,6 @@ public class Generate_testController extends StoreLogin implements Initializable
             dos.writeInt(13);
             dos.writeUTF(combo_subject.getValue().toString());
             counter = dis.readInt();
-            System.out.println(counter);
             for (int i = 0; i < counter; i++) {
                 typ = dis.readUTF();
                 type_list.add(typ);
@@ -199,28 +198,86 @@ public class Generate_testController extends StoreLogin implements Initializable
         {
             sub = combo_subject.getValue().toString();
             typ = combo_type.getValue().toString();
+
+
             if (combo_test_type.getSelectionModel().isSelected(0)) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Test_closed.fxml"));
+                try {
+                    ip = InetAddress.getByName("localhost");
+                    s = new Socket(ip, 5057);
+                    dis = new DataInputStream(s.getInputStream());
+                    dos = new DataOutputStream(s.getOutputStream());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("Brak polaczenia z serwerem");
+                }
+                dos.writeInt(21);
+                dos.writeUTF(sub);
+                dos.writeUTF(typ);
+                counter=dis.readInt();
+            if(counter<20) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Show_score.fxml"));
                 Parent root = loader.load();
-                Test_closedController Test_closedController = loader.getController();
-                Test_closedController.store_username(login);
-                Test_closedController.store_sub(sub);
-                Test_closedController.store_typ(typ);
+                Show_scoreController showController = loader.getController();
+                showController.store_username(login);
+                showController.get_error(counter);
                 Scene scene = new Scene(root);
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(scene);
                 window.show();
             }
-            else
-            {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Test_opened.fxml"));
+            else {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Test_closed.fxml"));
                 Parent root = loader.load();
-                Test_openedController Test_openedController = loader.getController();
-                Test_openedController.store_username(login);
+                Test_closedController Test_closedController = loader.getController();
+                Test_closedController.store_username(login);
+                Test_closedController.fill_test(sub, typ);
+                Test_closedController.gen_number();
+                Test_closedController.fill_first_quest();
                 Scene scene = new Scene(root);
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(scene);
                 window.show();
+            }
+            }
+            else
+            {
+                try {
+                    ip = InetAddress.getByName("localhost");
+                    s = new Socket(ip, 5057);
+                    dis = new DataInputStream(s.getInputStream());
+                    dos = new DataOutputStream(s.getOutputStream());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("Brak polaczenia z serwerem");
+                }
+                dos.writeInt(27);
+                dos.writeUTF(sub);
+                dos.writeUTF(typ);
+                counter=dis.readInt();
+                if(counter<20) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Show_score.fxml"));
+                    Parent root = loader.load();
+                    Show_scoreController showController = loader.getController();
+                    showController.store_username(login);
+                    showController.get_error(counter);
+                    Scene scene = new Scene(root);
+                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    window.setScene(scene);
+                    window.show();
+                }
+                else {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Test_opened.fxml"));
+                    Parent root = loader.load();
+                    Test_openedController test_openedController = loader.getController();
+                    test_openedController.store_username(login);
+                    test_openedController.fill_test(sub, typ);
+                    test_openedController.gen_number();
+                    test_openedController.fill_first_quest();
+                    Scene scene = new Scene(root);
+                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    window.setScene(scene);
+                    window.show();
+                }
             }
         }
     }

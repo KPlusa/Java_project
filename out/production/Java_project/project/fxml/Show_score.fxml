@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.Show_scoreController">
+<AnchorPane fx:id="AnchorPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.Show_scoreController">
    <children>
       <AnchorPane fx:id="FunctionAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="800.0" style="-fx-background-color: FF847F;">
          <children>
@@ -24,7 +27,17 @@
                   <Image url="@../images/icons8_maximize_window_50px.png" />
                </image>
             </ImageView>
-            <AnchorPane layoutX="42.0" layoutY="45.0">
+            <Label layoutX="299.0" layoutY="92.0" text="Podsumowanie" textAlignment="CENTER" textFill="#575757">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="61.0" fitWidth="70.0" layoutX="370.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/test_100px.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="42.0" layoutY="45.0" onMouseClicked="#go_menu_avatar">
                <children>
                   <ImageView fitHeight="61.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -39,16 +52,6 @@
                   <Label layoutX="69.0" layoutY="38.0" text="Effective learning" textFill="#575757" />
                </children>
             </AnchorPane>
-            <Label layoutX="299.0" layoutY="92.0" text="Podsumowanie" textAlignment="CENTER" textFill="#575757">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="61.0" fitWidth="70.0" layoutX="370.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/test_100px.png" />
-               </image>
-            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane layoutY="150.0" prefHeight="450.0" prefWidth="800.0">
@@ -63,12 +66,12 @@
                   <Font size="30.0" />
                </font>
             </Text>
-            <Text fill="#575757" layoutX="592.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+            <Text fx:id="Questions" fill="#575757" layoutX="592.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                <font>
                   <Font size="30.0" />
                </font>
             </Text>
-            <Text fill="#575757" layoutX="592.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+            <Text fx:id="points" fill="#575757" layoutX="592.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                <font>
                   <Font size="30.0" />
                </font>
@@ -78,14 +81,19 @@
                   <Font size="30.0" />
                </font>
             </Text>
-            <Text fill="#575757" layoutX="592.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0%">
+            <Text fx:id="per" fill="#575757" layoutX="592.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0%">
                <font>
                   <Font size="30.0" />
                </font>
             </Text>
+            <Label fx:id="error_msg" layoutX="127.0" layoutY="330.0" prefHeight="46.0" prefWidth="546.0" textFill="#fd0000">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <Button alignment="CENTER" layoutX="662.0" layoutY="540.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Powrót" textFill="#575757">
+      <Button alignment="CENTER" layoutX="662.0" layoutY="540.0" mnemonicParsing="false" onMouseClicked="#go_menu_avatar" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Powrót" textFill="#575757">
          <font>
             <Font name="Arial" size="12.0" />
          </font>

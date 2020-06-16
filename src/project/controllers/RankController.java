@@ -165,10 +165,6 @@ public class RankController extends StoreLogin implements Initializable {
                     name = dis.readUTF();
                     subject = dis.readUTF();
                     points = dis.readInt();
-                    System.out.println(id);
-                    System.out.println(name);
-                    System.out.println(subject);
-                    System.out.println(points);
                     rank.add(new Rankclass(id, subject, name, points));
                 }
 
@@ -201,7 +197,6 @@ public class RankController extends StoreLogin implements Initializable {
                 }
                 dos.writeInt(3);
                 counter = dis.readInt();
-                System.out.println(counter);
                 for (int i = 0; i < counter; i++) {
                     sub = dis.readUTF();
                     mylist.add(sub);
@@ -226,6 +221,7 @@ public class RankController extends StoreLogin implements Initializable {
         ObservableList<Rankclass> rank = FXCollections.observableArrayList();
         table.getItems().clear();
         sub = chb.getValue().toString();
+        text.clear();
         try {
             while (true) {
                 counter = 0;
@@ -241,10 +237,6 @@ public class RankController extends StoreLogin implements Initializable {
                     name = dis.readUTF();
                     subject = dis.readUTF();
                     points = dis.readInt();
-                    System.out.println(id);
-                    System.out.println(name);
-                    System.out.println(subject);
-                    System.out.println(points);
                     rank.add(new Rankclass(id, subject, name, points));
                 }
                 break;
@@ -266,6 +258,7 @@ public class RankController extends StoreLogin implements Initializable {
         ObservableList<Rankclass> rank = FXCollections.observableArrayList();
         table.getItems().clear();
         sub = text.getText();
+        chb.setValue("");
         try {
             while (true) {
                 counter = 0;
@@ -281,10 +274,6 @@ public class RankController extends StoreLogin implements Initializable {
                     name = dis.readUTF();
                     subject = dis.readUTF();
                     points = dis.readInt();
-                    System.out.println(id);
-                    System.out.println(name);
-                    System.out.println(subject);
-                    System.out.println(points);
                     rank.add(new Rankclass(id, subject, name, points));
                 }
                 break;
