@@ -58,7 +58,7 @@ public class RegisterController extends Storage implements Initializable {
     /** Metoda pozwalajaca na zarejestrowanie nieistniejacego uzytkownika
      *
      * @param event parametr zapewnia wywolanie metody po nacisnieciu przycisku
-     */
+     * @throws IOException wyjatek*/
     @FXML
     public void go_register(ActionEvent event) throws IOException {
         try {
@@ -101,7 +101,7 @@ public class RegisterController extends Storage implements Initializable {
     /** Metoda pozwala na przejscie do zakladki logowanie
      *
      * @param event parametr zapewnia wywolanie metody po nacisnieciu przycisku
-     */
+     * @throws IOException wyjatek*/
     @FXML
     private void loadThird(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/Login.fxml"));

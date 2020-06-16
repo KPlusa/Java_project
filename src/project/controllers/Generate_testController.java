@@ -51,7 +51,11 @@ public class Generate_testController extends Storage implements Initializable {
             e.printStackTrace();
         }
     }
-    /**Metoda wypelniajaca ComboBox nazwami przedmiotow*/
+
+    /**Metoda wypelniajaca ComboBox nazwami przedmiotow
+     *
+     * @throws IOException wyjatek
+     */
     private void fillcombo() throws IOException {
         combo_subject.setMaxHeight(30);
         subject_list.clear();
@@ -81,7 +85,11 @@ public class Generate_testController extends Storage implements Initializable {
         }
 
     }
-    /**Metoda wypelniajace pozostale ComboBox dostepnymi typami przedmiotow oraz testow(otwarte/zamkniete)*/
+
+    /**Metoda wypelniajace pozostale ComboBox dostepnymi typami przedmiotow oraz testow(otwarte/zamkniete)
+     *
+     * @throws IOException wyjatek
+     */
     @FXML
     private void fillsecondcombo()throws IOException
     {
@@ -123,7 +131,8 @@ public class Generate_testController extends Storage implements Initializable {
 
     /**Metoda odpowiadajaca za przejscie do testu, w tej metodzie wprowadzone sa rowniez zabezpieczenia przed bledna generacja testu
      *
-     * @param event pozwala na uruchomienie metody w momencie klikniecia przycisku*/
+     * @param event pozwala na uruchomienie metody w momencie klikniecia przycisku
+    * @throws IOException wyjatek*/
     @FXML
     private void go_to_test(ActionEvent event) throws IOException{
 

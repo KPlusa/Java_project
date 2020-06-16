@@ -35,7 +35,10 @@ public class MaterialsController extends Storage implements Initializable {
     @FXML
     private ComboBox chb;
 
-/** Metoda wypelniajaca ComboBox nazwami przedmiotow*/
+    /** Metoda wypelniajaca ComboBox nazwami przedmiotow
+     *
+     * @throws IOException wyjatek
+     */
     @FXML
     private void fillcombo() throws IOException {
         chb.setMaxHeight(30);
@@ -87,7 +90,7 @@ public class MaterialsController extends Storage implements Initializable {
     /**Metoda wypelniajca kontener TableView materialami dla wybranego przedmiotu
      *
      * @param event parametr zapewnia wywolanie metody po wybraniu daty
-     */
+     * @throws IOException wyjatek*/
     @FXML
     private void setdisplay(ActionEvent event) throws IOException{
         tabela.getItems().clear();

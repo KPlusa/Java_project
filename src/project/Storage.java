@@ -24,19 +24,25 @@ public class Storage {
     public double x,y;
     @FXML
     public AnchorPane AnchorPaneMain;
-    /**Metoda przechowujaca login uzytkownika*/
+    /**Metoda przechowujaca login uzytkownika
+     * @param lgn login*/
     public void store_username(String lgn)
     {
         this.login=lgn;
         //System.out.println("Mam: "+lgn);
     }
-    /**Metoda przechowujaca przedmiot*/
+    /**Metoda przechowujaca przedmiot
+     * @param sbj przedmiot*/
     public void store_subject(String sbj)
     {
         this.subject_storage=sbj;
         System.out.println("Mam: "+sbj);
     }
-    /**Metoda przechowujaca typ przedmiotu*/
+
+    /**Metoda przechowujaca typ przedmiotu
+     *
+     * @param tp rodzaj przedmiotu
+     */
     public void store_type(String tp)
     {
         this.type_storage=tp;

@@ -34,7 +34,11 @@ public class SubjectController extends Storage implements Initializable {
     @FXML
     private TableColumn<SubjectClass,String> ColSubType;
 
-    /**Metoda wypelniajaca TableView odpowiednimi wartosciami*/
+    /**Metoda wypelniajaca TableView odpowiednimi wartosciami
+     *
+     * @return SubjectClass
+     * @throws IOException wyjatek
+     */
     @FXML
     private ObservableList<SubjectClass> fill_table() throws IOException{
         ObservableList<SubjectClass> subject = FXCollections.observableArrayList();
