@@ -61,28 +61,28 @@
       </AnchorPane>
       <AnchorPane layoutY="150.0" prefHeight="450.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
          <children>
-            <DatePicker fx:id="datePicker" layoutX="93.0" layoutY="89.0" minHeight="-Infinity" onAction="#show_information" prefHeight="30.0" prefWidth="182.0" promptText="dd-MM-yyyy" styleClass="data" stylesheets="@../../../../java%20projekt_backup/src/project/styles/login.css" />
-            <Text fill="#575757" layoutX="375.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilość testów">
+            <DatePicker fx:id="datePicker" layoutX="93.0" layoutY="89.0" minHeight="-Infinity" onAction="#show_information" prefHeight="30.0" prefWidth="182.0" promptText="dd-MM-yyyy" styleClass="data" stylesheets="@../../../../java%20projekt_backup/src/project/styles/login.css" AnchorPane.leftAnchor="93.0" AnchorPane.topAnchor="89.0" />
+            <Text fill="#575757" layoutX="375.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilość testów" AnchorPane.leftAnchor="369.0" AnchorPane.rightAnchor="275.3603515625" AnchorPane.topAnchor="256.626953125">
                <font>
                   <Font size="30.0" />
                </font>
             </Text>
-            <Text fill="#575757" layoutX="369.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Średni wynik">
+            <Text fill="#575757" layoutX="369.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Średni wynik" AnchorPane.leftAnchor="369.0" AnchorPane.rightAnchor="263.4658203125" AnchorPane.topAnchor="84.626953125">
                <font>
                   <Font size="30.0" />
                </font>
             </Text>
-            <Text fx:id="Test" fill="#575757" layoutX="682.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="5.800048828125">
+            <Text fx:id="Test" fill="#575757" layoutX="682.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="5.800048828125" AnchorPane.bottomAnchor="146.470703125" AnchorPane.rightAnchor="112.199951171875">
                <font>
                   <Font size="30.0" />
                </font>
             </Text>
-            <Text fx:id="score" fill="#575757" layoutX="684.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0">
+            <Text fx:id="score" fill="#575757" layoutX="684.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="83.626953125">
                <font>
                   <Font size="30.0" />
                </font>
             </Text>
-            <Button alignment="CENTER" layoutX="688.0" layoutY="391.0" mnemonicParsing="false" onAction="#go_menu" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Powrót" textFill="#575757">
+            <Button alignment="CENTER" layoutX="688.0" layoutY="391.0" mnemonicParsing="false" onAction="#go_menu" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Powrót" textFill="#575757" AnchorPane.bottomAnchor="28.6" AnchorPane.rightAnchor="14.400000000000006">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>

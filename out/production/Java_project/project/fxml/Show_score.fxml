@@ -8,9 +8,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="AnchorPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.Show_scoreController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.Show_scoreController">
    <children>
-      <AnchorPane fx:id="FunctionAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="800.0" style="-fx-background-color: FF847F;">
+      <AnchorPane fx:id="FunctionAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="800.0" style="-fx-background-color: FF847F;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fx:id="close" fitHeight="30.0" fitWidth="30.0" layoutX="756.0" layoutY="14.0" onMouseClicked="#closeAction" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="106.4" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                <image>
@@ -25,16 +25,6 @@
             <ImageView fx:id="maxi" fitHeight="50.0" fitWidth="30.0" layoutX="726.0" layoutY="14.0" onMouseClicked="#maxAction" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="156.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="14.0">
                <image>
                   <Image url="@../images/icons8_maximize_window_50px.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="299.0" layoutY="92.0" text="Podsumowanie" textAlignment="CENTER" textFill="#575757">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="61.0" fitWidth="70.0" layoutX="370.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/test_100px.png" />
                </image>
             </ImageView>
             <AnchorPane layoutX="42.0" layoutY="45.0" onMouseClicked="#go_menu_avatar">
@@ -52,48 +42,58 @@
                   <Label layoutX="69.0" layoutY="38.0" text="Effective learning" textFill="#575757" />
                </children>
             </AnchorPane>
+            <Label layoutX="299.0" layoutY="92.0" text="Podsumowanie" textAlignment="CENTER" textFill="#575757">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="61.0" fitWidth="70.0" layoutX="370.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="370.0" AnchorPane.topAnchor="38.0">
+               <image>
+                  <Image url="@../images/test_100px.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="150.0" prefHeight="450.0" prefWidth="800.0">
+      <AnchorPane layoutY="150.0" prefHeight="450.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
          <children>
-            <Text fill="#575757" layoutX="77.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilość uzyskanych punktów:">
+            <Text fill="#575757" layoutX="77.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilość uzyskanych punktów:" AnchorPane.leftAnchor="77.0" AnchorPane.rightAnchor="374.42578125" AnchorPane.topAnchor="154.626953125">
                <font>
                   <Font size="30.0" />
                </font>
             </Text>
-            <Text fill="#575757" layoutX="77.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilość pytań:">
+            <Text fill="#575757" layoutX="77.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilość pytań:" AnchorPane.leftAnchor="77.0" AnchorPane.rightAnchor="574.3037109375" AnchorPane.topAnchor="53.626953125">
                <font>
                   <Font size="30.0" />
                </font>
             </Text>
-            <Text fx:id="Questions" fill="#575757" layoutX="592.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+            <Text fx:id="Questions" fill="#575757" layoutX="592.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" AnchorPane.rightAnchor="191.828125" AnchorPane.topAnchor="47.626953125">
                <font>
                   <Font size="30.0" />
                </font>
             </Text>
-            <Text fx:id="points" fill="#575757" layoutX="592.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+            <Text fx:id="points" fill="#575757" layoutX="591.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" AnchorPane.rightAnchor="192.828125" AnchorPane.topAnchor="155.626953125">
                <font>
                   <Font size="30.0" />
                </font>
             </Text>
-            <Text fill="#575757" layoutX="77.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilość uzyskanych punktów(%):">
+            <Text fill="#575757" layoutX="77.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilość uzyskanych punktów(%):" AnchorPane.leftAnchor="77.0" AnchorPane.topAnchor="253.626953125">
                <font>
                   <Font size="30.0" />
                </font>
             </Text>
-            <Text fx:id="per" fill="#575757" layoutX="592.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0%">
+            <Text fx:id="per" fill="#575757" layoutX="586.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0%" AnchorPane.rightAnchor="173.27734375" AnchorPane.topAnchor="252.626953125">
                <font>
                   <Font size="30.0" />
                </font>
             </Text>
-            <Label fx:id="error_msg" layoutX="127.0" layoutY="330.0" prefHeight="46.0" prefWidth="546.0" textFill="#fd0000">
+            <Label fx:id="error_msg" layoutX="126.0" layoutY="321.0" prefHeight="46.0" prefWidth="546.0" textFill="#fd0000" AnchorPane.leftAnchor="126.0" AnchorPane.topAnchor="321.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <Button alignment="CENTER" layoutX="662.0" layoutY="540.0" mnemonicParsing="false" onMouseClicked="#go_menu_avatar" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Powrót" textFill="#575757">
+      <Button alignment="CENTER" layoutX="662.0" layoutY="540.0" mnemonicParsing="false" onMouseClicked="#go_menu_avatar" prefHeight="30.0" prefWidth="97.0" style="-fx-background-color: #FF847F; -fx-background-radius: 15;" text="Powrót" textFill="#575757" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="41.0">
          <font>
             <Font name="Arial" size="12.0" />
          </font>
