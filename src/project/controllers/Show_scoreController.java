@@ -1,16 +1,9 @@
 package project.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import project.Storage;
 
 import java.io.DataInputStream;
@@ -22,7 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
-
+/**Klasa controlera dla zakladki "wynik" wywolywanej po rozwiazaniu testu lub w przypadku braku pytan dla danego typu testu*/
 public class Show_scoreController extends Storage implements Initializable {
     private Socket s;
     private InetAddress ip;
@@ -36,38 +29,26 @@ public class Show_scoreController extends Storage implements Initializable {
     private Text points;
     @FXML
     private Text per;
+    /**Metoda inicjalizacji okna oraz wywolujaca metody wypelniajace kontenery*/
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         makeDraggable();
     }
 
-
-    @FXML
-    public void go_menu(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
-        Parent root = loader.load();
-        MenuController menuController = loader.getController();
-        menuController.store_username(login);
-        Scene scene = new Scene(root);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-    @FXML
-    public void go_menu_avatar(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
-        Parent root = loader.load();
-        MenuController menuController = loader.getController();
-        menuController.store_username(login);
-        Scene scene = new Scene(root);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-
+    /** Metoda ustawia wartosc pola TextField w wypadku braku dostepnych pytan dla testy
+     *
+     * @param tmp dostepne pytania
+     */
     public void get_error(int tmp){
         error_msg.setText("Dostępne "+tmp+" pytan na 20, test nie aktywowany oraz nie zapisany.");
     }
+
+    /** Metoda ustawia wartosc pol TextField po rozwiazanym tescie
+     *
+     * @param imp wynik testu
+     * @param sub nazwa przedmiotu
+     * @param typ typ przedmiotu
+     */
     public void pkt (int imp,String sub,String typ) throws IOException {
         Questions.setText("20");
         points.setText(String.valueOf(imp));
@@ -95,6 +76,9 @@ public class Show_scoreController extends Storage implements Initializable {
         dos.writeUTF(typ);
         dos.writeInt(imp);
         dos.writeUTF(data.format(now).toString());
+        dis.close();
+        dos.close();
+        s.close();
     }
 
 }

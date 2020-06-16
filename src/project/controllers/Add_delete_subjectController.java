@@ -13,7 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import project.Storage;
@@ -24,7 +23,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+/**Klasa controlera dla opcji "dodaj usun przedmiot" w zakladce "edytuj"*/
 public class Add_delete_subjectController extends Storage implements Initializable {
     private Socket s;
     private InetAddress ip;
@@ -43,7 +42,7 @@ public class Add_delete_subjectController extends Storage implements Initializab
     private Label status;
     @FXML
     private TextArea text;
-
+/**Metoda odpowiadajaca za wypelnienie ComboBox istniejacymi nazwami przedmiotow*/
     @FXML
     public void fill_combo_subject() throws IOException {
         mylist.clear();
@@ -76,7 +75,7 @@ public class Add_delete_subjectController extends Storage implements Initializab
             s.close();
         }
     }
-
+    /**Metoda odpowiadajaca za wypelnienie ComboBox istniejacymi typami przedmiotow dla wybranej nazwy przedmiotu*/
     @FXML
     public void fill_combo_type() throws IOException {
         myTypelist.clear();
@@ -110,7 +109,7 @@ public class Add_delete_subjectController extends Storage implements Initializab
             s.close();
         }
     }
-
+/**Metoda inicjalizacji okna oraz wywolujaca metody wypelniajace kontenery*/
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         makeDraggable();
@@ -126,7 +125,8 @@ public class Add_delete_subjectController extends Storage implements Initializab
         choice_type.setItems(myTypelist);
     }
 
-
+    /**Metoda odpowiadajaca za powrót do poprzedniej formatki
+     * @param event pozwala na uruchomienie metody w momencie klikniecia przycisku*/
     @FXML
     public void go_back(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/edit.fxml"));
@@ -139,19 +139,10 @@ public class Add_delete_subjectController extends Storage implements Initializab
         window.show();
     }
 
-    @FXML
-    public void go_menu_avatar(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
-        Parent root = loader.load();
-        MenuController menuController = loader.getController();
-        menuController.store_username(login);
-        Scene scene = new Scene(root);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
 
 
+    /**Metoda odpowiadajaca za usuwanie przedmiotu
+     * @param event pozwala na uruchomienie metody w momencie klikniecia przycisku*/
     @FXML
     private void delete(ActionEvent event) throws IOException {
         if (choice_subject.getSelectionModel().isEmpty() && !choice_type.getSelectionModel().isEmpty())
@@ -198,7 +189,8 @@ public class Add_delete_subjectController extends Storage implements Initializab
         );
         pause.play();
     }
-
+    /**Metoda odpowiadajaca za dodawanie przedmiotu
+     * @param event pozwala na uruchomienie metody w momencie klikniecia przycisku*/
     @FXML
     private void insert(ActionEvent event) throws IOException {
         if (text.getText().isEmpty() && !choice_type.getSelectionModel().isEmpty())
@@ -245,6 +237,7 @@ public class Add_delete_subjectController extends Storage implements Initializab
         );
         pause.play();
     }
+    /**Metoda odpowiadajaca za ustawienie wartosci startowych w istniejacych polach*/
     @FXML
     private void clean_()
     {

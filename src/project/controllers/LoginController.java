@@ -27,7 +27,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import project.Storage;
 
-
+/**Klasa controlera startowego- logowanie*/
 public class LoginController extends Storage implements Initializable {
     private String st;
     private Socket s;
@@ -46,12 +46,16 @@ public class LoginController extends Storage implements Initializable {
     private PasswordField password;
     @FXML
     private Label status;
-
+    /**Metoda inicjalizacji okna*/
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         makeDraggable();
     }
 
+    /**Metoda przejscia do okna rejestracji
+     *
+     *@param event parametr zapewnia wywolanie metody po nacisnieciu przycisku
+     */
     @FXML
     private void loadSecond(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/Register.fxml"));
@@ -67,7 +71,10 @@ public class LoginController extends Storage implements Initializable {
         });
         timeline.play();
     }
-
+    /**Metoda przejscia do menu
+     *
+     *@param event parametr zapewnia wywolanie metody po nacisnieciu przycisku
+     */
     @FXML
     public void go_menu(ActionEvent event) throws IOException {
         try {

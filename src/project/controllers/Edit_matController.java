@@ -24,7 +24,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+/**Klasa controlera dla opcji "edytuj material" w zakladce "edytuj"*/
 public class Edit_matController extends Storage implements Initializable {
     private String tmp;
     private int counter = 0;
@@ -42,7 +42,7 @@ public class Edit_matController extends Storage implements Initializable {
     private TextArea TEXT;
     @FXML
     private Label status;
-
+    /**Metoda inicjalizacji okna oraz wywolujaca metody wypelniajace kontenery*/
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         makeDraggable();
@@ -55,7 +55,8 @@ public class Edit_matController extends Storage implements Initializable {
         });
 
     }
-
+    /**Metoda odpowiadajaca za powrót do poprzedniej formatki
+     * @param event pozwala na uruchomienie metody w momencie klikniecia przycisku*/
     @FXML
     public void go_back(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/edit.fxml"));
@@ -67,25 +68,15 @@ public class Edit_matController extends Storage implements Initializable {
         window.setScene(scene);
         window.show();
     }
-    @FXML
-    public void go_menu_avatar(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/menu.fxml"));
-        Parent root = loader.load();
-        MenuController menuController = loader.getController();
-        menuController.store_username(login);
-        Scene scene = new Scene(root);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
 
+    /**Metoda odczytuje wartosc z tableview do pola TextField*/
     private void onEdit() {
         if (EditMat.getSelectionModel().getSelectedItem() != null) {
             EditMatClass editMatClass = EditMat.getSelectionModel().getSelectedItem();
             TEXT.setText(editMatClass.getTresc());
         }
     }
-
+    /**Metoda wypelnia tablice ktora zawiera elementy wyswietlane w tabeli*/
     @FXML
     public ObservableList<EditMatClass> fill_table(String a, String b) throws IOException {
         ObservableList<EditMatClass> EditMat_list = FXCollections.observableArrayList();
@@ -128,7 +119,10 @@ public class Edit_matController extends Storage implements Initializable {
         }
         return EditMat_list;
     }
-
+    /**Metoda odpowiadajaca za dodanie rekordu do bazy
+     *
+     * @param event odpowiada za uruchomienie metody po wcisnieciu przycisku dodaj
+     */
     @FXML
     private void insert(ActionEvent event) throws IOException {
         if (!TEXT.getText().isEmpty()) {
@@ -170,7 +164,8 @@ public class Edit_matController extends Storage implements Initializable {
         );
         pause.play();
     }
-
+    /**Metoda aktualizuje rekord podany przez uzytkownika w bazie
+     * @param event odpowiada za uruchomienie metody po wcisnieciu przycisku aktualizuj*/
     @FXML
     private void update(ActionEvent event) throws IOException {
         try {
@@ -215,7 +210,8 @@ public class Edit_matController extends Storage implements Initializable {
             e.printStackTrace();
         }
     }
-
+    /**Metoda usuwa rekord podany przez uzytkownika z bazy
+     * @param event odpowiada za uruchomienie metody po wcisnieciu przycisku usun*/
     @FXML
     private void delete(ActionEvent event) throws IOException {
         try {

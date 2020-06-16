@@ -6,10 +6,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
+/**Klasa main, uruchamia klienta aplikacji*/
 public class Main extends Application {
     private double x, y;
-
+/**Metoda odpowiada za inicjalizacje pierwszej formatki*/
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/Login.fxml"));

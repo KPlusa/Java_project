@@ -1,7 +1,7 @@
 package project;
 import java.io.*;
 import java.net.*;
-
+/** Klasa serwerowa, uruchamia serwer który jest konektorem z baza*/
 public class Server {
     public static void main(String[] args) throws IOException {
         ServerSocket ss = new ServerSocket(5057);
