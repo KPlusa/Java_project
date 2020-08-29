@@ -1,5 +1,5 @@
 package project;
-
+/** Klasa przechowujaca dane dotyczace materialow*/
 public class Materialsclass {
     private String material;
     public Materialsclass(){

@@ -7,11 +7,11 @@
 
 <StackPane fx:id="parentContainer" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controllers.LoginController">
    <children>
-      <AnchorPane fx:id="anchorRoot" prefHeight="400.0" prefWidth="600.0">
+      <AnchorPane fx:id="AnchorPaneMain" prefHeight="400.0" prefWidth="600.0">
          <children>
             <AnchorPane layoutX="250.0" prefHeight="400.0" prefWidth="350.0">
                <children>
-                  <TextField fx:id="login" focusTraversable="true" layoutX="101.0" layoutY="165.0" promptText="nazwa użytkownika/email" styleClass="data" stylesheets="@../styles/login.css" />
+                  <TextField fx:id="loginn" focusTraversable="true" layoutX="101.0" layoutY="165.0" promptText="nazwa użytkownika/email" styleClass="data" stylesheets="@../styles/login.css" />
                   <PasswordField fx:id="password" layoutX="101.0" layoutY="215.0" promptText="hasło" styleClass="data" stylesheets="@../styles/login.css" />
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="76.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -48,7 +48,7 @@
                         <Font name="Arial" size="12.0" />
                      </font>
                   </Button>
-                  <Label fx:id="status" contentDisplay="CENTER" layoutX="55.0" layoutY="255.0" prefHeight="23.0" prefWidth="241.0" textFill="#fd0000" />
+                  <Label fx:id="status" layoutX="57.0" layoutY="255.0" prefHeight="23.0" prefWidth="241.0" textFill="#fd0000" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="400.0" prefWidth="250.0" style="-fx-background-color: #FF847F;">
