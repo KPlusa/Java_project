@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="jdbc">
-    <CLASSES>
-      <root url="file://D:/ORACLE/dbhomeXE/jdbc" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
