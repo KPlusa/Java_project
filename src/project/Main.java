@@ -13,7 +13,7 @@ public class Main extends Application {
 /**Metoda odpowiada za inicjalizacje pierwszej formatki*/
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/Login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/menu.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.initStyle(StageStyle.UNDECORATED);
         root.setOnMousePressed(event -> {
